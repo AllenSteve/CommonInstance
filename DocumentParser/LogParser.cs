@@ -35,6 +35,7 @@ namespace DocumentParser
         {
             string line = string.Empty;
             int count = 0;
+            int step = 10000*10 * 1;
             try
             {
                 FileStream fStream = new FileStream(this.logPath, FileMode.Open, FileAccess.Read);
@@ -54,7 +55,7 @@ namespace DocumentParser
                             }
                         }
                         count++;
-                        if(count%10000==0)
+                        if(count%step==0)
                         Console.WriteLine("Line: " + count);
                     }
 
@@ -102,19 +103,18 @@ namespace DocumentParser
             try 
             {
                 // 步长，批量插入的间隔行数
-                int step = 10000*10;
+                int step = 1000;
                 int count = logList.Count / step;
-                int from = 0;
                 int to = 0;
                 for (int i = 0; i < count; ++i)
                 {
+                    Console.WriteLine(string.Format("批量操作开始位置[{0}]", step * i));
                     for (int index = 0, steps = step * i; index < step && (steps + index) < logList.Count; ++index)
                     {
-                        from = steps;
                         to = (steps + index);
                         this.AddModelToDataTable(table, logList[steps + index]);
                     }
-                    Console.WriteLine(string.Format("批量操作范围[{0}~{1}]", from, to));
+                    Console.WriteLine(string.Format("批量操作结束位置[{0}]", to));
                     this.BulkInsertTable(table);
                 }
             }
@@ -127,11 +127,12 @@ namespace DocumentParser
             }
             finally
             {
+                table.Dispose();
                 // 清理资源对象
                 ts = stopWatch.Elapsed;
                 elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
                 Console.WriteLine("清理资源对象：..." + elapsedTime);
-                table.Dispose();
+                Console.WriteLine("清理资源位置：DistributeBulkInsert\n");
             }
         }
 
@@ -159,6 +160,7 @@ namespace DocumentParser
                 ts = stopWatch.Elapsed;
                 elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
                 Console.WriteLine("异常抛出时间：..." + elapsedTime);
+                Console.WriteLine("异常抛出位置：BulkInsertList");
             }
         }
 
@@ -203,6 +205,7 @@ namespace DocumentParser
                 ts = stopWatch.Elapsed;
                 elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
                 Console.WriteLine("插入结束，RunTime： " + elapsedTime);
+                Console.WriteLine("恭喜您批量操作成功\n" );
             }
             catch(Exception ex)
             {
@@ -210,6 +213,8 @@ namespace DocumentParser
                 ts = stopWatch.Elapsed;
                 elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
                 Console.WriteLine("异常抛出时间：..." + elapsedTime);
+                Console.WriteLine("异常抛出位置：BulkInsertTable" );
+                Console.WriteLine("很遗憾批量操作失败了\n");
             }
             finally
             {
@@ -218,6 +223,7 @@ namespace DocumentParser
                 table.Dispose();
                 sqlcon.Close();
                 sqlcon.Dispose();
+                Console.WriteLine("清理资源位置：BulkInsertTable\n");
             }
         }
 
