@@ -135,7 +135,7 @@ namespace NetworkComponent
                     // 记得readline之后此时的content中不包含换行符；
                     //streamWriter.Write(content+"\r\n");
                     // TODO:解析日志文件到对象数组中去；
-                    streamWriter.Write(content);
+                    streamWriter.Write(content+"\r\n");
                     streamWriter.Flush();
                     
                 }

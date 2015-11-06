@@ -20,6 +20,8 @@ namespace ComponentTest
         public void RemoteFileTest()
         {
             string path = @"e:\log.txt";
+            path = @"E:\01.Doc\02.工作日志\02.2015-11\02-CallInterfaceLog日志解析\09-Download-Log\";
+            path = string.Format("{0}log-{1}.txt",path,DateTime.Now.ToString("yyyyMMddhhmmss"));
             string url = "ftp://tianhe:sdfaf.1x@124.251.47.122/trains_logs/speed/zxbapp_log_2015-11-04.txt"; 
             //this.remoteFile.ReadRemoteFile(string.Empty, path);
             //url = @"\\192.168.127.154\98.SharedFolder\fzxapp_log_2015-11-03.txt";
