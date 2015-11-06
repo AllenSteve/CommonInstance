@@ -19,8 +19,6 @@ namespace DocumentParser
 
         public int columnAmount { get; set; }
 
-        public Dictionary<string, string> paramList { get; set; }
-
         public LogParser()
         {
             logPath = string.Empty;
@@ -56,6 +54,8 @@ namespace DocumentParser
                             }
                         }
                         count++;
+                        if(count%10000==0)
+                        Console.WriteLine("Line: " + count);
                     }
 
                     stopWatch.Stop();
@@ -83,30 +83,100 @@ namespace DocumentParser
         {
             if (!string.IsNullOrEmpty(logRecord))
             {
-                this.paramList = this.ParseParamList(logRecord);
-                if (this.paramList != null)
+                Dictionary<string, string> paramList = this.ParseParamList(logRecord);
+                if (paramList != null)
                 {
-                    LogModel log = this.ParseParamListToLogModel(this.paramList);
+                    LogModel log = this.ParseParamListToLogModel(paramList);
                     this.logModelList.Add(log);
                 }
             }
         }
 
-        public bool BulkInsert( List<LogModel> logList)
+        public void DistributeBulkInsert(List<LogModel> logList)
         {
+            DataTable table = this.CreateDataTable();
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+            try 
+            {
+                // 步长，批量插入的间隔行数
+                int step = 10000*10;
+                int count = logList.Count / step;
+                int from = 0;
+                int to = 0;
+                for (int i = 0; i < count; ++i)
+                {
+                    for (int index = 0, steps = step * i; index < step && (steps + index) < logList.Count; ++index)
+                    {
+                        from = steps;
+                        to = (steps + index);
+                        this.AddModelToDataTable(table, logList[steps + index]);
+                    }
+                    Console.WriteLine(string.Format("批量操作范围[{0}~{1}]", from, to));
+                    this.BulkInsertTable(table);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ts = stopWatch.Elapsed;
+                elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+                Console.WriteLine("异常抛出时间：..." + elapsedTime);
+            }
+            finally
+            {
+                // 清理资源对象
+                ts = stopWatch.Elapsed;
+                elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+                Console.WriteLine("清理资源对象：..." + elapsedTime);
+                table.Dispose();
+            }
+        }
+
+        public void BulkInsertList( List<LogModel> logList)
+        {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
             try
-            { 
-                string conn = @"Data Source=.\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
-                SqlConnection sqlcon = new SqlConnection(conn);
-                Stopwatch stopWatch = new Stopwatch();
-                stopWatch.Start();
+            {
                 DataTable table = this.CreateDataTable();
                 foreach (var log in logList)
                 {
                     this.AddModelToDataTable(table, log);
                 }
-                sqlcon.Open();
+                if (table.Rows.Count > 0)
+                {
+                    this.BulkInsertTable(table);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ts = stopWatch.Elapsed;
+                elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+                Console.WriteLine("异常抛出时间：..." + elapsedTime);
+            }
+        }
 
+        public void BulkInsertTable(DataTable table)
+        {
+            string conn = @"Data Source=.\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;Connect Timeout=32767 ";
+            SqlConnection sqlcon = new SqlConnection(conn);
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+            try
+            {
+                sqlcon.Open();
+                Console.WriteLine("连接字符串超时时间：..." + sqlcon.ConnectionTimeout);
+                ts = stopWatch.Elapsed;
+                elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+                Console.WriteLine("打开连接字符串：..." + elapsedTime);
                 using (SqlBulkCopy bulk = new SqlBulkCopy(conn))
                 {
                     bulk.BatchSize = this.logModelList.Count;
@@ -125,30 +195,33 @@ namespace DocumentParser
                     bulk.ColumnMappings.Add("ParamsStr", "ParamsStr");
                     bulk.ColumnMappings.Add("IsDel", "IsDel");
                     bulk.ColumnMappings.Add("Status", "Status");
+                    ts = stopWatch.Elapsed;
+                    elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+                    Console.WriteLine("开始批量插入：..." + elapsedTime);
                     bulk.WriteToServer(table);
                 }
-
-                stopWatch.Stop();
-                TimeSpan ts = stopWatch.Elapsed;
-                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}",
-                                                                        ts.Hours, 
-                                                                        ts.Minutes, 
-                                                                        ts.Seconds,
-                                                                        ts.Milliseconds);
-                Console.WriteLine("RunTime " + elapsedTime);
-                //
-                table.Dispose();
-                sqlcon.Close();
-                sqlcon.Dispose();
-           }
+                ts = stopWatch.Elapsed;
+                elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+                Console.WriteLine("插入结束，RunTime： " + elapsedTime);
+            }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                ts = stopWatch.Elapsed;
+                elapsedTime = String.Format("{0:00}:{1:00}:{2:00}:{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+                Console.WriteLine("异常抛出时间：..." + elapsedTime);
             }
-
-            return true;
+            finally
+            {
+                // 清理资源对象
+                stopWatch.Stop();
+                table.Dispose();
+                sqlcon.Close();
+                sqlcon.Dispose();
+            }
         }
-        public bool WriteToInterfaceLog(LogModel log)
+
+        public bool BulkInsertLog(LogModel log)
         {
             try
             {

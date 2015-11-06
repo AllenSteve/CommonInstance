@@ -153,6 +153,9 @@ namespace NetworkComponent
             {
                 this.ftpRequest = (FtpWebRequest)WebRequest.Create(uri);
                 this.ftpRequest.Credentials = new NetworkCredential("tianhe", "sdfaf.1x");
+                this.ftpRequest.KeepAlive = true;
+                // 默认方式为：RETR即下载文件
+                this.ftpRequest.Method = WebRequestMethods.Ftp.DownloadFile;
                 return this.ftpResponse = (FtpWebResponse)this.ftpRequest.GetResponse();
             }
             catch (Exception ex)

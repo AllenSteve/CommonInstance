@@ -38,6 +38,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnsyReadAndWrite.cs" />
     <Compile Include="ClassFunction.cs" />
     <Compile Include="CommonFunction.cs" />
     <Compile Include="DateTimeFunction.cs" />

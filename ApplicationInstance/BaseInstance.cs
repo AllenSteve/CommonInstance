@@ -13,7 +13,7 @@ namespace ApplicationInstance
         {
             Console.WriteLine("Application Instance Is Running!");
 
-            new LogParserTest().ReadFtpFile();
+            new LogParserTest().Run();//ReadFtpFile();
         }
     }
 }
