@@ -30,9 +30,10 @@ namespace ComponentTest
             //url = @"ftp://tianhe:sdfaf.1x@124.251.47.122/trains_logs/speed/zxbapp_log_2015-11-04.txt"
             //url = @"ftp://124.251.47.122/trains_logs/speed/zxbapp_log_2015-11-04.txt";
             url = @"ftp://124.251.47.122/trains_logs/err/err2015-10-20.txt";
+            //url = @"ftp://124.251.47.122/trains_logs/speed/zxbapp_log_2015-11-04.txt";
 
 
-            this.remoteFile.DownLoadFtpFile(url, path);
+            this.remoteFile.DownLoadFtpFile(url, path,"gb2312");
         }
 
         public string GetDir()

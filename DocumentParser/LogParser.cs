@@ -19,6 +19,8 @@ namespace DocumentParser
 
         public int columnAmount { get; set; }
 
+        public Dictionary<string, string> paramList { get; set; }
+
         public LogParser()
         {
             logPath = string.Empty;
@@ -72,6 +74,22 @@ namespace DocumentParser
                Console.WriteLine(ex);
            }
             return this.logModelList;
+        }
+
+        /// <summary>
+        /// 逐行解析日志记录到列表当中
+        /// </summary>
+        public void ParseLogRecordToList(string logRecord)
+        {
+            if (!string.IsNullOrEmpty(logRecord))
+            {
+                this.paramList = this.ParseParamList(logRecord);
+                if (this.paramList != null)
+                {
+                    LogModel log = this.ParseParamListToLogModel(this.paramList);
+                    this.logModelList.Add(log);
+                }
+            }
         }
 
         public bool BulkInsert( List<LogModel> logList)
