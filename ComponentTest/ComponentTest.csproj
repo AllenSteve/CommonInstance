@@ -41,6 +41,7 @@
     <Compile Include="ADOTest.cs" />
     <Compile Include="CommonClass\SankagetuMatomeBunkaieLicenseFromFile.cs" />
     <Compile Include="CommonClass\Serializer.cs" />
+    <Compile Include="ConfigurationManagerInstanceTest.cs" />
     <Compile Include="DateTimeTest.cs" />
     <Compile Include="FileTest.cs" />
     <Compile Include="LogParserTest.cs" />

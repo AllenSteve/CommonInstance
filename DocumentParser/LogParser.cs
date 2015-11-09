@@ -103,7 +103,7 @@ namespace DocumentParser
             try 
             {
                 // 步长，批量插入的间隔行数
-                int step = 1000;
+                int step = 100000;
                 int count = logList.Count / step;
                 int to = 0;
                 for (int i = 0; i < count; ++i)
