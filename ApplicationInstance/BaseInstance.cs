@@ -13,7 +13,7 @@ namespace ApplicationInstance
         static void Main(string[] args)
         {
             Console.WriteLine("Application Instance Is Running!");
-            new ConfigurationManagerInstanceTest();
+            new BaseModelTest().Run();
         }
     }
 }

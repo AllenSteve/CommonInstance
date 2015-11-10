@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADOTest.cs" />
+    <Compile Include="BaseModelTest.cs" />
     <Compile Include="CommonClass\SankagetuMatomeBunkaieLicenseFromFile.cs" />
     <Compile Include="CommonClass\Serializer.cs" />
     <Compile Include="ConfigurationManagerInstanceTest.cs" />
@@ -75,6 +76,10 @@
     <ProjectReference Include="..\DocumentParser\DocumentParser.csproj">
       <Project>{ea385383-5c5e-43fd-b9a4-0a5da50ed88c}</Project>
       <Name>DocumentParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExtensionComponent\ExtensionComponent.csproj">
+      <Project>{40e7c251-7180-4d78-8b54-862b86c7698a}</Project>
+      <Name>ExtensionComponent</Name>
     </ProjectReference>
     <ProjectReference Include="..\NetworkComponent\NetworkComponent.csproj">
       <Project>{93472f10-b46e-43c4-ae80-ceeaadb6ca32}</Project>

@@ -37,9 +37,23 @@ namespace DocumentParser
              * 是的，你给类库加了app.config文件也没用，
              * 因为类库要编译成dll的，编译后dll里就不包含配置文件了。
              * 所以它读到的是你的实际运行项目（也就是你的启动项目）的app.config
+             * 
              */
             Console.WriteLine("TimeCount is:" + timeCount);
 
+
+            List<int> list = new List<int>();
+
+        //    list.Add(1);
+        //    list.Add(2);
+        //    list.Add(3);
+        //    list.Add(1);
+        //    list.Add(1);
+
+        //    int count = list.Count(o=>o.GetHashCode());
+
+
+        //    Console.WriteLine(count);
         }
 
 
