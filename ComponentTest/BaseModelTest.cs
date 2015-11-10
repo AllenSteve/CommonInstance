@@ -21,7 +21,7 @@ namespace ComponentTest
             baseModelList = new List<BaseModel>();
         }
 
-        public void Run()
+        public void RunDistinctExtension()
         {
             baseModel = new BaseModel() { Id = 1, Age = 1, Name = "allen", Phone = "13851870675" };
             baseModelList.Add(baseModel);
@@ -35,12 +35,14 @@ namespace ComponentTest
             List<BaseModel> distList = new List<BaseModel>();
 
             distList = baseModelList.Distinct(model => model.Phone).ToList();
-
-            int count = baseModelList.Count(model => model.Phone.GetHashCode() == model.GetHashCode());
-            //baseModelList.Where(model => model.Phone.GetHashCode() == model.GetHashCode());
-
-
-            Console.WriteLine("model count is:" + distList.Count());
+            int count = -1;
+            Console.WriteLine("Distinct列表元素数为:" + distList.Count());
+            foreach (var item in distList)
+            {
+                count = baseModelList.Count(model => model.Phone.GetHashCode() == item.GetHashCode());
+                Console.WriteLine("手机号为：" + item.Phone + "\t的记录共："+count+"\t个");
+            }
         }
+
     }
 }

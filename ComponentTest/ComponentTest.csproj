@@ -46,6 +46,7 @@
     <Compile Include="DateTimeTest.cs" />
     <Compile Include="FileTest.cs" />
     <Compile Include="LogParserTest.cs" />
+    <Compile Include="MessageModelTest.cs" />
     <Compile Include="OrderByExtensions.cs" />
     <Compile Include="ReflectionTest.cs" />
     <Compile Include="StringTest.cs" />
