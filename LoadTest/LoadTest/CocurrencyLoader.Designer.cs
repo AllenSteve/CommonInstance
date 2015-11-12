@@ -28,33 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.cocurrencyAmount = new System.Windows.Forms.TextBox();
+            this.RunTest = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ConsoleInterface = new System.Windows.Forms.TextBox();
-            this.requestAmount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.requestStr = new System.Windows.Forms.TextBox();
+            this.requestConn = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.cocurrencyList = new System.Windows.Forms.ComboBox();
+            this.requestList = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // button1
+            // RunTest
             // 
-            this.button1.Location = new System.Drawing.Point(722, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "执行";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // cocurrencyAmount
-            // 
-            this.cocurrencyAmount.Location = new System.Drawing.Point(114, 12);
-            this.cocurrencyAmount.Name = "cocurrencyAmount";
-            this.cocurrencyAmount.Size = new System.Drawing.Size(100, 21);
-            this.cocurrencyAmount.TabIndex = 1;
+            this.RunTest.Location = new System.Drawing.Point(539, 11);
+            this.RunTest.Name = "RunTest";
+            this.RunTest.Size = new System.Drawing.Size(75, 23);
+            this.RunTest.TabIndex = 0;
+            this.RunTest.Text = "执行";
+            this.RunTest.UseVisualStyleBackColor = true;
+            this.RunTest.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -68,7 +61,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(516, 15);
+            this.label2.Location = new System.Drawing.Point(270, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 3;
@@ -76,19 +69,12 @@
             // 
             // ConsoleInterface
             // 
-            this.ConsoleInterface.Location = new System.Drawing.Point(45, 130);
+            this.ConsoleInterface.Location = new System.Drawing.Point(45, 103);
             this.ConsoleInterface.Multiline = true;
             this.ConsoleInterface.Name = "ConsoleInterface";
             this.ConsoleInterface.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ConsoleInterface.Size = new System.Drawing.Size(664, 230);
+            this.ConsoleInterface.Size = new System.Drawing.Size(664, 257);
             this.ConsoleInterface.TabIndex = 4;
-            // 
-            // requestAmount
-            // 
-            this.requestAmount.Location = new System.Drawing.Point(609, 11);
-            this.requestAmount.Name = "requestAmount";
-            this.requestAmount.Size = new System.Drawing.Size(100, 21);
-            this.requestAmount.TabIndex = 5;
             // 
             // label3
             // 
@@ -99,18 +85,18 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "请求字符串";
             // 
-            // requestStr
+            // requestConn
             // 
-            this.requestStr.Location = new System.Drawing.Point(114, 50);
-            this.requestStr.Multiline = true;
-            this.requestStr.Name = "requestStr";
-            this.requestStr.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.requestStr.Size = new System.Drawing.Size(595, 47);
-            this.requestStr.TabIndex = 7;
+            this.requestConn.Location = new System.Drawing.Point(114, 50);
+            this.requestConn.Multiline = true;
+            this.requestConn.Name = "requestConn";
+            this.requestConn.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.requestConn.Size = new System.Drawing.Size(595, 47);
+            this.requestConn.TabIndex = 7;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(722, 48);
+            this.button2.Location = new System.Drawing.Point(634, 11);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 8;
@@ -118,21 +104,40 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // cocurrencyList
+            // 
+            this.cocurrencyList.FormattingEnabled = true;
+            this.cocurrencyList.Location = new System.Drawing.Point(114, 12);
+            this.cocurrencyList.Name = "cocurrencyList";
+            this.cocurrencyList.Size = new System.Drawing.Size(121, 20);
+            this.cocurrencyList.TabIndex = 9;
+            // 
+            // requestList
+            // 
+            this.requestList.FormattingEnabled = true;
+            this.requestList.Location = new System.Drawing.Point(365, 13);
+            this.requestList.Name = "requestList";
+            this.requestList.Size = new System.Drawing.Size(121, 20);
+            this.requestList.TabIndex = 10;
+            // 
             // CocurrencyLoader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(809, 372);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(717, 372);
+            this.Controls.Add(this.requestList);
+            this.Controls.Add(this.cocurrencyList);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.requestStr);
+            this.Controls.Add(this.requestConn);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.requestAmount);
             this.Controls.Add(this.ConsoleInterface);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cocurrencyAmount);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.RunTest);
+            this.MaximizeBox = false;
             this.Name = "CocurrencyLoader";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "压力测试工具";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -141,15 +146,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox cocurrencyAmount;
+        private System.Windows.Forms.Button RunTest;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox ConsoleInterface;
-        private System.Windows.Forms.TextBox requestAmount;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox requestStr;
+        private System.Windows.Forms.TextBox requestConn;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox cocurrencyList;
+        private System.Windows.Forms.ComboBox requestList;
     }
 }
 

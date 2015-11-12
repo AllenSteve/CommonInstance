@@ -15,22 +15,23 @@ namespace CocurrencyTest
 {
     public partial class CocurrencyLoader : Form
     {
-        Process p;
-        StreamWriter input;
+        private Process p;
+        private StreamWriter input;
         public CocurrencyLoader()
         {
             InitializeComponent();
 
-            p = new Process();
-            p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.Start();
-            p.OutputDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
-            input = p.StandardInput;
-            p.BeginOutputReadLine();
+            cocurrencyList.Items.Add(10);
+            cocurrencyList.Items.Add(100);
+            cocurrencyList.Items.Add(1000);
+            cocurrencyList.Items.Add(10000);
+            cocurrencyList.RightToLeft = RightToLeft.No;
+
+            requestList.Items.Add(10);
+            requestList.Items.Add(100);
+            requestList.Items.Add(1000);
+            requestList.Items.Add(10000);
+            requestList.RightToLeft = RightToLeft.No;
         }
 
         void p_OutputDataReceived(object sender, DataReceivedEventArgs e)
@@ -61,32 +62,53 @@ namespace CocurrencyTest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int requestCount = this.GetAmount(requestAmount);
-            int concurrencyCount = this.GetAmount(cocurrencyAmount);
-            string driverName = @"c: ";
-            string apacheDirectory = @"cd C:\Program Files (x86)\Apache Software Foundation\Apache2.2\bin";
+            p = new Process();
+            p.StartInfo.FileName = "cmd.exe";
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.Start();
+            p.OutputDataReceived += new DataReceivedEventHandler(p_OutputDataReceived);
+            input = p.StandardInput;
+            p.BeginOutputReadLine();
 
-            string requestStr = string.IsNullOrEmpty(requestAmount.Text) ? ConfigurationManager.AppSettings["RequestURL"] : requestAmount.Text.Trim();
-            requestStr = ConfigurationManager.AppSettings["RequestURL"];
-            string execString = string.Format("ab.exe -n {0} -c {1} {2}", requestCount,concurrencyCount,requestStr);
+            int requestCount = this.GetAmount(cocurrencyList.Text);
+            int concurrencyCount = this.GetAmount(requestList.Text);
 
-            input.WriteLine(driverName);//先转到系统盘下
-            input.WriteLine(apacheDirectory);//再转到CMD所在目录下
-            input.WriteLine(execString);
+            if (requestCount>0 && concurrencyCount>0)
+            {
+                string driverName = @"c: ";
+                string apacheDirectory = @"cd C:\Program Files (x86)\Apache Software Foundation\Apache2.2\bin";
+                string request = string.Empty;
 
+                if (string.IsNullOrEmpty(requestConn.Text.Trim()))
+                {
+                    request = ConfigurationManager.AppSettings["RequestURL"];
+                    requestConn.Text = ConfigurationManager.AppSettings["RequestURL"];
+                }
+                else
+                {
+                    request = requestConn.Text.Trim();
+                }
+                string execString = string.Format("ab.exe -n {0} -c {1} {2}", requestCount, concurrencyCount, requestConn.Text);
+                input.WriteLine(driverName);//先转到系统盘下
+                input.WriteLine(apacheDirectory);//再转到CMD所在目录下
+                input.WriteLine(execString);
+            }
         }
 
-        private int GetAmount(TextBox tb)
+        private int GetAmount(string text)
         {
-            return string.IsNullOrEmpty(tb.Text.Trim()) ? 0 : int.Parse(tb.Text);
+            return string.IsNullOrEmpty(text.Trim()) ? 0 : int.Parse(text);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.cocurrencyAmount.Clear();
+            //this.cocurrencyList.Text=string.Empty;
             this.ConsoleInterface.Clear();
-            this.requestAmount.Clear();
-            this.requestStr.Clear();
+            //this.requestList.Text=string.Empty;
+            //this.requestConn.Clear();
         }
 
         //打开文件浏览对话框
