@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="ADOTest.cs" />
     <Compile Include="BaseModelTest.cs" />
+    <Compile Include="CallCMDTest.cs" />
     <Compile Include="CommonClass\SankagetuMatomeBunkaieLicenseFromFile.cs" />
     <Compile Include="CommonClass\Serializer.cs" />
     <Compile Include="ConfigurationManagerInstanceTest.cs" />
