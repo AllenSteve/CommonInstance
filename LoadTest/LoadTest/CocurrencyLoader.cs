@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -45,9 +46,9 @@ namespace CocurrencyTest
                 Invoke(new updateDelegate(update), new object[] { msg });
             else
             {
-                textBox2.Text += msg;
-                textBox2.SelectionStart = textBox2.Text.Length - 1;
-                textBox2.ScrollToCaret();
+                ConsoleInterface.Text += msg;
+                ConsoleInterface.SelectionStart = ConsoleInterface.Text.Length - 1;
+                ConsoleInterface.ScrollToCaret();
             }
         }
 
@@ -60,12 +61,14 @@ namespace CocurrencyTest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int requestCount = this.GetAmount(textBox1);
-            int concurrency = this.GetAmount(textBox3);
+            int requestCount = this.GetAmount(requestAmount);
+            int concurrencyCount = this.GetAmount(cocurrencyAmount);
             string driverName = @"c: ";
             string apacheDirectory = @"cd C:\Program Files (x86)\Apache Software Foundation\Apache2.2\bin";
-            string requestStr = this.textBox4.Text.Trim();
-            string execString = string.Format("ab.exe -n {0} -c {1} {2}", requestCount,concurrency,requestStr);
+
+            string requestStr = string.IsNullOrEmpty(requestAmount.Text) ? ConfigurationManager.AppSettings["RequestURL"] : requestAmount.Text.Trim();
+            requestStr = ConfigurationManager.AppSettings["RequestURL"];
+            string execString = string.Format("ab.exe -n {0} -c {1} {2}", requestCount,concurrencyCount,requestStr);
 
             input.WriteLine(driverName);//先转到系统盘下
             input.WriteLine(apacheDirectory);//再转到CMD所在目录下
@@ -75,15 +78,15 @@ namespace CocurrencyTest
 
         private int GetAmount(TextBox tb)
         {
-            return string.IsNullOrEmpty(tb.Text) ? 0 : int.Parse(tb.Text);
+            return string.IsNullOrEmpty(tb.Text.Trim()) ? 0 : int.Parse(tb.Text);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.textBox1.Clear();
-            this.textBox2.Clear();
-            this.textBox3.Clear();
-            this.textBox4.Clear();
+            this.cocurrencyAmount.Clear();
+            this.ConsoleInterface.Clear();
+            this.requestAmount.Clear();
+            this.requestStr.Clear();
         }
 
         //打开文件浏览对话框
