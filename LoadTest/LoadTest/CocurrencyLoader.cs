@@ -91,7 +91,7 @@ namespace CocurrencyTest
                 {
                     request = requestConn.Text.Trim();
                 }
-                string execString = string.Format("ab.exe -n {0} -c {1} {2}", requestCount, concurrencyCount, requestConn.Text);
+                string execString = string.Format("ab.exe -n {0} -c {1} \"{2}\"", requestCount, concurrencyCount, requestConn.Text);
                 input.WriteLine(driverName);//先转到系统盘下
                 input.WriteLine(apacheDirectory);//再转到CMD所在目录下
                 input.WriteLine(execString);
@@ -109,6 +109,11 @@ namespace CocurrencyTest
             this.ConsoleInterface.Clear();
             //this.requestList.Text=string.Empty;
             //this.requestConn.Clear();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.requestConn.Clear();
         }
 
         //打开文件浏览对话框

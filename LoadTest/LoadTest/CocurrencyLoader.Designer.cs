@@ -37,11 +37,13 @@
             this.button2 = new System.Windows.Forms.Button();
             this.cocurrencyList = new System.Windows.Forms.ComboBox();
             this.requestList = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // RunTest
             // 
-            this.RunTest.Location = new System.Drawing.Point(539, 11);
+            this.RunTest.Location = new System.Drawing.Point(444, 12);
             this.RunTest.Name = "RunTest";
             this.RunTest.Size = new System.Drawing.Size(75, 23);
             this.RunTest.TabIndex = 0;
@@ -52,7 +54,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 15);
+            this.label1.Location = new System.Drawing.Point(19, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 2;
@@ -61,7 +63,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(270, 16);
+            this.label2.Location = new System.Drawing.Point(222, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 3;
@@ -69,17 +71,17 @@
             // 
             // ConsoleInterface
             // 
-            this.ConsoleInterface.Location = new System.Drawing.Point(45, 103);
+            this.ConsoleInterface.Location = new System.Drawing.Point(90, 103);
             this.ConsoleInterface.Multiline = true;
             this.ConsoleInterface.Name = "ConsoleInterface";
             this.ConsoleInterface.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ConsoleInterface.Size = new System.Drawing.Size(664, 257);
+            this.ConsoleInterface.Size = new System.Drawing.Size(606, 257);
             this.ConsoleInterface.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 50);
+            this.label3.Location = new System.Drawing.Point(21, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 6;
@@ -87,27 +89,27 @@
             // 
             // requestConn
             // 
-            this.requestConn.Location = new System.Drawing.Point(114, 50);
+            this.requestConn.Location = new System.Drawing.Point(90, 50);
             this.requestConn.Multiline = true;
             this.requestConn.Name = "requestConn";
             this.requestConn.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.requestConn.Size = new System.Drawing.Size(595, 47);
+            this.requestConn.Size = new System.Drawing.Size(606, 47);
             this.requestConn.TabIndex = 7;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(634, 11);
+            this.button2.Location = new System.Drawing.Point(532, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 8;
-            this.button2.Text = "清空";
+            this.button2.Text = "清空结果";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // cocurrencyList
             // 
             this.cocurrencyList.FormattingEnabled = true;
-            this.cocurrencyList.Location = new System.Drawing.Point(114, 12);
+            this.cocurrencyList.Location = new System.Drawing.Point(90, 12);
             this.cocurrencyList.Name = "cocurrencyList";
             this.cocurrencyList.Size = new System.Drawing.Size(121, 20);
             this.cocurrencyList.TabIndex = 9;
@@ -115,10 +117,29 @@
             // requestList
             // 
             this.requestList.FormattingEnabled = true;
-            this.requestList.Location = new System.Drawing.Point(365, 13);
+            this.requestList.Location = new System.Drawing.Point(317, 13);
             this.requestList.Name = "requestList";
             this.requestList.Size = new System.Drawing.Size(121, 20);
             this.requestList.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(21, 106);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "执行结果";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(620, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "清空请求";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // CocurrencyLoader
             // 
@@ -126,6 +147,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(717, 372);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.requestList);
             this.Controls.Add(this.cocurrencyList);
             this.Controls.Add(this.button2);
@@ -155,6 +178,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox cocurrencyList;
         private System.Windows.Forms.ComboBox requestList;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
     }
 }
 
