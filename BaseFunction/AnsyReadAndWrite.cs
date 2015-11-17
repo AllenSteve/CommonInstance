@@ -32,6 +32,19 @@ namespace BaseFunction
             //        Console.WriteLine("connection closed");
             //    }
             //});
+
+            var func = new Func<string, string>(i =>
+            {
+                return i + "i can fly";
+            });
+
+             Task<string>.Factory.FromAsync(func.BeginInvoke, func.EndInvoke, "yes,", null).ContinueWith
+                 (i =>
+                 {
+                     Console.WriteLine(i.Result);
+                 });
+ 
+             Console.Read();
         }
     }
 }
