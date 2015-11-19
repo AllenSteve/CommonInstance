@@ -44,6 +44,7 @@
     <Compile Include="CommonClass\SankagetuMatomeBunkaieLicenseFromFile.cs" />
     <Compile Include="CommonClass\Serializer.cs" />
     <Compile Include="ConfigurationManagerInstanceTest.cs" />
+    <Compile Include="DapperTest.cs" />
     <Compile Include="DateTimeTest.cs" />
     <Compile Include="FileTest.cs" />
     <Compile Include="LogParserTest.cs" />
@@ -53,6 +54,10 @@
     <Compile Include="StringTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -86,6 +91,10 @@
     <ProjectReference Include="..\NetworkComponent\NetworkComponent.csproj">
       <Project>{93472f10-b46e-43c4-ae80-ceeaadb6ca32}</Project>
       <Name>NetworkComponent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ORMappingComponent\ORMappingComponent.csproj">
+      <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
+      <Name>ORMappingComponent</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
