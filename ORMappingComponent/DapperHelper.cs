@@ -17,19 +17,38 @@ namespace ORMappingComponent
         /// </summary>
         private static readonly string connStr = @"Data Source=.\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
 
+        /// <summary>
+        /// 打开到数据库的连接
+        /// </summary>
         private static IDbConnection connection = OpenSqlConnection(connStr);
 
         /// <summary>
-        /// 数据新增
+        /// 数据查询--此处仅用于测试，还有不规范的地方
         /// </summary>
-        public static int Add<T>(string insertStr, T insertObj)
+        /// <typeparam name="T">泛型类名</typeparam>
+        /// <param name="querySQL">查询SQL</param>
+        /// <param name="queryObject">查询对象</param>
+        /// <returns>对象列表</returns>
+        public static List<T> Query<T>(string querySQL, T queryObject)
         {
             using (connection)
             {
-                //UserInfo user = new UserInfo() { Code = "abcd", Name = "Tom", Description = "Test User" };
-                //string query = "insert into UserInfo(Code,Name,Description) values (@Code,@Name,@Description)";
-                //int row = connection.Execute(query, user);
-                return connection.Execute(insertStr, insertObj);
+                return connection.Query<T>(querySQL, queryObject).ToList();
+            }
+        }
+
+        /// <summary>
+        /// 新增数据
+        /// </summary>
+        /// <typeparam name="T">泛型类名</typeparam>
+        /// <param name="insertSQL">插入SQL</param>
+        /// <param name="insertObject">要插入的数据对象类型与T保持一致</param>
+        /// <returns>返回受到Insert,Update 和 Delete 操作影响的行数，所有其他查询都返回 –1，存储过程中如果含有set nocount on也会导致返回值为-1</returns>
+        public static int Add<T>(string insertSQL, T insertObject)
+        {
+            using (connection)
+            {
+                return connection.Execute(insertSQL, insertObject);
             }
         }
 
@@ -46,22 +65,6 @@ namespace ORMappingComponent
         /// </summary>
         public static void Update()
         { 
-        }
-
-        /// <summary>
-        /// 数据查询
-        /// </summary>
-        public static List<T> Query<T>(string queryStr, T queryObj) 
-        {
-            using (connection)
-            {
-                //string query = "SELECT *  FROM UserInfo WHERE Id=@Id";
-                //List<UserInfo> list = conn.Query<UserInfo>(query, new { Id =1}).ToList();
-                //string query = "SELECT *  FROM UserInfo WHERE code=@Code";
-                //return connection.Query<T>(query, new { code = "abcd" });
-
-                return connection.Query<T>(queryStr, queryObj).ToList();
-            }
         }
 
         /// <summary>
