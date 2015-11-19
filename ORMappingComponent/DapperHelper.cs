@@ -15,7 +15,7 @@ namespace ORMappingComponent
         /// <summary>
         /// 数据库连接字符串
         /// </summary>
-        private static readonly string connStr = System.Configuration.ConfigurationManager.AppSettings["LocalDB"];
+        private static readonly string connStr = @"Data Source=.\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
 
         private static IDbConnection connection = OpenSqlConnection(connStr);
 
@@ -51,7 +51,7 @@ namespace ORMappingComponent
         /// <summary>
         /// 数据查询
         /// </summary>
-        public static IEnumerable<T> Query<T>(string queryStr, T queryObj) 
+        public static List<T> Query<T>(string queryStr, T queryObj) 
         {
             using (connection)
             {
@@ -60,7 +60,7 @@ namespace ORMappingComponent
                 //string query = "SELECT *  FROM UserInfo WHERE code=@Code";
                 //return connection.Query<T>(query, new { code = "abcd" });
 
-                return connection.Query<T>(queryStr, queryObj);
+                return connection.Query<T>(queryStr, queryObj).ToList();
             }
         }
 

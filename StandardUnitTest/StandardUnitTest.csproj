@@ -57,6 +57,12 @@
     <Compile Include="UnitTestSample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ORMappingComponent\ORMappingComponent.csproj">
+      <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
+      <Name>ORMappingComponent</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
