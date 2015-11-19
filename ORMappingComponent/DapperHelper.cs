@@ -29,11 +29,11 @@ namespace ORMappingComponent
         /// <param name="querySQL">查询SQL</param>
         /// <param name="paramArray">参数数组</param>
         /// <returns>查询列表</returns>
-        public static List<T> Query<T>(string querySQL, object paramArray)
+        public static IEnumerable<T> Query<T>(string querySQL, object paramArray)
         {
             using (connection)
             {
-                return connection.Query<T>(querySQL, paramArray).ToList();
+                return connection.Query<T>(querySQL, paramArray);
             }
         }
 
@@ -55,16 +55,17 @@ namespace ORMappingComponent
 
         /// <summary>
         /// 数据查询--此处仅用于测试，还有不规范的地方（此方法是通过对象直接查找，类似于拼接参数数组）
+        /// 注意在使用时引入System.Linq，可对结果集合使用ToList()方法将其转化为List
         /// </summary>
         /// <typeparam name="T">对象数据类型</typeparam>
         /// <param name="querySQL">查询SQL</param>
         /// <param name="queryObject">查询对象</param>
         /// <returns>对象列表</returns>
-        public static List<T> Query<T>(string querySQL, T queryObject)
+        public static IEnumerable<T> Query<T>(string querySQL, T queryObject)
         {
             using (connection)
             {
-                return connection.Query<T>(querySQL, queryObject).ToList();
+                return connection.Query<T>(querySQL, queryObject);
             }
         }
 
