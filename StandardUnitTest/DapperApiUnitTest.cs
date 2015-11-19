@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace StandardUnitTest
 {
     [TestClass]
-    public class UnitTestSample
+    public class DapperApiUnitTest 
     {
         [TestMethod]
-        public void TestMethod1()
+        public void QueryTest()
         {
             // Arrange-测试设置
             // Act-测试行为

@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>E:\01.Doc\02.工作日志\02.2015-11\06-交易平台B端产品-EOP二期\09-Dapper教程\02-SRC\ORMappingComponent\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -50,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DapperApiUnitTest.cs" />
     <Compile Include="UnitTestSample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
