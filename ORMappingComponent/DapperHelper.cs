@@ -47,7 +47,7 @@ namespace ORMappingComponent
         /// <param name="querySQL">查询SQL</param>
         /// <param name="paramArray">参数数组</param>
         /// <returns>查询列表</returns>
-        public static IEnumerable<object> Query(string querySQL, object paramArray)
+        public static IEnumerable<object> Query(string querySQL, object paramArray = null)
         {
             using (connection)
             {
@@ -62,7 +62,7 @@ namespace ORMappingComponent
         /// <param name="querySQL">查询SQL</param>
         /// <param name="paramArray">参数数组</param>
         /// <returns>查询列表</returns>
-        public static IEnumerable<T> Query<T>(string querySQL, object paramArray)
+        public static IEnumerable<T> Query<T>(string querySQL, object paramArray = null)
         {
             using (connection)
             {
