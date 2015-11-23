@@ -18,7 +18,7 @@ namespace DocumentParser
 
         /// <summary>
         /// 注意App.Config文件不能放到类库项目中读取。
-        /// App.config不能在类库离！运行是会出现！connectionstring 尚未初始化
+        /// App.config不能在类库里读取！运行时会出现！connectionstring 尚未初始化
         /// 所以App.config配置文件应该放在启动项下
         /// </summary>
         public void Run()

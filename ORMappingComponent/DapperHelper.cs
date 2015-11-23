@@ -10,7 +10,7 @@ using Dapper;
 
 namespace ORMappingComponent
 {
-    public static class DapperHelper
+    public class DapperHelper
     {
         /// <summary>
         /// 数据库连接字符串
@@ -20,7 +20,19 @@ namespace ORMappingComponent
         /// <summary>
         /// 打开到数据库的连接
         /// </summary>
-        private static IDbConnection connection = OpenSqlConnection(connStr);
+        private static SqlConnection _connection;
+
+        public static SqlConnection connection
+        {
+            get
+            {
+                if (_connection == null)
+                {
+                    _connection = OpenSqlConnection(connStr);
+                }
+                return _connection;
+            }
+        }
 
         /// <summary>
         /// 数据查询--通过参数列表查询--最常用的查询功能
@@ -38,22 +50,6 @@ namespace ORMappingComponent
         }
 
         /// <summary>
-        /// 数据查询--通过主键匹配查询单表中的单个记录--这个方法有点废柴
-        /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <typeparam name="K">主键数据类型</typeparam>
-        /// <param name="querySQL">查询字符串</param>
-        /// <param name="primaryKey">主键内容</param>
-        /// <returns>查询结果对象或NULL</returns>
-        public static T Query<T,K>(string querySQL, K primaryKey)
-        {
-            using (connection)
-            {
-                return connection.Query<T>(querySQL, primaryKey).FirstOrDefault();
-            }
-        }
-
-        /// <summary>
         /// 数据查询--此处仅用于测试，还有不规范的地方（此方法是通过对象直接查找，类似于拼接参数数组）
         /// 注意在使用时引入System.Linq，可对结果集合使用ToList()方法将其转化为List
         /// </summary>
@@ -61,11 +57,11 @@ namespace ORMappingComponent
         /// <param name="querySQL">查询SQL</param>
         /// <param name="queryObject">查询对象</param>
         /// <returns>对象列表</returns>
-        public static IEnumerable<T> Query<T>(string querySQL, T queryObject)
+        public static IEnumerable<T> Query<T>(string querySQL, T entity)
         {
             using (connection)
             {
-                return connection.Query<T>(querySQL, queryObject);
+                return connection.Query<T>(querySQL, entity);
             }
         }
 
@@ -74,13 +70,13 @@ namespace ORMappingComponent
         /// </summary>
         /// <typeparam name="T">对象数据类型</typeparam>
         /// <param name="insertSQL">插入SQL</param>
-        /// <param name="insertObject">要插入的数据对象类型与T保持一致</param>
+        /// <param name="entity">要插入的数据对象类型与T保持一致</param>
         /// <returns>返回受到Insert,Update 和 Delete 操作影响的行数，所有其他查询都返回 –1，存储过程中如果含有set nocount on也会导致返回值为-1</returns>
-        public static int Add<T>(string insertSQL, T insertObject)
+        public static int Add<T>(string insertSQL, T entity)
         {
             using (connection)
             {
-                return connection.Execute(insertSQL, insertObject);
+                return connection.Execute(insertSQL, entity);
             }
         }
 
@@ -88,14 +84,14 @@ namespace ORMappingComponent
         /// 删除对象
         /// </summary>
         /// <typeparam name="T">对象数据类型</typeparam>
-        /// <param name="delSQL">删除SQL</param>
+        /// <param name="deleteSQL">删除SQL</param>
         /// <param name="delObject">删除对象</param>
         /// <returns>返回收到Delete影响的行数</returns>
-        public static int Delete<T>(string delSQL, T delObject)
+        public static int Delete<T>(string deleteSQL, T entity)
         {
             using (connection)
             {
-                return connection.Execute(delSQL, delObject);
+                return connection.Execute(deleteSQL, entity);
             }
         }
 
@@ -106,25 +102,24 @@ namespace ORMappingComponent
         /// <param name="updateSQL">更新SQL</param>
         /// <param name="updateObject">更新对象</param>
         /// <returns>返回收到Update影响的行数</returns>
-        public static int Update<T>(string updateSQL, T updateObject)
+        public static int Update<T>(string updateSQL, T entity)
         {
             using (connection)
             {
-                return connection.Execute(updateSQL, updateObject);
+                return connection.Execute(updateSQL, entity);
             }
         }
 
         /// <summary>
         /// 打开数据库连接字符串
         /// </summary>
-        /// <param name="sqlConnectionString"></param>
-        /// <returns></returns>
-        private static SqlConnection OpenSqlConnection(string sqlConnectionString=null)
+        /// <param name="sqlConnectionString">数据库连接字符串，默认为null</param>
+        /// <returns>返回数据库连接对象</returns>
+        private static SqlConnection OpenSqlConnection(string sqlConnectionString = null)
         {
             SqlConnection conn = new SqlConnection(sqlConnectionString);
             conn.Open();
             return conn;
-        } 
-
+        }
     }
 }
