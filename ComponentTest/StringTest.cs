@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExtensionComponent;
 
 namespace ComponentTest
 {
     public class StringTest
     {
 
+        public StringTest()
+        {
+            string str = "13851870675";
+
+            Console.WriteLine(str.IsNullOrEmpty());
+            Console.WriteLine(str.MaskPhoneNo());
+            Console.WriteLine(str.Encrypt());
+
+        }
+    
     }
 }

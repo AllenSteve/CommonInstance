@@ -35,6 +35,21 @@ namespace ORMappingComponent
         }
 
         /// <summary>
+        /// 数据查询--通过参数列表查询--可以是关联查询的返回结果
+        /// </summary>
+        /// <typeparam name="object">对象类型</typeparam>
+        /// <param name="querySQL">查询SQL</param>
+        /// <param name="paramArray">参数数组</param>
+        /// <returns>查询列表</returns>
+        public static IEnumerable<object> Query(string querySQL, object paramArray)
+        {
+            using (connection)
+            {
+                return connection.Query<object>(querySQL, paramArray);
+            }
+        }
+
+        /// <summary>
         /// 数据查询--通过参数列表查询--最常用的查询功能
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
@@ -66,12 +81,26 @@ namespace ORMappingComponent
         }
 
         /// <summary>
+        /// 执行组合型SQL语句，用于数据的增删改操作
+        /// </summary>
+        /// <param name="execSQL">插入SQL</param>
+        /// <param name="paramArray">参数数组</param>
+        /// <returns>返回受到Insert,Update 和 Delete 操作影响的行数，所有其他查询都返回 –1，存储过程中如果含有set nocount on也会导致返回值为-1</returns>
+        public static int ExecuteSQL(string execSQL, object paramArray)
+        {
+            using (connection)
+            {
+                return connection.Execute(execSQL, paramArray);
+            }
+        }
+
+        /// <summary>
         /// 新增数据
         /// </summary>
         /// <typeparam name="T">对象数据类型</typeparam>
         /// <param name="insertSQL">插入SQL</param>
         /// <param name="entity">要插入的数据对象类型与T保持一致</param>
-        /// <returns>返回受到Insert,Update 和 Delete 操作影响的行数，所有其他查询都返回 –1，存储过程中如果含有set nocount on也会导致返回值为-1</returns>
+        /// <returns>返回受到Insert操作影响的行数，所有其他查询都返回 –1</returns>
         public static int Add<T>(string insertSQL, T entity)
         {
             using (connection)
@@ -118,7 +147,6 @@ namespace ORMappingComponent
         private static SqlConnection OpenSqlConnection(string sqlConnectionString = null)
         {
             SqlConnection conn = new SqlConnection(sqlConnectionString);
-            conn.Open();
             return conn;
         }
     }
