@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.Reflection;
 
 namespace ExtensionComponent
 {
@@ -29,5 +30,37 @@ namespace ExtensionComponent
         {
             return str; 
         }
+    
+        // 根据泛型表结构生成对应的SQL插入语句
+        public static string CreateInsertSQL<T>(this string str) where T : new() 
+        {
+            T tableName = new T();
+            Type type = tableName.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            char[] appendArray = new char[properties.Length];
+            for (int i = 0; i < properties.Length-1; ++i)
+            {
+                appendArray[i] = ',';
+            }
+            appendArray[appendArray.Length-1] = ')';
+            StringBuilder sql = new StringBuilder("INSERT INTO ");
+            sql.Append(type.Name);
+            sql.Append('(');
+            for (int i = 1; i < properties.Length; ++i)
+            {
+                sql.Append(properties[i].Name);
+                sql.Append(appendArray[i]);
+            }
+
+            sql.Append(" VALUES(");
+            for (int i = 1; i < properties.Length; ++i)
+            {
+                sql.Append('@');
+                sql.Append(properties[i].Name);
+                sql.Append(appendArray[i]);
+            }
+            return sql.ToString();
+        }
+
     }
 }

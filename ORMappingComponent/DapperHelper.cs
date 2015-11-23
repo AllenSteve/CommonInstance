@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using ExtensionComponent;
 
 namespace ORMappingComponent
 {
@@ -16,6 +17,11 @@ namespace ORMappingComponent
         /// 数据库连接字符串
         /// </summary>
         private static readonly string connStr = @"Data Source=.\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
+
+        /// <summary>
+        /// 用于自动生成SQL语句
+        /// </summary>
+        private static string sql = null;
 
         /// <summary>
         /// 打开到数据库的连接
@@ -110,6 +116,20 @@ namespace ORMappingComponent
         }
 
         /// <summary>
+        /// 新增记录
+        /// </summary>
+        /// <typeparam name="T">泛型类型</typeparam>
+        /// <param name="entity">要插入的对象实体</param>
+        /// <returns>返回插入记录数</returns>
+        public static int Add<T>(T entity) where T : new()
+        {
+            using (connection)
+            {
+                return connection.Execute(sql.CreateInsertSQL<T>(), entity);
+            }
+        }
+
+        /// <summary>
         /// 删除对象
         /// </summary>
         /// <typeparam name="T">对象数据类型</typeparam>
@@ -144,7 +164,7 @@ namespace ORMappingComponent
         /// </summary>
         /// <param name="sqlConnectionString">数据库连接字符串，默认为null</param>
         /// <returns>返回数据库连接对象</returns>
-        private static SqlConnection OpenSqlConnection(string sqlConnectionString = null)
+        public static SqlConnection OpenSqlConnection(string sqlConnectionString = null)
         {
             SqlConnection conn = new SqlConnection(sqlConnectionString);
             return conn;

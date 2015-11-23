@@ -55,6 +55,12 @@
     <Content Include="T-SQL\01-CREATE_TABLE.sql" />
     <Content Include="T-SQL\02-INSERT_INTO_TABLE.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExtensionComponent\ExtensionComponent.csproj">
+      <Project>{40e7c251-7180-4d78-8b54-862b86c7698a}</Project>
+      <Name>ExtensionComponent</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
