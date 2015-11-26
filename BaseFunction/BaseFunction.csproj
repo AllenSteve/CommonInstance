@@ -57,10 +57,6 @@
       <Project>{618dce8b-48f6-4115-b35a-f977e0dd9a36}</Project>
       <Name>ComponentModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DocumentParser\DocumentParser.csproj">
-      <Project>{ea385383-5c5e-43fd-b9a4-0a5da50ed88c}</Project>
-      <Name>DocumentParser</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NetworkComponent\NetworkComponent.csproj">
       <Project>{93472f10-b46e-43c4-ae80-ceeaadb6ca32}</Project>
       <Name>NetworkComponent</Name>
