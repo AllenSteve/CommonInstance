@@ -19,31 +19,25 @@ namespace ComponentModels.ServiceModel
                                                                         decimal paidAmount,
                                                                         decimal tradeAmount,
                                                                         decimal price,
-                                                                        int quantity,
                                                                         string title,
                                                                         string subject,
-                                                                        string invoker,
-                                                                        string extra_param,
-                                                                        string platform,
-                                                                        string origin,
-                                                                        string charset = "Utf-8"
-                                                                            )
-            : base(return_url)
+                                                                        string extra_param) : base(return_url)
         {
             this.out_trade_no = out_trade_no;
             this.user_id = soufunId;
+            // 固定值问陶虹宇
             this.trade_type = tradeType;
             this.paid_amount = paidAmount;
             this.trade_amount = tradeAmount;
             this.price = price;
-            this.quantity = quantity;
+            this.quantity = 1;
             this.title = title;
             this.subject = subject;
-            this.invoker = invoker;
+            this.invoker = null;
             this.extra_param = extra_param;
-            this.platform = platform;
-            this.origin = origin;
-            this.charset = charset;
+            this.platform = "PC";
+            this.origin = "EOP后台";
+            this.charset = "GB2312";
         }
 
         // 业务线唯一交易编号-请确保该编号在各业务线为唯一标示
@@ -94,7 +88,7 @@ namespace ComponentModels.ServiceModel
             string EncryptParam = string.Join("&", kvList.FindAll(p => !string.IsNullOrEmpty(p.Value)).Select(p => p.Key + "=" + p.Value));
             string param = string.Join("&", kvList.Select(p => p.Key + "=" + p.Value));
             param += "&sign=" + encrypt.CouponEncrypt(EncryptParam, "8c05ccff20b34ba5a9c55a9a002a37c5");
-            return "https://payment.fang.com/cashiernew/cashierordercreateforweb.html?"+param;
+            return "https://payment.test.fang.com/cashiernew/cashierordercreateforweb.html?" + param;
         }
 
     }

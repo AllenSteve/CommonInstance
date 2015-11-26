@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentModels.ServiceModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -118,6 +119,42 @@ namespace CocurrencyTest
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.requestConn.Clear();
+            TransactionServiceBusinessModel model = null;
+
+            string return_url = ConfigurationManager.AppSettings["return_url"];
+            string soufunId = ConfigurationManager.AppSettings["soufunId"];
+            string tradeType = ConfigurationManager.AppSettings["tradeType"];
+
+            string paidAmount=ConfigurationManager.AppSettings["paidAmount"];
+            string tradeAmount = ConfigurationManager.AppSettings["tradeAmount"];
+            string price = ConfigurationManager.AppSettings["price"];
+
+            string quantity = ConfigurationManager.AppSettings["quantity"];
+
+            string title = ConfigurationManager.AppSettings["title"];
+            string subject = ConfigurationManager.AppSettings["subject"];
+            string invoker = ConfigurationManager.AppSettings["invoker"];
+            string extra_param = ConfigurationManager.AppSettings["extra_param"];
+            string platform = ConfigurationManager.AppSettings["platform"];
+            string origin = ConfigurationManager.AppSettings["origin"];
+            string charset = ConfigurationManager.AppSettings["charset"];
+
+
+
+
+            model = new TransactionServiceBusinessModel(return_url,
+                                                                                      soufunId,
+                                                                                      tradeType,
+                                                                                      decimal.Parse(paidAmount),
+                                                                                      decimal.Parse(tradeAmount),
+                                                                                      decimal.Parse(price),
+                                                                                      title,
+                                                                                      subject,
+                                                                                      extra_param
+                                                                                      );
+            var query = model.ToQueryString();
+
+            this.ConsoleInterface.Text = query;
         }
 
         //打开文件浏览对话框

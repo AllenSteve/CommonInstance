@@ -24,20 +24,20 @@ namespace ComponentModels.ServiceModel
             this.notify_url = baseModel.notify_url;
         }
 
-        public TransactionServiceBaseModel(string url)
+        public TransactionServiceBaseModel(string return_url, string notify_url = null)
         {
             this.service = "cashier_order_create_for_web";
             this.version = "1.0";
             this.biz_id = "747420150428100001";
             this.sign_type = "MD5";
-            // 询问张俊超
+            // 通过算法赋值
             this.sign = null;
             // 格式转换("yyyy-MM-dd hh:mm:ss.fff")
             this.call_time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff");
             // 交易完成后的跳转地址
-            this.return_url = url;
+            this.return_url = return_url;
             // 不设置异步地址-置空即可
-            this.notify_url = null;
+            this.notify_url = notify_url;
         }
 
         // 接口名称-接口名称（固定值：cashier_order_create_for_web）
@@ -63,12 +63,17 @@ namespace ComponentModels.ServiceModel
             FieldInfo[] fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
             PropertyInfo[] properties = type.GetProperties();
             IDictionary<string, string> dictionary = new Dictionary<string, string>();
-
+            object value = null;
             for (int i = 0; i < fields.Length; ++i)
             {
-                if (fields[i].GetValue(this) != null)
+                value = fields[i].GetValue(this);
+                if (value != null)
                 {
-                    dictionary.Add(properties[i].Name, fields[i].GetValue(this).ToString());
+                    dictionary.Add(properties[i].Name, value.ToString());
+                }
+                else
+                {
+                    dictionary.Add(properties[i].Name, null);
                 }
             }
             return dictionary;

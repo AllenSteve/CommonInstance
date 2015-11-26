@@ -27,14 +27,9 @@ namespace ComponentTest
                                                                                       decimal.Zero,
                                                                                       decimal.Zero,
                                                                                       decimal.Zero,
-                                                                                      0,
                                                                                       "title",
                                                                                       "subject",
-                                                                                      "invoker",
-                                                                                      "extra_param",
-                                                                                      "platform",
-                                                                                      "origin",
-                                                                                      "Utf-8"
+                                                                                      "extra_param"
                                                                                       );
             var query = model.ToQueryString();
 
