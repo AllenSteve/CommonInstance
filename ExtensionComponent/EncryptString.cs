@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Reflection;
+using System.Web.Security;
 
 namespace ExtensionComponent
 {
@@ -30,7 +31,15 @@ namespace ExtensionComponent
         {
             return str; 
         }
-    
+
+        public static string CouponEncrypt(this string str, string param, string key)
+        {
+            string res = string.Empty;
+            param += "&key=" + key;
+            res = FormsAuthentication.HashPasswordForStoringInConfigFile(param, "md5").ToLowerInvariant();
+            return res;
+        }
+
         // 根据泛型表结构生成对应的SQL插入语句
         public static string CreateInsertSQL<T>(this string str) where T : new() 
         {

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ExtensionComponent;
 
 namespace ComponentModels.ServiceModel
 {
@@ -11,23 +13,24 @@ namespace ComponentModels.ServiceModel
     /// </summary>
     public class TransactionServiceBusinessModel : TransactionServiceBaseModel
     {
-        public TransactionServiceBusinessModel(string soufunId,
-                                                                       string tradeType,
-                                                                       decimal paidAmount=decimal.Zero,
-                                                                       decimal tradeAmount = decimal.Zero,
-                                                                       decimal price=0,
-                                                                       int quantity=0,
-                                                                       string title=null,
-                                                                       string subject = null,
-                                                                       string invoker = null,
-                                                                       string extra_param = null,
-                                                                       string platform = null,
-                                                                       string origin = null,
-                                                                       string charset = "Utf-8"
-                                                                      )
-            : base(soufunId, DateTime.Now)
+        public TransactionServiceBusinessModel(string return_url,
+                                                                        string soufunId,
+                                                                        string tradeType,
+                                                                        decimal paidAmount,
+                                                                        decimal tradeAmount,
+                                                                        decimal price,
+                                                                        int quantity,
+                                                                        string title,
+                                                                        string subject,
+                                                                        string invoker,
+                                                                        string extra_param,
+                                                                        string platform,
+                                                                        string origin,
+                                                                        string charset = "Utf-8"
+                                                                            )
+            : base(return_url)
         {
-            this.out_trade_no = Guid.NewGuid().ToString().Replace("-", "");
+            this.out_trade_no = out_trade_no;
             this.user_id = soufunId;
             this.trade_type = tradeType;
             this.paid_amount = paidAmount;
@@ -71,5 +74,28 @@ namespace ComponentModels.ServiceModel
         public string origin { get; set; }
         // 编码方式-业务部门编码方式-Utf-8(默认),gb2312等
         public string charset { get; set; }
+
+        public IDictionary<string, string> GetDictionary()
+        {
+            TransactionServiceBaseModel baseModel = new TransactionServiceBaseModel(this);
+            IDictionary<string, string> baseDictionary = baseModel.ToDictionary();
+            IDictionary<string, string> dictionary = this.ToDictionary();
+            foreach (var item in baseDictionary)
+            {
+                dictionary.Add(item.Key, item.Value);
+            }
+            return dictionary;
+        }
+
+        public string ToQueryString()
+        {
+            string encrypt = null;
+            List<KeyValuePair<string, string>> kvList = this.GetDictionary().OrderBy(p => p.Key, StringComparer.Create(System.Globalization.CultureInfo.CurrentCulture, true)).ToList();
+            string EncryptParam = string.Join("&", kvList.FindAll(p => !string.IsNullOrEmpty(p.Value)).Select(p => p.Key + "=" + p.Value));
+            string param = string.Join("&", kvList.Select(p => p.Key + "=" + p.Value));
+            param += "&sign=" + encrypt.CouponEncrypt(EncryptParam, "8c05ccff20b34ba5a9c55a9a002a37c5");
+            return "https://payment.fang.com/cashiernew/cashierordercreateforweb.html?"+param;
+        }
+
     }
 }

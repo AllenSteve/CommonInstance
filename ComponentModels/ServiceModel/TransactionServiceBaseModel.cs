@@ -12,7 +12,19 @@ namespace ComponentModels.ServiceModel
     /// </summary>
     public class TransactionServiceBaseModel
     {
-        public TransactionServiceBaseModel(string url,DateTime callTime)
+        public TransactionServiceBaseModel(TransactionServiceBaseModel baseModel)
+        {
+            this.service = baseModel.service;
+            this.version = baseModel.version;
+            this.biz_id = baseModel.biz_id;
+            this.sign_type = baseModel.sign_type;
+            this.sign = baseModel.sign;
+            this.call_time = baseModel.call_time;
+            this.return_url = baseModel.return_url;
+            this.notify_url = baseModel.notify_url;
+        }
+
+        public TransactionServiceBaseModel(string url)
         {
             this.service = "cashier_order_create_for_web";
             this.version = "1.0";
@@ -21,27 +33,11 @@ namespace ComponentModels.ServiceModel
             // 询问张俊超
             this.sign = null;
             // 格式转换("yyyy-MM-dd hh:mm:ss.fff")
-            this.call_time = callTime.ToString("yyyy-MM-dd hh:mm:ss.fff");
+            this.call_time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff");
             // 交易完成后的跳转地址
             this.return_url = url;
             // 不设置异步地址-置空即可
             this.notify_url = null;
-        }
-
-        public IDictionary<string,string> ToDictionary()
-        {
-            FieldInfo[] fields = this.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
-            PropertyInfo[] properties = this.GetType().GetProperties();
-            IDictionary<string, string> dictionary = new Dictionary<string, string>();
-            
-            for (int i = 0; i < fields.Length; ++i)
-            {
-                if (fields[i].GetValue(this)!=null)
-                {
-                    dictionary.Add(properties[i].Name, fields[i].GetValue(this).ToString()); 
-                }
-            }
-            return dictionary;
         }
 
         // 接口名称-接口名称（固定值：cashier_order_create_for_web）
@@ -60,5 +56,22 @@ namespace ComponentModels.ServiceModel
         public string return_url { get; set; }
         // 服务器异步通知地址-服务器主动通知的路径
         public string notify_url { get; set; }
+
+        public IDictionary<string, string> ToDictionary()
+        {
+            Type type = this.GetType();
+            FieldInfo[] fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+            PropertyInfo[] properties = type.GetProperties();
+            IDictionary<string, string> dictionary = new Dictionary<string, string>();
+
+            for (int i = 0; i < fields.Length; ++i)
+            {
+                if (fields[i].GetValue(this) != null)
+                {
+                    dictionary.Add(properties[i].Name, fields[i].GetValue(this).ToString());
+                }
+            }
+            return dictionary;
+        }
     }
 }
