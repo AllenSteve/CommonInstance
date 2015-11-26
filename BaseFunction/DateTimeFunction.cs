@@ -15,7 +15,8 @@ namespace BaseFunction
         /// <returns>格式化后的日期参数，可以通过DateTime.Parse()来解析为日期类型，例如2014/05</returns>
         public static string FormatDateString(string dateStr)
         {
-            return dateStr.Substring(0, 4) + "/" + dateStr.Substring(4);
+            string str = dateStr.Substring(0, 4) + "/" + dateStr.Substring(4);
+            return str;
         }
 
         /// <summary>
@@ -48,9 +49,12 @@ namespace BaseFunction
             return objDay;
         }
 
-
-        public void DisplayDateTime()
+        /// <summary>
+        /// 参照页面：https://technet.microsoft.com/zh-cn/library/bb882581(VS.95).aspx
+        /// </summary>
+        public static void DisplayDateTime()
         {
+            Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff tt"));
             System.Console.WriteLine(DateTime.Now.ToString("yyyyMMddHHmmss"));
             System.Console.WriteLine(DateTime.Now.ToString("yyyy年MM月dd日HH時mm分ss秒"));
         }

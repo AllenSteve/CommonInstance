@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BaseFunction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,14 +38,20 @@ namespace ComponentTest
             //url字符串时间戳解析  utf-8编码
             //2015%2f11%2f3+0%3a02%3a32
             //2015/11/3 0:02:32
-            string timeStamp;
+            //string timeStamp;
 
-            timeStamp= "2015%2f11%2f3+0%3a02%3a32";
-            //timeStamp = "2015/11/3 0:02:32";
-            timeStamp = timeStamp.Replace("%2f", "/").Replace("%3a", ":").Replace("+", " ");
+            //timeStamp= "2015%2f11%2f3+0%3a02%3a32";
+            ////timeStamp = "2015/11/3 0:02:32";
+            //timeStamp = timeStamp.Replace("%2f", "/").Replace("%3a", ":").Replace("+", " ");
 
 
-            Console.WriteLine(DateTime.Parse(timeStamp));
+            //Console.WriteLine(DateTime.Parse(timeStamp));
+        }
+
+        public void RunDateFunction()
+        {
+            Console.WriteLine(Guid.NewGuid().ToString().Replace("-",""));
+            DateTimeFunction.DisplayDateTime();
         }
 
         public static string StringToUnicode(string s)

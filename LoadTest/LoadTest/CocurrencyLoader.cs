@@ -107,6 +107,10 @@ namespace CocurrencyTest
         {
             //this.cocurrencyList.Text=string.Empty;
             this.ConsoleInterface.Clear();
+            string conn  = ConfigurationManager.ConnectionStrings["OrderReadOnly"].ConnectionString;
+
+            MessageBox.Show (conn);
+
             //this.requestList.Text=string.Empty;
             //this.requestConn.Clear();
         }
