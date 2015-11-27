@@ -33,7 +33,7 @@ namespace ComponentModels.ServiceModel
             // 通过算法赋值
             this.sign = null;
             // 格式转换("yyyy-MM-dd hh:mm:ss.fff")
-            this.call_time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff");
+            this.call_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
             // 交易完成后的跳转地址
             this.return_url = return_url;
             // 不设置异步地址-置空即可
@@ -67,13 +67,9 @@ namespace ComponentModels.ServiceModel
             for (int i = 0; i < fields.Length; ++i)
             {
                 value = fields[i].GetValue(this);
-                if (value != null)
+                if (value != null && !string.IsNullOrEmpty(value.ToString().Trim()))
                 {
                     dictionary.Add(properties[i].Name, value.ToString());
-                }
-                else
-                {
-                    dictionary.Add(properties[i].Name, null);
                 }
             }
             return dictionary;

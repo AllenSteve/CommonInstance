@@ -23,7 +23,6 @@ namespace ComponentTest
             TransactionServiceBusinessModel model = null;
             model = new TransactionServiceBusinessModel("return_url",
                                                                                       "soufunId",
-                                                                                      "tradeType",
                                                                                       decimal.Zero,
                                                                                       decimal.Zero,
                                                                                       decimal.Zero,

@@ -15,7 +15,6 @@ namespace ComponentModels.ServiceModel
     {
         public TransactionServiceBusinessModel(string return_url,
                                                                         string soufunId,
-                                                                        string tradeType,
                                                                         decimal paidAmount,
                                                                         decimal tradeAmount,
                                                                         decimal price,
@@ -23,10 +22,11 @@ namespace ComponentModels.ServiceModel
                                                                         string subject,
                                                                         string extra_param) : base(return_url)
         {
-            this.out_trade_no = out_trade_no;
+            this.trade_no = null;// "T_TRADE_20150302_0000000001";
+            this.out_trade_no = "123456789";
             this.user_id = soufunId;
             // 固定值问陶虹宇
-            this.trade_type = tradeType;
+            this.trade_type = "30003";
             this.paid_amount = paidAmount;
             this.trade_amount = tradeAmount;
             this.price = price;
@@ -36,10 +36,11 @@ namespace ComponentModels.ServiceModel
             this.invoker = null;
             this.extra_param = extra_param;
             this.platform = "PC";
-            this.origin = "EOP后台";
+            this.origin = "EOP";
             this.charset = "GB2312";
         }
 
+        public string trade_no { get; set; }
         // 业务线唯一交易编号-请确保该编号在各业务线为唯一标示
         public string out_trade_no { get; set; }
         // 用户编号-用户搜房通行证ID
@@ -90,6 +91,30 @@ namespace ComponentModels.ServiceModel
             param += "&sign=" + encrypt.CouponEncrypt(EncryptParam, "8c05ccff20b34ba5a9c55a9a002a37c5");
             //return "https://payment.test.fang.com/cashiernew/cashierordercreateforweb.html?" + param;
             return param;
+        }
+
+        public string ToHtmlString()
+        {
+            StringBuilder line = new StringBuilder();
+            StringBuilder html = new StringBuilder();
+            html.Append("<HTML>\n<BODY>\n<form method=\"post\" action=\"https://payment.test.fang.com/cashiernew/cashierordercreateforweb.html\">\n");
+
+            string query = this.ToQueryString();
+            var queryParam = query.Split('&');
+            foreach (var param in queryParam)
+            {
+                line.Clear();
+                var row = param.Split('=');
+                line.Append("<input name=\""+row[0]+"\" ");
+                line.Append("value=\""+row[1]+"\" ");
+                line.Append("type=\"hidden\"");
+                line.Append("/>\n");
+                html.Append(line);
+            }
+
+            html.Append("<input type=\"submit\" value=\"提交\">");
+            html.Append("</form>\n</BODY>\n</HTML>");
+            return html.ToString();
         }
 
     }

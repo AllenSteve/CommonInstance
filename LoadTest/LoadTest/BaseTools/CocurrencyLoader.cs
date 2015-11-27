@@ -144,7 +144,6 @@ namespace CocurrencyTest
 
             model = new TransactionServiceBusinessModel(return_url,
                                                                                       soufunId,
-                                                                                      tradeType,
                                                                                       decimal.Parse(paidAmount),
                                                                                       decimal.Parse(tradeAmount),
                                                                                       decimal.Parse(price),
