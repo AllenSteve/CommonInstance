@@ -66,15 +66,15 @@
     <Compile Include="BaseTools\TransactionService.Designer.cs">
       <DependentUpon>TransactionService.cs</DependentUpon>
     </Compile>
-    <Compile Include="CocurrencyLoader.cs">
+    <Compile Include="BaseTools\CocurrencyLoader.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CocurrencyLoader.Designer.cs">
+    <Compile Include="BaseTools\CocurrencyLoader.Designer.cs">
       <DependentUpon>CocurrencyLoader.cs</DependentUpon>
     </Compile>
     <Compile Include="WinFormStarUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CocurrencyLoader.resx">
+    <EmbeddedResource Include="BaseTools\CocurrencyLoader.resx">
       <DependentUpon>CocurrencyLoader.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
