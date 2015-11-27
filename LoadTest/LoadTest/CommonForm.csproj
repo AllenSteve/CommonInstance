@@ -60,13 +60,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTools\TransactionService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseTools\TransactionService.Designer.cs">
+      <DependentUpon>TransactionService.cs</DependentUpon>
+    </Compile>
     <Compile Include="CocurrencyLoader.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CocurrencyLoader.Designer.cs">
       <DependentUpon>CocurrencyLoader.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="WinFormStarUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CocurrencyLoader.resx">
       <DependentUpon>CocurrencyLoader.cs</DependentUpon>

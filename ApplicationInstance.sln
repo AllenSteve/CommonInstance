@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentTest", "ComponentT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionComponent", "ExtensionComponent\ExtensionComponent.csproj", "{40E7C251-7180-4D78-8B54-862B86C7698A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CocurrencyTest", "LoadTest\LoadTest\CocurrencyTest.csproj", "{41DF05E2-C578-40E7-9DED-AC3E3850DE26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonForm", "LoadTest\LoadTest\CommonForm.csproj", "{41DF05E2-C578-40E7-9DED-AC3E3850DE26}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandardUnitTest", "StandardUnitTest\StandardUnitTest.csproj", "{9D1E5527-6C1F-49C5-AC4F-B708EC601954}"
 EndProject
