@@ -40,14 +40,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADO.cs" />
+    <Compile Include="CommonMethod\ADO.cs" />
     <Compile Include="DocumentParser\ConfigurationManager.cs" />
     <Compile Include="DocumentParser\LogParser.cs" />
+    <Compile Include="ExtensionMethod\CommonEqualityComparer.cs" />
+    <Compile Include="ExtensionMethod\DistinctExtensions.cs" />
+    <Compile Include="ExtensionMethod\EncryptString.cs" />
+    <Compile Include="NetworkComponent\FtpWeb.cs" />
+    <Compile Include="NetworkComponent\HtmlHelper.cs" />
+    <Compile Include="NetworkComponent\RemoteFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
@@ -56,11 +63,7 @@
       <Name>ComponentModels</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CommonMethod\" />
-    <Folder Include="ExtensionMethod\" />
-    <Folder Include="NetworkComponent\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
