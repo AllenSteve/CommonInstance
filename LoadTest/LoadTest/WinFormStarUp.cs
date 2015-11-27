@@ -18,7 +18,7 @@ namespace CocurrencyTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //
-            Application.Run(new CocurrencyLoader());
+            //Application.Run(new CocurrencyLoader());
             Application.Run(new TransactionService());
         }
     }
