@@ -78,5 +78,10 @@ namespace BaseFunction.BaseTools
 
             this.T_queryString.Text = query;
         }
+
+        private void Btn_postRequest_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

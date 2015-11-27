@@ -88,7 +88,8 @@ namespace ComponentModels.ServiceModel
             string EncryptParam = string.Join("&", kvList.FindAll(p => !string.IsNullOrEmpty(p.Value)).Select(p => p.Key + "=" + p.Value));
             string param = string.Join("&", kvList.Select(p => p.Key + "=" + p.Value));
             param += "&sign=" + encrypt.CouponEncrypt(EncryptParam, "8c05ccff20b34ba5a9c55a9a002a37c5");
-            return "https://payment.test.fang.com/cashiernew/cashierordercreateforweb.html?" + param;
+            //return "https://payment.test.fang.com/cashiernew/cashierordercreateforweb.html?" + param;
+            return param;
         }
 
     }

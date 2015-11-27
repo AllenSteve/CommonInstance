@@ -49,6 +49,7 @@
             this.T_extraParam = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.Btn_postRequest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Btn_createQueryString
@@ -57,7 +58,7 @@
             this.Btn_createQueryString.Name = "Btn_createQueryString";
             this.Btn_createQueryString.Size = new System.Drawing.Size(75, 23);
             this.Btn_createQueryString.TabIndex = 0;
-            this.Btn_createQueryString.Text = "生成查询";
+            this.Btn_createQueryString.Text = "生成参数";
             this.Btn_createQueryString.UseVisualStyleBackColor = true;
             this.Btn_createQueryString.Click += new System.EventHandler(this.Btn_createQueryString_Click);
             // 
@@ -87,7 +88,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(32, 48);
+            this.label2.Location = new System.Drawing.Point(32, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 18);
             this.label2.TabIndex = 3;
@@ -95,21 +96,21 @@
             // 
             // T_soufunID
             // 
-            this.T_soufunID.Location = new System.Drawing.Point(101, 48);
+            this.T_soufunID.Location = new System.Drawing.Point(101, 50);
             this.T_soufunID.Name = "T_soufunID";
             this.T_soufunID.Size = new System.Drawing.Size(126, 21);
             this.T_soufunID.TabIndex = 4;
             // 
             // T_tradeType
             // 
-            this.T_tradeType.Location = new System.Drawing.Point(428, 48);
+            this.T_tradeType.Location = new System.Drawing.Point(428, 50);
             this.T_tradeType.Name = "T_tradeType";
             this.T_tradeType.Size = new System.Drawing.Size(126, 21);
             this.T_tradeType.TabIndex = 6;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(359, 48);
+            this.label3.Location = new System.Drawing.Point(359, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 18);
             this.label3.TabIndex = 5;
@@ -214,11 +215,22 @@
             this.label10.TabIndex = 19;
             this.label10.Text = "请求链接";
             // 
+            // Btn_postRequest
+            // 
+            this.Btn_postRequest.Location = new System.Drawing.Point(579, 50);
+            this.Btn_postRequest.Name = "Btn_postRequest";
+            this.Btn_postRequest.Size = new System.Drawing.Size(75, 23);
+            this.Btn_postRequest.TabIndex = 20;
+            this.Btn_postRequest.Text = "POST请求";
+            this.Btn_postRequest.UseVisualStyleBackColor = true;
+            this.Btn_postRequest.Click += new System.EventHandler(this.Btn_postRequest_Click);
+            // 
             // TransactionService
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 441);
+            this.Controls.Add(this.Btn_postRequest);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.T_extraParam);
             this.Controls.Add(this.label9);
@@ -270,5 +282,6 @@
         private System.Windows.Forms.TextBox T_extraParam;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button Btn_postRequest;
     }
 }
