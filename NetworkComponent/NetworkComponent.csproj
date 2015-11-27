@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FtpWeb.cs" />
+    <Compile Include="HtmlHelper.cs" />
     <Compile Include="RemoteFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
