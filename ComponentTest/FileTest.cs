@@ -1,4 +1,4 @@
-﻿using NetworkComponent;
+﻿using BaseComponent.NetworkComponent;
 using ComponentTest.CommonClass;
 using System;
 using System.Collections.Generic;

@@ -6,7 +6,7 @@ using System.Net;
 using System.IO;
 using System.Threading;
 
-namespace NetworkComponent
+namespace BaseComponent.NetworkComponent
 {
         /// <summary>
         /// 来自网络：http://blog.csdn.net/htsnoopy/article/details/7094224

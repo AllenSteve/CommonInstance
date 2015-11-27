@@ -7,7 +7,7 @@ using System.IO;
 using System.Net;
 using System.Globalization;
 
-namespace NetworkComponent
+namespace BaseComponent.NetworkComponent
 {
     /// <summary>
     /// 来自博客园http://www.cnblogs.com/swtseaman/archive/2011/03/29/1998611.html

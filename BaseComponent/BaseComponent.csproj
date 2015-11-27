@@ -43,9 +43,6 @@
     <Compile Include="CommonMethod\ADO.cs" />
     <Compile Include="DocumentParser\ConfigurationManager.cs" />
     <Compile Include="DocumentParser\LogParser.cs" />
-    <Compile Include="ExtensionMethod\CommonEqualityComparer.cs" />
-    <Compile Include="ExtensionMethod\DistinctExtensions.cs" />
-    <Compile Include="ExtensionMethod\EncryptString.cs" />
     <Compile Include="NetworkComponent\FtpWeb.cs" />
     <Compile Include="NetworkComponent\HtmlHelper.cs" />
     <Compile Include="NetworkComponent\RemoteFile.cs" />
