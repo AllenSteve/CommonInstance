@@ -34,6 +34,7 @@ namespace ComponentModels.ServiceModel
             this.title = title;
             this.subject = subject;
             this.invoker = null;
+            // 额外参数格式： 商家ID|支付类型|backurl跳转的地址（由用户传入）
             this.extra_param = extra_param;
             this.platform = "PC";
             this.origin = "EOP";
