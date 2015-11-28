@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ComponentModels.Enums
 {
-    public enum Sqldb
+    public enum DatabaseType
     {
         /// <summary>
         /// 用户只读库
