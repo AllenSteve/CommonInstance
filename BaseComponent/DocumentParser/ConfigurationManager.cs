@@ -16,6 +16,7 @@ namespace BaseComponent.DocumentParser
         {
         }
 
+
         /// <summary>
         /// 注意App.Config文件不能放到类库项目中读取。
         /// App.config不能在类库里读取！运行时会出现！connectionstring 尚未初始化

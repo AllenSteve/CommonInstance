@@ -8,5 +8,6 @@ namespace BaseComponent
 {
     public class ADO
     {
+
     }
 }
