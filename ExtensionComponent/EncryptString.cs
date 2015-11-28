@@ -78,6 +78,16 @@ namespace ExtensionComponent
             SQL.Append(new T().GetType().Name);
             return SQL.ToString();
         }
+
+        // 生成根据主键Id查询的SQL
+        public static string CreateSQLQueryById<T>(this string str) where T : new()
+        {
+            StringBuilder SQL = new StringBuilder("SELECT * FROM ");
+            SQL.Append(new T().GetType().Name);
+            SQL.Append(" WHERE ID=@ID");
+            return SQL.ToString();
+        }
+
         // 生成根据ID更新的SQL
         public static string CreateSQLUpdateById<T>(this string str) where T : new()
         {

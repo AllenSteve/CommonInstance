@@ -143,6 +143,18 @@ namespace ORMappingComponent
         }
 
         /// <summary>
+        /// 数据查询--根据数据的主键ID信息查询单条记录
+        /// 注意在使用时引入System.Linq，可对结果集合使用ToList()方法将其转化为List
+        /// </summary>
+        /// <typeparam name="T">对象数据类型</typeparam>
+        /// <param name="querySQL">查询SQL</param>
+        /// <param name="id">查询id</param>
+        /// <returns>对象</returns>
+        public T Query<T>(int id) where T : new()
+        {
+            return connection.Query<T>(sql.CreateSQLQueryById<T>(), new { ID = id }).FirstOrDefault();
+        }
+        /// <summary>
         /// 执行组合型SQL语句，用于数据的增删改操作
         /// </summary>
         /// <param name="execSQL">插入SQL</param>
