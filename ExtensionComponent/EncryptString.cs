@@ -41,7 +41,7 @@ namespace ExtensionComponent
         }
 
         // 根据泛型表结构生成对应的SQL插入语句
-        public static string CreateInsertSQL<T>(this string str) where T : new() 
+        public static string CreateSQLInsertNewEntity<T>(this string str) where T : new() 
         {
             T tableName = new T();
             Type type = tableName.GetType();
@@ -71,5 +71,33 @@ namespace ExtensionComponent
             return sql.ToString();
         }
 
+        // 生成全表查询SQL
+        public static string CreateSQLQueryAll<T>(this string str) where T : new()
+        {
+            StringBuilder SQL = new StringBuilder("SELECT * FROM ");
+            SQL.Append(new T().GetType().Name);
+            return SQL.ToString();
+        }
+        // 生成根据ID更新的SQL
+        public static string CreateSQLUpdateById<T>(this string str) where T : new()
+        {
+            T table = new T();
+            Type type = table.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            StringBuilder SQL = new StringBuilder("UPDATE " + type.Name + " SET ");
+            char[] appendArray = new char[properties.Length];
+            for (int i = 0; i < properties.Length - 1; ++i)
+            {
+                appendArray[i] = ',';
+            }
+            appendArray[appendArray.Length - 1] = ' ';
+
+            for (int i = 1; i < properties.Length; ++i)
+            {
+                SQL.Append(string.Format("{0}=@{0}{1}", properties[i].Name, appendArray[i]));
+            }
+            SQL.Append("WHERE ID=@ID");
+            return SQL.ToString();
+        }
     }
 }

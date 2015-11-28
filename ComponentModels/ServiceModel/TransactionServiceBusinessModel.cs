@@ -32,6 +32,7 @@ namespace ComponentModels.ServiceModel
             this.price = price;
             this.quantity = 1;
             this.title = title;
+            // 描述:  EOP商家|商家ID|质保金/预存款|充值xxx元
             this.subject = subject;
             this.invoker = null;
             // 额外参数格式： 商家ID|支付类型|backurl跳转的地址（由用户传入）

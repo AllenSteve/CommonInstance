@@ -8,15 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using ExtensionComponent;
+using System.Configuration;
 
 namespace ORMappingComponent
 {
-    public class DapperHelper
+    public class DBHelper
     {
         /// <summary>
         /// 数据库连接字符串
         /// </summary>
-        private static readonly string connStr = @"Data Source=.\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
+        /// 
+        private static readonly string connStr = @"Data Source=192.168.127.154\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
+        //private static readonly string connStr = "Data Source=123.103.35.138;Initial Catalog=jjjy_test1107;UID=jjjy_test_admin;PWD=3791f38D;";
 
         /// <summary>
         /// 用于自动生成SQL语句
@@ -40,6 +43,68 @@ namespace ORMappingComponent
             }
         }
 
+        public DBHelper(int dbType = 0)
+        {
+            if (dbType == 0)
+            {
+                _connection = OpenSqlConnection(connStr);
+            }
+            else if (this.ContainsConnectionType(dbType))
+            {
+                _connection = CreateConnection((Sqldb)dbType);
+            }
+            else
+            {
+                _connection = null;
+            }
+        }
+
+
+        public static SqlConnection CreateConnection(Sqldb db = Sqldb.OrderReadOnly)
+        {
+            string dbName = ((Sqldb)db).ToString();
+            string sqlConnectionStr = ConfigurationManager.ConnectionStrings[dbName].ConnectionString;
+            return new SqlConnection(sqlConnectionStr);
+        }
+
+        public enum Sqldb
+        {
+            /// <summary>
+            /// 用户只读库
+            /// </summary>
+            UserReadOnly = 1,
+            /// <summary>
+            /// 用户写库
+            /// </summary>
+            UserWrite = 2,
+            /// <summary>
+            /// 订单只读库
+            /// </summary>
+            OrderReadOnly = 3,
+            /// <summary>
+            /// 订单写库
+            /// </summary>
+            OrderWrite = 4,
+            /// <summary>
+            /// 服务中心只读库
+            /// </summary>
+            ServiceCenterReadOnly = 5,
+            /// <summary>
+            /// 服务中心写库
+            /// </summary>
+            ServiceCenterWrite = 6
+        }
+
+        /// <summary>
+        /// 查询全表
+        /// </summary>
+        /// <typeparam name="T">表名</typeparam>
+        /// <returns>全表数据</returns>
+        public IEnumerable<T> QueryAll<T>() where T : new()
+        {
+            return connection.Query<T>(sql.CreateSQLQueryAll<T>());
+        }
+
         /// <summary>
         /// 数据查询--通过参数列表查询--可以是关联查询的返回结果
         /// </summary>
@@ -47,12 +112,9 @@ namespace ORMappingComponent
         /// <param name="querySQL">查询SQL</param>
         /// <param name="paramArray">参数数组</param>
         /// <returns>查询列表</returns>
-        public static IEnumerable<object> Query(string querySQL, object paramArray = null)
+        public IEnumerable<object> Query(string querySQL, object paramArray = null)
         {
-            using (connection)
-            {
-                return connection.Query<object>(querySQL, paramArray);
-            }
+            return connection.Query(querySQL, paramArray);
         }
 
         /// <summary>
@@ -62,12 +124,9 @@ namespace ORMappingComponent
         /// <param name="querySQL">查询SQL</param>
         /// <param name="paramArray">参数数组</param>
         /// <returns>查询列表</returns>
-        public static IEnumerable<T> Query<T>(string querySQL, object paramArray = null)
+        public IEnumerable<T> Query<T>(string querySQL, object paramArray = null)
         {
-            using (connection)
-            {
-                return connection.Query<T>(querySQL, paramArray);
-            }
+            return connection.Query<T>(querySQL, paramArray);
         }
 
         /// <summary>
@@ -78,12 +137,9 @@ namespace ORMappingComponent
         /// <param name="querySQL">查询SQL</param>
         /// <param name="queryObject">查询对象</param>
         /// <returns>对象列表</returns>
-        public static IEnumerable<T> Query<T>(string querySQL, T entity)
+        public IEnumerable<T> Query<T>(string querySQL, T entity)
         {
-            using (connection)
-            {
-                return connection.Query<T>(querySQL, entity);
-            }
+            return connection.Query<T>(querySQL, entity);
         }
 
         /// <summary>
@@ -92,12 +148,9 @@ namespace ORMappingComponent
         /// <param name="execSQL">插入SQL</param>
         /// <param name="paramArray">参数数组</param>
         /// <returns>返回受到Insert,Update 和 Delete 操作影响的行数，所有其他查询都返回 –1，存储过程中如果含有set nocount on也会导致返回值为-1</returns>
-        public static int ExecuteSQL(string execSQL, object paramArray)
+        public int ExecuteSQL(string execSQL, object paramArray)
         {
-            using (connection)
-            {
-                return connection.Execute(execSQL, paramArray);
-            }
+            return connection.Execute(execSQL, paramArray);
         }
 
         /// <summary>
@@ -107,26 +160,20 @@ namespace ORMappingComponent
         /// <param name="insertSQL">插入SQL</param>
         /// <param name="entity">要插入的数据对象类型与T保持一致</param>
         /// <returns>返回受到Insert操作影响的行数，所有其他查询都返回 –1</returns>
-        public static int Add<T>(string insertSQL, T entity)
+        public int Add<T>(string insertSQL, T entity)
         {
-            using (connection)
-            {
-                return connection.Execute(insertSQL, entity);
-            }
+            return connection.Execute(insertSQL, entity);
         }
 
         /// <summary>
-        /// 新增记录
+        /// 新增记录-注意数据表类中第一个字段必须为自动增长型的ID
         /// </summary>
         /// <typeparam name="T">泛型类型</typeparam>
         /// <param name="entity">要插入的对象实体</param>
         /// <returns>返回插入记录数</returns>
-        public static int Add<T>(T entity) where T : new()
+        public int Add<T>(T entity) where T : new()
         {
-            using (connection)
-            {
-                return connection.Execute(sql.CreateInsertSQL<T>(), entity);
-            }
+            return connection.Execute(sql.CreateSQLInsertNewEntity<T>(), entity);
         }
 
         /// <summary>
@@ -136,12 +183,9 @@ namespace ORMappingComponent
         /// <param name="deleteSQL">删除SQL</param>
         /// <param name="delObject">删除对象</param>
         /// <returns>返回收到Delete影响的行数</returns>
-        public static int Delete<T>(string deleteSQL, T entity)
+        public int Delete<T>(string deleteSQL, T entity)
         {
-            using (connection)
-            {
-                return connection.Execute(deleteSQL, entity);
-            }
+            return connection.Execute(deleteSQL, entity);
         }
 
         /// <summary>
@@ -151,12 +195,21 @@ namespace ORMappingComponent
         /// <param name="updateSQL">更新SQL</param>
         /// <param name="updateObject">更新对象</param>
         /// <returns>返回收到Update影响的行数</returns>
-        public static int Update<T>(string updateSQL, T entity)
+        public int Update<T>(string updateSQL, T entity)
         {
-            using (connection)
-            {
-                return connection.Execute(updateSQL, entity);
-            }
+            return connection.Execute(updateSQL, entity);
+        }
+
+        /// <summary>
+        /// 更新对象
+        /// </summary>
+        /// <typeparam name="T">对象数据类型</typeparam>
+        /// <param name="updateSQL">更新SQL</param>
+        /// <param name="updateObject">更新对象</param>
+        /// <returns>返回收到Update影响的行数</returns>
+        public int Update<T>(T entity) where T : new()
+        {
+            return connection.Execute(sql.CreateSQLUpdateById<T>(), entity);
         }
 
         /// <summary>
@@ -168,6 +221,47 @@ namespace ORMappingComponent
         {
             SqlConnection conn = new SqlConnection(sqlConnectionString);
             return conn;
+        }
+
+
+        private bool ContainsConnectionType(int dbType)
+        {
+            var array = Enum.GetValues(typeof(Sqldb));
+            for (int i = 0; i < array.Length; ++i)
+            {
+                if (dbType == (int)array.GetValue(i))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    public struct SqlConnectionString
+    {
+        public string UserReadOnly
+        {
+            get { return ""; }
+        }
+        public string UserWrite
+        {
+            get { return ""; }
+        }
+        public string OrderReadOnly
+        {
+            get { return ""; }
+        }
+        public string OrderWrite
+        {
+            get { return ""; }
+        }
+        public string ServiceCenterReadOnly
+        {
+            get { return ""; }
+        }
+        public string ServiceCenterWrite
+        {
+            get { return ""; }
         }
     }
 }

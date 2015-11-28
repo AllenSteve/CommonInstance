@@ -14,6 +14,7 @@ namespace StandardUnitTest
         public void QueryTest()
         {
             // Arrange-测试设置,创建对象
+            DBHelper db = new DBHelper();
             Customer customer = new Customer()
                                                {
                                                    UserName = "User-1",
@@ -33,7 +34,7 @@ namespace StandardUnitTest
             string querySQL = @"SELECT * FROM dbo.CICUser WHERE UserName=@UserName AND PasswordHash=@Password";
             
             // Act-测试行为,使用功能
-            customerList = DapperHelper.Query<Customer>(querySQL, customer).ToList();
+            customerList = db.Query<Customer>(querySQL, customer).ToList();
             count = customerList.Count;
 
             // Assert-测试结果,验证结果
@@ -44,6 +45,7 @@ namespace StandardUnitTest
         public void AddTest()
         {
             // Arrange-测试设置,创建对象
+            DBHelper db = new DBHelper();
             UserInfo user = new UserInfo()
                                     {
                                         Code = "UnitTest",
@@ -55,7 +57,7 @@ namespace StandardUnitTest
             string insertSQL = @"INSERT INTO UserInfo(Code,Name,Description) VALUES (@Code,@Name,@Description)";
 
             // Act-测试行为,使用功能
-            result = DapperHelper.Add<UserInfo>(insertSQL,user);
+            result = db.Add<UserInfo>(insertSQL,user);
 
             // Assert-测试结果,验证结果
             Assert.AreEqual(1,result);

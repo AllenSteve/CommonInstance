@@ -34,6 +34,34 @@ namespace ComponentTest
             Console.WriteLine(zeroDB);
             Console.WriteLine(userReadOnlyDB);
 
+            Console.WriteLine("遍历枚举中的值");
+            // 遍历枚举中的值
+            foreach (DatabaseType item in Enum.GetValues(typeof(DatabaseType)))
+            {
+                Console.WriteLine((int)item);
+            }
+
+            Console.WriteLine("遍历枚举中的值");
+            // 遍历枚举中的名称
+            foreach (string item in Enum.GetNames(typeof(DatabaseType)))
+            {
+                Console.WriteLine(item);
+            }
+
+            // 枚举数组测试
+            Console.WriteLine("枚举数组测试");
+            var arr = Enum.GetValues(typeof(DatabaseType));
+            Console.WriteLine(arr.Length);
+            Console.WriteLine((int)arr.GetValue(0));
+            for(int i=0;i<arr.Length;i++)
+            {
+                Console.WriteLine((int)arr.GetValue(i));
+            }
+                
+
+
+
+
         }
 
         public void RunTransactionServiceBaseModelTest()
@@ -45,15 +73,24 @@ namespace ComponentTest
                                                                                       decimal.Zero,
                                                                                       decimal.Zero,
                                                                                       "title",
-                                                                                      "subject",
-                                                                                      "extra_param:DealerID|tradeType|backurl"
+                                                                                      "subject: EOP DealerName|DealerID|Type|Amount",
+                                                                                      "extra_param: DealerID|tradeType|backurl"
                                                                                       );
             var query = model.ToQueryString();
 
 
             //Console.WriteLine("queryStr:" + query);
-            string backurl = model.extra_param.Split('|').Last().Trim();
-            Console.WriteLine(backurl);
+            var extra_param = model.extra_param.Split('|');
+
+            var subject = model.subject.Split('|');
+
+            Console.WriteLine(extra_param[0]);
+            Console.WriteLine(extra_param[1]);
+            Console.WriteLine(extra_param[2]);
+
+            Console.WriteLine("DealerID:" + subject[1]);
+            Console.WriteLine("Type:"+subject[2]);
+            Console.WriteLine("Amount:" + subject[3]);
         }
 
         
