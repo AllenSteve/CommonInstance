@@ -18,7 +18,8 @@ namespace ORMappingComponent
         /// 数据库连接字符串
         /// </summary>
         /// 
-        private static readonly string connStr = @"Data Source=192.168.127.154\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
+        private static readonly string connStr = @"Data Source=LACRIMA\LACRIMA;Initial Catalog=CompanyDB;UID=sa;PWD=123456;";
+        //private static readonly string connStr = @"Data Source=192.168.127.154\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
         //private static readonly string connStr = "Data Source=123.103.35.138;Initial Catalog=jjjy_test1107;UID=jjjy_test_admin;PWD=3791f38D;";
 
         /// <summary>

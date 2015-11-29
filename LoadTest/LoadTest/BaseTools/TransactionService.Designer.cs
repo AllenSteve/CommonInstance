@@ -54,6 +54,7 @@
             this.Btn_clearResult = new System.Windows.Forms.Button();
             this.Btn_copyQueryString = new System.Windows.Forms.Button();
             this.CB_queryStringType = new System.Windows.Forms.ComboBox();
+            this.Btn_testConnection = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Btn_createQueryString
@@ -268,11 +269,22 @@
             this.CB_queryStringType.Size = new System.Drawing.Size(126, 20);
             this.CB_queryStringType.TabIndex = 25;
             // 
+            // Btn_testConnection
+            // 
+            this.Btn_testConnection.Location = new System.Drawing.Point(579, 134);
+            this.Btn_testConnection.Name = "Btn_testConnection";
+            this.Btn_testConnection.Size = new System.Drawing.Size(75, 23);
+            this.Btn_testConnection.TabIndex = 26;
+            this.Btn_testConnection.Text = "测试连接";
+            this.Btn_testConnection.UseVisualStyleBackColor = true;
+            this.Btn_testConnection.Click += new System.EventHandler(this.Btn_testConnection_Click);
+            // 
             // TransactionService
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 486);
+            this.Controls.Add(this.Btn_testConnection);
             this.Controls.Add(this.CB_queryStringType);
             this.Controls.Add(this.Btn_copyQueryString);
             this.Controls.Add(this.Btn_clearResult);
@@ -334,5 +346,6 @@
         private System.Windows.Forms.Button Btn_clearResult;
         private System.Windows.Forms.Button Btn_copyQueryString;
         private System.Windows.Forms.ComboBox CB_queryStringType;
+        private System.Windows.Forms.Button Btn_testConnection;
     }
 }

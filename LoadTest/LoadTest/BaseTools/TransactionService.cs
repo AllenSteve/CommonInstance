@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Net.Security;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
+using System.Data.SqlClient;
 
 namespace BaseFunction.BaseTools
 {
@@ -166,6 +167,21 @@ namespace BaseFunction.BaseTools
         {
             if(this.T_queryString.Text.Trim() != string.Empty)
                 Clipboard.SetDataObject(this.T_queryString.Text);
+        }
+
+        private void Btn_testConnection_Click(object sender, EventArgs e)
+        {
+            string connStr = ConfigurationManager.AppSettings["localhostDB"];
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+                if (conn.State == ConnectionState.Open)
+                {
+                    MessageBox.Show("数据库连接成功");
+                    conn.Close();
+                    conn.Dispose();
+                }
+            }
         }
     }
 }
