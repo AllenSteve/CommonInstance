@@ -55,5 +55,30 @@ namespace EOP.UnitTest
             // assert
             Assert.AreEqual(3, count);
         }
+
+        [TestMethod]
+        public void QueryTest()
+        {
+            // arrange
+            DBHelper.Sqldb dbType = DBHelper.Sqldb.OrderWrite;
+            DBHelper db = new DBHelper();
+
+            string sql = "SELECT * FROM DealerServiceLog  ";
+
+            var list = db.Query(sql).ToList();
+
+
+            var log = db.Query<DealerServiceLog>(21);
+
+            log.Description = "新增测试用例！！！";
+
+            db.Update(log);
+
+
+            // act
+            int count = list.Count;
+            // assert
+            Assert.AreEqual(7, count);
+        }
     }
 }
