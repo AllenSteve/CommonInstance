@@ -41,10 +41,9 @@ namespace ExtensionComponent
         }
 
         // 根据泛型表结构生成对应的SQL插入语句
-        public static string CreateSQLInsertNewEntity<T>(this string str) where T : new() 
+        public static string CreateSQLInsertNewEntity<T>(this string str)
         {
-            T tableName = new T();
-            Type type = tableName.GetType();
+            Type type = typeof(T);//tableName.GetType();
             PropertyInfo[] properties = type.GetProperties();
             char[] appendArray = new char[properties.Length];
             for (int i = 0; i < properties.Length-1; ++i)
@@ -72,27 +71,26 @@ namespace ExtensionComponent
         }
 
         // 生成全表查询SQL
-        public static string CreateSQLQueryAll<T>(this string str) where T : new()
+        public static string CreateSQLQueryAll<T>(this string str)
         {
             StringBuilder SQL = new StringBuilder("SELECT * FROM ");
-            SQL.Append(new T().GetType().Name);
+            SQL.Append(typeof(T).Name);
             return SQL.ToString();
         }
 
         // 生成根据主键Id查询的SQL
-        public static string CreateSQLQueryById<T>(this string str) where T : new()
+        public static string CreateSQLQueryById<T>(this string str) 
         {
             StringBuilder SQL = new StringBuilder("SELECT * FROM ");
-            SQL.Append(new T().GetType().Name);
+            SQL.Append(typeof(T).Name);
             SQL.Append(" WHERE ID=@ID");
             return SQL.ToString();
         }
 
         // 生成根据ID更新的SQL
-        public static string CreateSQLUpdateById<T>(this string str) where T : new()
+        public static string CreateSQLUpdateById<T>(this string str)
         {
-            T table = new T();
-            Type type = table.GetType();
+            Type type = typeof(T);
             PropertyInfo[] properties = type.GetProperties();
             StringBuilder SQL = new StringBuilder("UPDATE " + type.Name + " SET ");
             char[] appendArray = new char[properties.Length];

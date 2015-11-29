@@ -101,7 +101,7 @@ namespace ORMappingComponent
         /// </summary>
         /// <typeparam name="T">表名</typeparam>
         /// <returns>全表数据</returns>
-        public IEnumerable<T> QueryAll<T>() where T : new()
+        public IEnumerable<T> QueryAll<T>()
         {
             return connection.Query<T>(sql.CreateSQLQueryAll<T>());
         }
@@ -151,7 +151,7 @@ namespace ORMappingComponent
         /// <param name="querySQL">查询SQL</param>
         /// <param name="id">查询id</param>
         /// <returns>对象</returns>
-        public T Query<T>(int id) where T : new()
+        public T Query<T>(int id)
         {
             return connection.Query<T>(sql.CreateSQLQueryById<T>(), new { ID = id }).FirstOrDefault();
         }
@@ -184,7 +184,7 @@ namespace ORMappingComponent
         /// <typeparam name="T">泛型类型</typeparam>
         /// <param name="entity">要插入的对象实体</param>
         /// <returns>返回插入记录数</returns>
-        public int Add<T>(T entity) where T : new()
+        public int Add<T>(T entity)
         {
             return connection.Execute(sql.CreateSQLInsertNewEntity<T>(), entity);
         }
@@ -220,7 +220,7 @@ namespace ORMappingComponent
         /// <param name="updateSQL">更新SQL</param>
         /// <param name="updateObject">更新对象</param>
         /// <returns>返回收到Update影响的行数</returns>
-        public int Update<T>(T entity) where T : new()
+        public int Update<T>(T entity)
         {
             return connection.Execute(sql.CreateSQLUpdateById<T>(), entity);
         }
