@@ -41,7 +41,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="Enums\DealerConfiguration.cs" />
+    <Compile Include="Enums\DealerPayRecordLog.cs" />
     <Compile Include="Enums\ServiceEnum.cs" />
+    <Compile Include="Enums\ServiceLogType.cs" />
+    <Compile Include="EopDBModel\AdminUserOperLog.cs" />
+    <Compile Include="EopDBModel\CallbackUserInfo.cs" />
+    <Compile Include="EopDBModel\DealerClassConfig.cs" />
+    <Compile Include="EopDBModel\DealerPayRecord.cs" />
+    <Compile Include="EopDBModel\DealerServiceLog.cs" />
+    <Compile Include="EopDBModel\DealerSettlement.cs" />
+    <Compile Include="EopDBModel\EOPCityInfo.cs" />
+    <Compile Include="EopDBModel\Partner_Company.cs" />
+    <Compile Include="EopDBModel\Partner_CompanyExtent.cs" />
+    <Compile Include="EopDBModel\PayNotice_2_0_Log.cs" />
+    <Compile Include="EopDBModel\ScoreConfig.cs" />
+    <Compile Include="EopDBModel\SendOrderInfo.cs" />
+    <Compile Include="EopDBModel\SolutionConfig.cs" />
+    <Compile Include="EopDBModel\SUserBase.cs" />
+    <Compile Include="EopDBModel\SUserBaseVisitLog.cs" />
     <Compile Include="LogModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModel\TransactionServiceBaseModel.cs" />
@@ -53,6 +71,7 @@
       <Name>ExtensionComponent</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

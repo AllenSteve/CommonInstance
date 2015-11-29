@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper">
-      <HintPath>E:\01.Doc\02.工作日志\02.2015-11\06-交易平台B端产品-EOP二期\09-Dapper教程\02-SRC\ORMappingComponent\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -54,10 +51,18 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DapperApiUnitTest.cs" />
+    <Compile Include="DapperHelperTest.cs" />
+    <Compile Include="DealerServiceTest.cs" />
+    <Compile Include="LogServiceTest.cs" />
+    <Compile Include="TransactionServiceBusinessModelTest.cs" />
     <Compile Include="UnitTestSample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ComponentModels\ComponentModels.csproj">
+      <Project>{618dce8b-48f6-4115-b35a-f977e0dd9a36}</Project>
+      <Name>ComponentModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ORMappingComponent\ORMappingComponent.csproj">
       <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
       <Name>ORMappingComponent</Name>
