@@ -105,6 +105,7 @@ namespace ComponentTest
             for (int i = 0; i < properties.Length; ++i)
             {
                 value = properties[i].GetValue(param,null);
+                
                 //if (value != null && !string.IsNullOrEmpty(value.ToString().Trim()))
                 //{
                 if (value==null)
@@ -113,6 +114,7 @@ namespace ComponentTest
                 }
                 else if (value.GetType().Name.Equals("String") || value.GetType().Name.Equals("DateTime"))
                 {
+                    Console.WriteLine("Type:{0}", value.GetType().Name);
                     Console.WriteLine("{0}:'{1}'", properties[i].Name,value);
                     //Console.WriteLine(string.Format("Member name:{0},value:{1},TYPE:{2}", properties[i].Name, value.ToString(), properties[i].GetValue(param, null).GetType().Name));
                 }

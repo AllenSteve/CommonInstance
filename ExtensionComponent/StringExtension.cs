@@ -19,7 +19,7 @@ namespace ExtensionComponent
 
         public static string MaskPhoneNo(this string str)
         {
-            return string.Format("{0}****{1}",str.Substring(0,3),str.Substring(7));
+            return string.Format("{0}****{1}", str.Substring(0, 3), str.Substring(7));
         }
 
         public static string Encrypt(this string str)
@@ -29,7 +29,7 @@ namespace ExtensionComponent
 
         public static string Decrypt(this string str)
         {
-            return str; 
+            return str;
         }
 
         public static string CouponEncrypt(this string str, string param, string key)
@@ -46,11 +46,11 @@ namespace ExtensionComponent
             Type type = typeof(T);//tableName.GetType();
             PropertyInfo[] properties = type.GetProperties();
             char[] appendArray = new char[properties.Length];
-            for (int i = 0; i < properties.Length-1; ++i)
+            for (int i = 0; i < properties.Length - 1; ++i)
             {
                 appendArray[i] = ',';
             }
-            appendArray[appendArray.Length-1] = ')';
+            appendArray[appendArray.Length - 1] = ')';
             StringBuilder sql = new StringBuilder("INSERT INTO ");
             sql.Append(type.Name);
             sql.Append('(');
@@ -79,7 +79,7 @@ namespace ExtensionComponent
         }
 
         // 生成根据主键Id查询的SQL
-        public static string CreateSQLQueryById<T>(this string str) 
+        public static string CreateSQLQueryById<T>(this string str)
         {
             StringBuilder SQL = new StringBuilder("SELECT * FROM ");
             SQL.Append(typeof(T).Name);
@@ -109,7 +109,7 @@ namespace ExtensionComponent
         }
 
         // 生成根据指定列和条件的更新SQL
-        public static string CreateSQLUpdateByProperties<T>(this string str, object columnParam, object conditionParam=null)
+        public static string CreateSQLUpdateByProperties<T>(this string str, object columnParam, object conditionParam = null)
         {
             // 表类型
             Type tableType = typeof(T);
@@ -128,7 +128,7 @@ namespace ExtensionComponent
 
             for (int i = 0; i < columnProperties.Length; ++i)
             {
-                value = columnProperties[i].GetValue(columnParam,null);
+                value = columnProperties[i].GetValue(columnParam, null);
                 if (value == null)
                 {
                     //Console.WriteLine("{0}:Null", columnProperties[i].Name);
@@ -193,6 +193,13 @@ namespace ExtensionComponent
                     }
                 }
             }
+            return SQL.ToString();
+        }
+
+        // 生成根据指定列和条件的查询SQL
+        public static string CreateSQLQueryByProperties<T>(this string str, object columnParam=null, object conditionParam = null)
+        {
+            StringBuilder SQL = new StringBuilder();
             return SQL.ToString();
         }
     }

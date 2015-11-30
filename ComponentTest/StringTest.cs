@@ -23,10 +23,21 @@ namespace ComponentTest
             //Console.WriteLine(str.CreateSQLUpdateById<BaseModel>());
 
             object columnParam = new { Id=1,Name="名称",Age=10,Phone="13121135599"};
-            object conditionParam = new {Id =1};
+            object conditionParam = new { Id = 1, Phone =11111};
 
-            Console.WriteLine(str.CreateSQLUpdateByProperits<BaseModel>(columnParam));
+            Console.WriteLine(str.CreateSQLUpdateByProperties<BaseModel>(columnParam, conditionParam));
+
         }
+
+        public void RefStr(ref string str)
+        {
+
+        }
+        public void OutStr(out string str)
+        {
+            str = "Hello";
+        }
+
     
     }
 }

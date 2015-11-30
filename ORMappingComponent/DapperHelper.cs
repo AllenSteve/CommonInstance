@@ -235,7 +235,7 @@ namespace ORMappingComponent
         /// <returns>更新行数</returns>
         public int Update<T>(object columnParam, object conditionParam)
         {
-            return connection.Execute(sql.CreateSQLUpdateByProperits<T>(columnParam,conditionParam));
+            return connection.Execute(sql.CreateSQLUpdateByProperties<T>(columnParam,conditionParam));
         }
 
         /// <summary>
