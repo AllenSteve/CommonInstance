@@ -10,7 +10,7 @@ using System.Web.Security;
 namespace ExtensionComponent
 {
     //string类型的扩展方法
-    public static class EncryptString
+    public static class StringExtension
     {
         public static bool IsNullOrEmpty(this string s)
         {
@@ -109,7 +109,7 @@ namespace ExtensionComponent
         }
 
         // 生成根据指定列和条件的更新SQL
-        public static string CreateSQLUpdateByProperits<T>(this string str, object columnParam, object conditionParam=null)
+        public static string CreateSQLUpdateByProperties<T>(this string str, object columnParam, object conditionParam=null)
         {
             // 表类型
             Type tableType = typeof(T);

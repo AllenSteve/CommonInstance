@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="CommonEqualityComparer.cs" />
     <Compile Include="DistinctExtensions.cs" />
-    <Compile Include="EncryptString.cs" />
+    <Compile Include="StringExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
