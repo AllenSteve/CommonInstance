@@ -8,9 +8,11 @@ namespace ApplicationInstance
         static void Main(string[] args)
         {
             Console.WriteLine("Application Instance Is Running!");
-            new CommonModelTest().RunTransactionServiceBaseModelTest();
+            //new CommonModelTest().RunTransactionServiceBaseModelTest();
             //new CommonModelTest().RunEnumTest();
             //new StringTest();
+            new CommonModelTest().RunParamsTest();
+            new StringTest();
         }
     }
 }

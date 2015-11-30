@@ -19,8 +19,13 @@ namespace ComponentTest
             //Console.WriteLine(str.IsNullOrEmpty());
             //Console.WriteLine(str.MaskPhoneNo());
             //Console.WriteLine(str.Encrypt());
-            Console.WriteLine(str.CreateSQLInsertNewEntity<BaseModel>());
-            Console.WriteLine(str.CreateSQLUpdateById<BaseModel>());
+            //Console.WriteLine(str.CreateSQLInsertNewEntity<BaseModel>());
+            //Console.WriteLine(str.CreateSQLUpdateById<BaseModel>());
+
+            object columnParam = new { Id=1,Name="名称",Age=10,Phone="13121135599"};
+            object conditionParam = new {Id =1};
+
+            Console.WriteLine(str.CreateSQLUpdateByProperits<BaseModel>(columnParam));
         }
     
     }

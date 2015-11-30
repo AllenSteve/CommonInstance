@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ExtensionComponent;
 using ComponentModels.Enums;
+using System.Reflection;
 
 namespace ComponentTest
 {
@@ -93,6 +94,35 @@ namespace ComponentTest
             Console.WriteLine("Amount:" + subject[3]);
         }
 
-        
+        public void RunParamsTest()
+        {
+            string a = null;
+            DateTime date = DateTime.Now;
+            object param = new { Id = 1, Name = "名称", NullColumn = a, Date = date };
+            Type type = param.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            object value = null;
+            for (int i = 0; i < properties.Length; ++i)
+            {
+                value = properties[i].GetValue(param,null);
+                //if (value != null && !string.IsNullOrEmpty(value.ToString().Trim()))
+                //{
+                if (value==null)
+                {
+                    Console.WriteLine("{0}:Null", properties[i].Name);
+                }
+                else if (value.GetType().Name.Equals("String") || value.GetType().Name.Equals("DateTime"))
+                {
+                    Console.WriteLine("{0}:'{1}'", properties[i].Name,value);
+                    //Console.WriteLine(string.Format("Member name:{0},value:{1},TYPE:{2}", properties[i].Name, value.ToString(), properties[i].GetValue(param, null).GetType().Name));
+                }
+                else
+                {
+                    Console.WriteLine("Type:{0}", value.GetType().Name);
+                    Console.WriteLine("{0}:{1}", properties[i].Name, value);
+                }
+                //}
+            }
+        }
     }
 }

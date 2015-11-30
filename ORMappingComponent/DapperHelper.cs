@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Dapper;
 using ExtensionComponent;
 using System.Configuration;
+using System.Reflection;
 
 namespace ORMappingComponent
 {
@@ -18,8 +19,8 @@ namespace ORMappingComponent
         /// 数据库连接字符串
         /// </summary>
         /// 
-        private static readonly string connStr = @"Data Source=LACRIMA\LACRIMA;Initial Catalog=CompanyDB;UID=sa;PWD=123456;";
-        //private static readonly string connStr = @"Data Source=192.168.127.154\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
+        //private static readonly string connStr = @"Data Source=LACRIMA\LACRIMA;Initial Catalog=CompanyDB;UID=sa;PWD=123456;";
+        private static readonly string connStr = @"Data Source=192.168.127.154\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
         //private static readonly string connStr = "Data Source=123.103.35.138;Initial Catalog=jjjy_test1107;UID=jjjy_test_admin;PWD=3791f38D;";
 
         /// <summary>
@@ -223,6 +224,18 @@ namespace ORMappingComponent
         public int Update<T>(T entity)
         {
             return connection.Execute(sql.CreateSQLUpdateById<T>(), entity);
+        }
+
+        /// <summary>
+        /// 更新对象
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="columnParam">属性列表</param>
+        /// <param name="conditionParam">条件列表</param>
+        /// <returns>更新行数</returns>
+        public int Update<T>(object columnParam, object conditionParam)
+        {
+            return connection.Execute(sql.CreateSQLUpdateByProperits<T>(columnParam,conditionParam));
         }
 
         /// <summary>
