@@ -27,15 +27,32 @@ namespace ComponentTest
 
             Console.WriteLine(str.CreateSQLUpdateByProperties<BaseModel>(columnParam, conditionParam));
 
+            string s = "Hello World!";
+            this.RefStr(ref s);
+            Console.WriteLine(s);
+
+            this.OutStr(out s);
+            Console.WriteLine(s);
+
+            ToGB2312("EOP电商");
+        }
+
+        public void ToGB2312(string str)
+        {
+            var defaultEncode = System.Text.Encoding.Default;
+            var GB2312 = System.Text.Encoding.GetEncoding("GB2312");
+            byte[] buffer = GB2312.GetBytes(str);
+            buffer = System.Text.Encoding.Convert(defaultEncode,GB2312,buffer);
+            Console.WriteLine(GB2312.GetString(buffer));
         }
 
         public void RefStr(ref string str)
         {
-
+            str = "REF Hello";
         }
         public void OutStr(out string str)
         {
-            str = "Hello";
+            str = "OUT Hello";
         }
 
     
