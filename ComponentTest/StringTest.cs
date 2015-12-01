@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ExtensionComponent;
 using ComponentModels;
+using System.Web;
 
 namespace ComponentTest
 {
@@ -34,16 +35,53 @@ namespace ComponentTest
             this.OutStr(out s);
             Console.WriteLine(s);
 
-            ToGB2312("EOP电商");
+            ToUTF8("EOP电商");
+        }
+
+        public void ToUnicode(string str)
+        {
+            // UTF8格式编码
+            Encoding Unicode = Encoding.Unicode;
+            Encoding GB2312 = Encoding.GetEncoding("GB2312");
+
+            // 系统默认格式编码
+            byte[] buffer1 = GB2312.GetBytes(str);
+            // 转换为unicode
+            byte[] buffer2 = Encoding.Convert(GB2312, Unicode, buffer1, 0, buffer1.Length);
+            string strBuffer = GB2312.GetString(buffer2, 0, buffer2.Length);
+            Console.WriteLine(strBuffer);
+        }
+
+        public void ToUTF8(string str)
+        {
+            // UTF8格式编码
+            Encoding UTF8 = Encoding.UTF8;
+            Encoding GB2312 = Encoding.GetEncoding("GB2312");
+
+            //HttpUtility.UrlEncode();
+
+
+            // 系统默认格式编码
+            byte[] buffer1 = GB2312.GetBytes(str);
+            // 转换为unicode
+            byte[] buffer2 = Encoding.Convert(GB2312, UTF8, buffer1, 0, buffer1.Length);
+            string strBuffer = GB2312.GetString(buffer2, 0, buffer2.Length);
+            Console.WriteLine(HttpUtility.UrlEncode(strBuffer));
         }
 
         public void ToGB2312(string str)
         {
+            //str = "骞垮憡涓戦椈";
             var defaultEncode = System.Text.Encoding.Default;
             var GB2312 = System.Text.Encoding.GetEncoding("GB2312");
             byte[] buffer = GB2312.GetBytes(str);
             buffer = System.Text.Encoding.Convert(defaultEncode,GB2312,buffer);
             Console.WriteLine(GB2312.GetString(buffer));
+
+            byte[] buffer1 = Encoding.Default.GetBytes(str);
+            byte[] buffer2 = Encoding.Convert(Encoding.UTF8, Encoding.Default, buffer1, 0, buffer1.Length);
+            string strBuffer = Encoding.Default.GetString(buffer2, 0, buffer2.Length);
+            Console.WriteLine(strBuffer);
         }
 
         public void RefStr(ref string str)

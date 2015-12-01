@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExtensionComponent;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -69,7 +70,7 @@ namespace ComponentModels.ServiceModel
                 value = fields[i].GetValue(this);
                 if (value != null && !string.IsNullOrEmpty(value.ToString().Trim()))
                 {
-                    dictionary.Add(properties[i].Name, value.ToString());
+                    dictionary.Add(properties[i].Name, value.ToString().ConvertToUrlEncode());
                 }
             }
             return dictionary;

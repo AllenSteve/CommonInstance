@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Reflection;
 using System.Web.Security;
+using System.Web;
 
 namespace ExtensionComponent
 {
@@ -201,6 +202,26 @@ namespace ExtensionComponent
         {
             StringBuilder SQL = new StringBuilder();
             return SQL.ToString();
+        }
+
+        public static string ConvertEncoding(this string str,string srcEncoding="GB2312",string destEncoding="UTF-8")
+        {
+            // 源格式编码
+            Encoding SRC = Encoding.GetEncoding(srcEncoding);
+            // 源格式编码
+            byte[] buffer = SRC.GetBytes(str);
+
+            // 目标格式编码
+            Encoding DEST = Encoding.GetEncoding(destEncoding);
+            // 转换为 目标格式编码
+            byte[] buffer2 = Encoding.Convert(SRC, DEST, buffer, 0, buffer.Length);
+
+            return SRC.GetString(buffer2, 0, buffer2.Length);
+        }
+
+        public static string ConvertToUrlEncode(this string str)
+        {
+            return HttpUtility.UrlEncode(str);
         }
     }
 }
