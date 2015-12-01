@@ -28,32 +28,34 @@ namespace ORMappingComponent
         /// </summary>
         private static string sql = null;
 
+        public Sqldb dbType { get; set; }
+
         /// <summary>
         /// 打开到数据库的连接
         /// </summary>
-        private static SqlConnection _connection;
+        private SqlConnection _connection;
 
-        public static SqlConnection connection
+        public SqlConnection connection
         {
             get
             {
                 if (_connection == null)
                 {
-                    _connection = OpenSqlConnection(connStr);
+                    _connection = CreateConnection(this.dbType);
                 }
                 return _connection;
             }
         }
 
-        public DBHelper(int dbType = 0)
+        public DBHelper(int type = 0)
         {
-            if (dbType == 0)
+            if (type == 0)
             {
                 _connection = OpenSqlConnection(connStr);
             }
-            else if (this.ContainsConnectionType(dbType))
+            else if (this.ContainsConnectionType(type))
             {
-                _connection = CreateConnection((Sqldb)dbType);
+                _connection = CreateConnection((Sqldb)type);
             }
             else
             {
@@ -61,11 +63,21 @@ namespace ORMappingComponent
             }
         }
 
+        public void SwitchDB(Sqldb db)
+        {
+            if (_connection != null)
+            {
+                _connection.Dispose();
+                _connection = null;
+            }
+            this.dbType = db;
+        }
 
         public static SqlConnection CreateConnection(Sqldb db = Sqldb.OrderReadOnly)
         {
             string dbName = ((Sqldb)db).ToString();
             string sqlConnectionStr = ConfigurationManager.ConnectionStrings[dbName].ConnectionString;
+            //string sqlConnectionStr = ConfigurationManager.AppSettings[dbName];
             return new SqlConnection(sqlConnectionStr);
         }
 
@@ -146,7 +158,6 @@ namespace ORMappingComponent
 
         /// <summary>
         /// 数据查询--根据数据的主键ID信息查询单条记录
-        /// 注意在使用时引入System.Linq，可对结果集合使用ToList()方法将其转化为List
         /// </summary>
         /// <typeparam name="T">对象数据类型</typeparam>
         /// <param name="querySQL">查询SQL</param>
@@ -156,6 +167,7 @@ namespace ORMappingComponent
         {
             return connection.Query<T>(sql.CreateSQLQueryById<T>(), new { ID = id }).FirstOrDefault();
         }
+
         /// <summary>
         /// 执行组合型SQL语句，用于数据的增删改操作
         /// </summary>
@@ -235,7 +247,7 @@ namespace ORMappingComponent
         /// <returns>更新行数</returns>
         public int Update<T>(object columnParam, object conditionParam)
         {
-            return connection.Execute(sql.CreateSQLUpdateByProperties<T>(columnParam,conditionParam));
+            return connection.Execute(sql.CreateSQLUpdateByProperties<T>(columnParam, conditionParam));
         }
 
         /// <summary>
