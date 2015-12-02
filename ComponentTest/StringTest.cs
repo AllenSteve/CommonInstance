@@ -36,6 +36,25 @@ namespace ComponentTest
             Console.WriteLine(s);
 
             ToUTF8("EOP电商");
+
+            string score = "+5";
+            int ss = int.Parse(score);
+
+            score = "-5";
+            ss = int.Parse(score);
+            DateTime dd = DateTime.Parse("1900/1/1");
+
+            Console.WriteLine((decimal)ss);
+
+
+            byte[] a = new byte[2];
+            a[0] = 0x01;
+            a[1] = 0x00;
+
+            Type t = a.GetType();
+
+
+
         }
 
         public void ToUnicode(string str)
