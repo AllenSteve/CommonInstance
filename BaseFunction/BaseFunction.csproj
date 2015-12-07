@@ -38,14 +38,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnsyReadAndWrite.cs" />
-    <Compile Include="ClassFunction.cs" />
-    <Compile Include="CommonFunction.cs" />
-    <Compile Include="DateTimeFunction.cs" />
-    <Compile Include="RegularFunction.cs" />
+    <Compile Include="ServiceInterface\IAsyncService.cs" />
+    <Compile Include="ServiceInterface\ICommonService.cs" />
+    <Compile Include="ServiceInterface\IDateService.cs" />
+    <Compile Include="ServiceInterface\IRegularService.cs" />
     <Compile Include="ServiceInterface\IServiceFactory.cs" />
+    <Compile Include="Service\AsyncService.cs" />
+    <Compile Include="Service\CommonService.cs" />
+    <Compile Include="Service\DateService.cs" />
+    <Compile Include="Service\RegularService.cs" />
     <Compile Include="Service\ServiceFactory.cs" />
-    <Compile Include="StringFunction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -1,23 +1,16 @@
-﻿using System;
+﻿using BaseFunction.ServiceInterface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseFunction
+namespace BaseFunction.Service
 {
-    public class CommonFunction
+    public class CommonService : ICommonService
     {
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public CommonFunction()
-        {
-            //测试finally的执行次序；
-            Console.WriteLine(GetInt()); 
-        }
-
-        static int GetInt()
+        //测试finally的执行次序；
+        private static int GetInt()
         {
             int i = 8;
             try

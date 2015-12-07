@@ -1,20 +1,15 @@
-﻿using System;
+﻿using BaseFunction.ServiceInterface;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseFunction
+namespace BaseFunction.Service
 {
-    public class AnsyReadAndWrite
+    public class AsyncService : IAsyncService
     {
-
-        public AnsyReadAndWrite()
-        { 
-        }
-
-        public void RunTask()
+        public void Create()
         {
             //string  path = @"E:\01.Doc\02.工作日志\02.2015-11\02-CallInterfaceLog日志解析\02-目标日志\zxbapp_log_2015-11-04.txt";
             //FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -38,13 +33,13 @@ namespace BaseFunction
                 return i + "i can fly";
             });
 
-             Task<string>.Factory.FromAsync(func.BeginInvoke, func.EndInvoke, "yes,", null).ContinueWith
-                 (i =>
-                 {
-                     Console.WriteLine(i.Result);
-                 });
- 
-             Console.Read();
+            Task<string>.Factory.FromAsync(func.BeginInvoke, func.EndInvoke, "yes,", null).ContinueWith
+                (i =>
+                {
+                    Console.WriteLine(i.Result);
+                });
+
+            Console.Read();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BaseFunction;
+using BaseFunction.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace ComponentTest
         public void RunDateFunction()
         {
             Console.WriteLine(Guid.NewGuid().ToString().Replace("-",""));
-            DateTimeFunction.DisplayDateTime();
+            new DateService().Display(); 
         }
 
         public static string StringToUnicode(string s)

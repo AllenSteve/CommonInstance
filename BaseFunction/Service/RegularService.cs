@@ -1,18 +1,16 @@
-﻿using System;
+﻿using BaseFunction.ServiceInterface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace BaseFunction
+namespace BaseFunction.Service
 {
-    public class RegularFunction
+    public class RegularService : IRegularService
     {
-        public RegularFunction()
-        { }
-
-        public void ExpressionTest()
+        public void RegularTest()
         {
             Regex r = new Regex("^\\d+");
             Console.WriteLine(r.Match("@").Success);

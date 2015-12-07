@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseFunction
+namespace BaseFunction.ServiceInterface
 {
-    public class ClassFunction
+    public interface ICommonService
     {
-        public ClassFunction()
-        { }
     }
 }
