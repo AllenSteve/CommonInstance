@@ -43,6 +43,8 @@
     <Compile Include="CommonFunction.cs" />
     <Compile Include="DateTimeFunction.cs" />
     <Compile Include="RegularFunction.cs" />
+    <Compile Include="ServiceInterface\IServiceFactory.cs" />
+    <Compile Include="Service\ServiceFactory.cs" />
     <Compile Include="StringFunction.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +60,7 @@
       <Name>ComponentModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

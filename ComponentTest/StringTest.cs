@@ -46,6 +46,7 @@ namespace ComponentTest
 
             Console.WriteLine((decimal)ss);
 
+            Console.WriteLine(dd.ToString("yyyy-MM-dd HH:mm"));
 
             byte[] a = new byte[2];
             a[0] = 0x01;
@@ -53,6 +54,13 @@ namespace ComponentTest
 
             Type t = a.GetType();
 
+
+            LogModel log = new LogModel() 
+            {
+                interfaceName =null
+            };
+
+            Console.WriteLine(string.IsNullOrEmpty(log.interfaceUrl));
 
 
         }
