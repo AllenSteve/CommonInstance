@@ -53,6 +53,7 @@
     <Compile Include="DapperApiUnitTest.cs" />
     <Compile Include="DapperHelperTest.cs" />
     <Compile Include="DealerServiceTest.cs" />
+    <Compile Include="ExtensionTest\StringExtensionTest.cs" />
     <Compile Include="LogServiceTest.cs" />
     <Compile Include="ServiceTest\ServiceFactoryTest.cs" />
     <Compile Include="ModelTest\TransactionServiceBusinessModelTest.cs" />
@@ -68,6 +69,10 @@
       <Project>{618dce8b-48f6-4115-b35a-f977e0dd9a36}</Project>
       <Name>ComponentModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExtensionComponent\ExtensionComponent.csproj">
+      <Project>{40e7c251-7180-4d78-8b54-862b86c7698a}</Project>
+      <Name>ExtensionComponent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ORMappingComponent\ORMappingComponent.csproj">
       <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
       <Name>ORMappingComponent</Name>
@@ -75,7 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ComponentTest\" />
-    <Folder Include="ExtensionTest\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

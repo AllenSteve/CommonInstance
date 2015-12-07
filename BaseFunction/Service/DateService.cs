@@ -18,6 +18,11 @@ namespace BaseFunction.Service
         }
 
 
+        /// <summary>
+        /// 获得每月的第五工作日
+        /// </summary>
+        /// <param name="month">月份字符串</param>
+        /// <returns>第五工作日日期</returns>
         public DateTime GetMonthFifthWorkingDay(string month)
         {
             //获取当月第一天的日期类型变量
