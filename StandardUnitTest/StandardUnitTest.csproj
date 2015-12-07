@@ -55,7 +55,7 @@
     <Compile Include="DealerServiceTest.cs" />
     <Compile Include="LogServiceTest.cs" />
     <Compile Include="ServiceTest\ServiceFactoryTest.cs" />
-    <Compile Include="TransactionServiceBusinessModelTest.cs" />
+    <Compile Include="ModelTest\TransactionServiceBusinessModelTest.cs" />
     <Compile Include="UnitTestSample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
