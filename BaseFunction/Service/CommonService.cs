@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BaseFunction.Service
 {
-    public class CommonService : ICommonService
+    public class CommonService : ICommonService, IBaseService
     {
         //测试finally的执行次序；
         private static int GetInt()

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BaseFunction.Service
 {
-    public class RegularService : IRegularService
+    public class RegularService : IRegularService,IBaseService
     {
         public void RegularTest()
         {

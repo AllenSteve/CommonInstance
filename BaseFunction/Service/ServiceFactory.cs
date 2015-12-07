@@ -11,7 +11,7 @@ namespace BaseFunction.Service
     {
         public T Create<T>()
         {
-            if (!typeof(T).FullName.StartsWith("EOP.Service"))
+            if (!typeof(T).FullName.StartsWith("BaseFunction.Service"))
             {
                 throw new ArgumentException("未使用定命名空间中的类型进行初始化", typeof(T).FullName);
             }

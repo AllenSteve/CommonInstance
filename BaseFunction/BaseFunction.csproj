@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ServiceInterface\IAsyncService.cs" />
+    <Compile Include="ServiceInterface\IBaseService.cs" />
     <Compile Include="ServiceInterface\ICommonService.cs" />
     <Compile Include="ServiceInterface\IDateService.cs" />
     <Compile Include="ServiceInterface\IRegularService.cs" />

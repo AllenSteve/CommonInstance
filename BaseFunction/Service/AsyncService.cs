@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BaseFunction.Service
 {
-    public class AsyncService : IAsyncService
+    public class AsyncService : IAsyncService, IBaseService
     {
         public void Create()
         {

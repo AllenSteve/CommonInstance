@@ -54,11 +54,16 @@
     <Compile Include="DapperHelperTest.cs" />
     <Compile Include="DealerServiceTest.cs" />
     <Compile Include="LogServiceTest.cs" />
+    <Compile Include="ServiceTest\ServiceFactoryTest.cs" />
     <Compile Include="TransactionServiceBusinessModelTest.cs" />
     <Compile Include="UnitTestSample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BaseFunction\BaseFunction.csproj">
+      <Project>{0ef39968-7f82-4264-814f-0a182e361787}</Project>
+      <Name>BaseFunction</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ComponentModels\ComponentModels.csproj">
       <Project>{618dce8b-48f6-4115-b35a-f977e0dd9a36}</Project>
       <Name>ComponentModels</Name>
