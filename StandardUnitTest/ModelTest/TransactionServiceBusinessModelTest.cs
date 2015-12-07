@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ComponentModels.ServiceModel;
 
-namespace EOP.UnitTest
+namespace EOP.UnitTest.ModelTest
 {
     [TestClass]
     public class TransactionServiceBusinessModelTest

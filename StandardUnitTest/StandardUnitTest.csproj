@@ -73,6 +73,10 @@
       <Name>ORMappingComponent</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ComponentTest\" />
+    <Folder Include="ExtensionTest\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
