@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace BaseComponent.DocumentParser
 {
-    public class JsonParser
+    public class PageViewLogParser
     {
         private JArray jArray { get; set; }
 
@@ -33,7 +33,7 @@ namespace BaseComponent.DocumentParser
 
         public bool kfqAccess { get; set; }
 
-        public JsonParser()
+        public PageViewLogParser()
         {
             this.jBuilder = new StringBuilder();
         }
@@ -42,7 +42,7 @@ namespace BaseComponent.DocumentParser
          * pageView格式：
          * [{"Data":[{"ET":"2015-11-27 05:22:11","PageID":"1001","ST":"2015-11-27 05:22:03"},{"ET":"2015-11-27 05:29:13","PageID":"1001","ST":"2015-11-27 05:29:06"},{"ET":"2015-11-27 05:32:02","PageID":"1001","ST":"2015-11-27 05:31:47"},{"ET":"2015-11-27 05:34:52","PageID":"1001","ST":"2015-11-27 05:34:45"},{"ET":"2015-11-27 05:35:06","PageID":"1002","ST":"2015-11-27 05:35:05"},{"ET":"2015-11-27 05:35:09","PageID":"1001","ST":"2015-11-27 05:35:05"},{"ET":"2015-11-27 05:35:23","PageID":"1018","ST":"2015-11-27 05:35:22"},{"ET":"2015-11-27 05:35:26","PageID":"1001","ST":"2015-11-27 05:35:22"},{"ET":"2015-11-27 05:36:54","PageID":"1009","ST":"2015-11-27 05:36:14"},{"ET":"2015-11-27 05:37:18","PageID":"1009","ST":"2015-11-27 05:37:07"},{"ET":"2015-11-27 05:38:16","PageID":"1009","ST":"2015-11-27 05:38:15"},{"ET":"2015-11-27 05:38:29","PageID":"1009","ST":"2015-11-27 05:38:27"},{"ET":"2015-11-27 05:41:36","PageID":"1009","ST":"2015-11-27 05:41:02"},{"ET":"2015-11-27 05:43:55","PageID":"1009","ST":"2015-11-27 05:42:44"},{"ET":"2015-11-27 05:45:14","PageID":"1001","ST":"2015-11-27 05:45:11"}],"End":"","Start":"2015-11-27 05:21:57"}]
          */
-        public JsonParser(string pageView)
+        public PageViewLogParser(string pageView)
         {
             this.jBuilder = new StringBuilder();
             this.jBuilder.Append(this.CreateJsonText(pageView));

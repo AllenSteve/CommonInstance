@@ -42,12 +42,12 @@ namespace ComponentTest
             sql.Append(" ) ");
 
             IEnumerable<C_PageViewLog> resultList = db.Query<C_PageViewLog>(sql.ToString());
-            IDictionary<string, JsonParser> dictionary = new Dictionary<string, JsonParser>();
+            IDictionary<string, PageViewLogParser> dictionary = new Dictionary<string, PageViewLogParser>();
 
             int count = 1;
             foreach (var res in resultList)
             {
-                JsonParser jParser = new JsonParser(res.PageView);
+                PageViewLogParser jParser = new PageViewLogParser(res.PageView);
                 if (!dictionary.ContainsKey(res.Token))
                 {
                     dictionary.Add(res.Token, jParser);

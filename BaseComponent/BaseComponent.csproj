@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="CommonMethod\ADO.cs" />
     <Compile Include="DocumentParser\ConfigurationManager.cs" />
-    <Compile Include="DocumentParser\JsonParser.cs" />
+    <Compile Include="DocumentParser\PageViewLogParser.cs" />
     <Compile Include="DocumentParser\LogParser.cs" />
     <Compile Include="NetworkComponent\FtpWeb.cs" />
     <Compile Include="NetworkComponent\HtmlHelper.cs" />
