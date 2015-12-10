@@ -173,7 +173,7 @@ namespace ExtensionComponent
                     {
                         //Console.WriteLine("{0}:Null", columnProperties[i].Name);
                         SQL.Append(conditionProperties[i].Name);
-                        SQL.Append(" ISNULL");
+                        SQL.Append(" IS NULL");
                         SQL.Append(conditionAppendArray[i]);
                     }
                     else if (value.GetType().Name.Equals("String") || value.GetType().Name.Equals("DateTime"))
