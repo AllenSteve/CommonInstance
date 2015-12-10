@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 using ExtensionComponent;
 using ComponentModels.Enums;
 using System.Reflection;
+using BaseComponent.DocumentParser;
+using ORMappingComponent;
+using ComponentModels.EbsDBModel;
+using Newtonsoft.Json;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace ComponentTest
 {
@@ -18,6 +24,65 @@ namespace ComponentTest
 
         public CommonModelTest()
         { 
+        }
+
+        public void RunJsonTest()
+        {
+            
+            DBHelper db = new DBHelper((int)DBHelper.Sqldb.OrderReadOnly);
+            StringBuilder sql = new StringBuilder();
+            sql.Append(" SELECT  * FROM    dbo.C_PageViewLog ");
+            sql.Append(" WHERE Token IS NOT NULL AND ");
+            sql.Append(" CreateTime BETWEEN '2015-11-27' AND '2015-12-08' ");
+            sql.Append(" AND ( ");
+            // 1018知识列表页；1019论坛列表页；1020问答列表页
+            sql.Append(" PageView LIKE '%1018%' ");
+            sql.Append(" OR PageView LIKE '%1019%' ");
+            sql.Append(" OR PageView LIKE '%1020%' ");
+            sql.Append(" ) ");
+
+            IEnumerable<C_PageViewLog> resultList = db.Query<C_PageViewLog>(sql.ToString());
+            IDictionary<string, JsonParser> dictionary = new Dictionary<string, JsonParser>();
+
+            int count = 1;
+            foreach (var res in resultList)
+            {
+                JsonParser jParser = new JsonParser(res.PageView);
+                if (!dictionary.ContainsKey(res.Token))
+                {
+                    dictionary.Add(res.Token, jParser);
+                }
+                else
+                {
+                    dictionary[res.Token].JsonTextAppend(res.PageView);
+                }
+            }
+            
+            Console.WriteLine(dictionary.Count);
+
+            foreach (var item in dictionary)
+            {
+                item.Value.Perform();
+            }
+
+            // 知识列表数
+            int knowledgeCount = dictionary.Count(o => o.Value.knowledgeAccess == true);
+            int forumCount = dictionary.Count(o => o.Value.forumAccess == true);
+            int QACount = dictionary.Count(o => o.Value.QAAccess == true);
+
+            int kfCount = dictionary.Count(o => o.Value.kfAccess == true);
+            int fqCount = dictionary.Count(o => o.Value.fqAccess == true);
+            int kqCount = dictionary.Count(o => o.Value.kqAccess == true);
+
+            int kfqCount = dictionary.Count(o => o.Value.kfqAccess == true);
+
+            Console.WriteLine("知识:\t" + knowledgeCount);
+            Console.WriteLine("论坛:\t" + forumCount);
+            Console.WriteLine("问答:\t" + QACount);
+            Console.WriteLine("同时访问知识和论坛:\t" + kfCount);
+            Console.WriteLine("同时访问论坛和问答:\t" + fqCount);
+            Console.WriteLine("同时访问知识和问答:\t" + kqCount);
+            Console.WriteLine("同时访问三者:\t" + kfqCount);
         }
 
         public void RunEnumTest()
