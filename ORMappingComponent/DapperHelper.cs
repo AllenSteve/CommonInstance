@@ -202,6 +202,11 @@ namespace ORMappingComponent
             return connection.Execute(sql.CreateSQLInsertNewEntity<T>(), entity);
         }
 
+        public int AddWithID<T>(T entity)
+        {
+            return connection.Execute(sql.CreateSQLInsertNewEntityWithID<T>(), entity);
+        }
+
         /// <summary>
         /// 删除对象
         /// </summary>

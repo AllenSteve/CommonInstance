@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using EOP.DapperModel.EBS;
 
 namespace ComponentTest
 {
@@ -27,9 +28,23 @@ namespace ComponentTest
         { 
         }
 
+        public void RunCreateSQLTest()
+        {
+            string sql = null;
+            object columnParam = new { Status = 1 };
+            object conditionParam = new { ID = 1000, IsDel=0 };
+            sql = sql.CreateSQLUpdateByProperties<Partner_Company>(columnParam, conditionParam);
+            Console.WriteLine(sql);
+
+            columnParam = new { Score = 100 };
+            conditionParam = new { DealerID = 1000, IsDel = 0 };
+            sql = sql.CreateSQLUpdateByProperties<Partner_CompanyExtent>(columnParam, conditionParam);
+            Console.WriteLine(sql);
+        }
+
         public void RunJsonTest()
         {
-            
+
             DBHelper db = new DBHelper((int)DBHelper.Sqldb.OrderReadOnly);
             StringBuilder sql = new StringBuilder();
             sql.Append(" SELECT  * FROM    dbo.C_PageViewLog ");
@@ -45,8 +60,24 @@ namespace ComponentTest
             IEnumerable<C_PageViewLog> resultList = db.Query<C_PageViewLog>(sql.ToString());
             IDictionary<string, PageViewLogParser> dictionary = new Dictionary<string, PageViewLogParser>();
 
+
             int count = 1;
             Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            Console.WriteLine("开始插入本地数据库");
+            //foreach (var item in resultList)
+            //{
+            //    db.SwitchDB(DBHelper.Sqldb.UserReadOnly);
+            //    db.AddWithID(item);
+            //}
+
+            Console.WriteLine("插入本地数据库完成");
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
+                                                                    ts.Hours, ts.Minutes, ts.Seconds,
+                                                                    ts.Milliseconds);
+            Console.WriteLine("RunTime " + elapsedTime);
             stopWatch.Start();
             foreach (var res in resultList)
             {
@@ -63,8 +94,8 @@ namespace ComponentTest
             
             Console.WriteLine(dictionary.Count);
             stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
+            ts = stopWatch.Elapsed;
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
                                                                     ts.Hours, ts.Minutes, ts.Seconds,
                                                                     ts.Milliseconds);
             Console.WriteLine("RunTime " + elapsedTime);
@@ -81,6 +112,7 @@ namespace ComponentTest
                                                                     ts.Milliseconds);
             Console.WriteLine("RunTime " + elapsedTime);
 
+            stopWatch.Start();
             // 知识列表数
             int knowledgeCount = dictionary.Count(o => o.Value.knowledgeAccess == true);
             int forumCount = dictionary.Count(o => o.Value.forumAccess == true);
@@ -92,6 +124,13 @@ namespace ComponentTest
 
             int kfqCount = dictionary.Count(o => o.Value.kfqAccess == true);
 
+            stopWatch.Stop();
+            ts = stopWatch.Elapsed;
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
+                                                                    ts.Hours, ts.Minutes, ts.Seconds,
+                                                                    ts.Milliseconds);
+            Console.WriteLine("RunTime " + elapsedTime);
+
             Console.WriteLine("知识:\t" + knowledgeCount);
             Console.WriteLine("论坛:\t" + forumCount);
             Console.WriteLine("问答:\t" + QACount);
@@ -99,6 +138,8 @@ namespace ComponentTest
             Console.WriteLine("同时访问论坛和问答:\t" + fqCount);
             Console.WriteLine("同时访问知识和问答:\t" + kqCount);
             Console.WriteLine("同时访问三者:\t" + kfqCount);
+
+
         }
 
         public void RunEnumTest()
