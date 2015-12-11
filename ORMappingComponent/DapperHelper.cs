@@ -280,31 +280,4 @@ namespace ORMappingComponent
             return false;
         }
     }
-    public struct SqlConnectionString
-    {
-        public string UserReadOnly
-        {
-            get { return ""; }
-        }
-        public string UserWrite
-        {
-            get { return ""; }
-        }
-        public string OrderReadOnly
-        {
-            get { return ""; }
-        }
-        public string OrderWrite
-        {
-            get { return ""; }
-        }
-        public string ServiceCenterReadOnly
-        {
-            get { return ""; }
-        }
-        public string ServiceCenterWrite
-        {
-            get { return ""; }
-        }
-    }
 }
