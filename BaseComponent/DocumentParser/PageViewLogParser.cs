@@ -57,10 +57,12 @@ namespace BaseComponent.DocumentParser
         {
             string[] array = Regex.Split(pageView, "Data", RegexOptions.IgnoreCase);
             StringBuilder jsonBuilder = new StringBuilder();
+            int startIndex;
+            int length;
             for (int index = 1; index < array.Length; ++index)
             {
-                int startIndex = array[index].LastIndexOf('[');
-                int length = array[index].IndexOf(']') - startIndex + 1;
+                startIndex = array[index].LastIndexOf('[');
+                length = array[index].IndexOf(']') - startIndex + 1;
                 if (length > 2)
                 {
                     jsonBuilder.Append(array[index].Substring(startIndex, length));
