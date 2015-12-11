@@ -46,6 +46,8 @@ namespace ComponentTest
             IDictionary<string, PageViewLogParser> dictionary = new Dictionary<string, PageViewLogParser>();
 
             int count = 1;
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
             foreach (var res in resultList)
             {
                 PageViewLogParser jParser = new PageViewLogParser(res.PageView);
@@ -60,15 +62,21 @@ namespace ComponentTest
             }
             
             Console.WriteLine(dictionary.Count);
-            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
+                                                                    ts.Hours, ts.Minutes, ts.Seconds,
+                                                                    ts.Milliseconds);
+            Console.WriteLine("RunTime " + elapsedTime);
+
             stopWatch.Start();
             foreach (var item in dictionary)
             {
                 item.Value.Perform();
             }
             stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
+            ts = stopWatch.Elapsed;
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}",
                                                                     ts.Hours, ts.Minutes, ts.Seconds,
                                                                     ts.Milliseconds);
             Console.WriteLine("RunTime " + elapsedTime);

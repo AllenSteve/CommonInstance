@@ -72,7 +72,8 @@ namespace BaseComponent.DocumentParser
 
         private JArray CreateJArray()
         {
-            return (JArray)JsonConvert.DeserializeObject(this.jText);
+            return JArray.Parse(this.jText);
+            //return (JArray)JsonConvert.DeserializeObject(this.jText);
         }
 
         private IEnumerable<JToken> CreateTokenList()
