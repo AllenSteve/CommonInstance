@@ -80,9 +80,9 @@ namespace BaseComponent.DocumentParser
         {
             if (this.jArray == null)
                 return null;
-            this.jResult = this.jArray.Where(j => j.ToObject<JObject>()["PageID"].ToString().Equals("1018") ||
-                                                                    j.ToObject<JObject>()["PageID"].ToString().Equals("1019") ||
-                                                                    j.ToObject<JObject>()["PageID"].ToString().Equals("1020"));
+            this.jResult = this.jArray.Where(j => j["PageID"].ToString().Equals("1018") ||
+                                                                    j["PageID"].ToString().Equals("1019") ||
+                                                                    j["PageID"].ToString().Equals("1020"));
 
             return this.jResult;
         }
