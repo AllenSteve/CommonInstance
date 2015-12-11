@@ -103,11 +103,11 @@ namespace BaseComponent.DocumentParser
             this.jResult = this.CreateTokenList();
 
             // 1018知识列表页；
-            knowledgeAccess = this.jResult.Count(o => o["PageID"].ToString().Equals("1018")) > 0;
+            knowledgeAccess = this.jResult.Any(o => o["PageID"].ToString().Equals("1018"));
             // 1019论坛列表页；
-            forumAccess = this.jResult.Count(o => o["PageID"].ToString().Equals("1019")) > 0;
+            forumAccess = this.jResult.Any(o => o["PageID"].ToString().Equals("1019"));
             // 1020问答列表页
-            QAAccess = this.jResult.Count(o => o["PageID"].ToString().Equals("1020")) > 0;
+            QAAccess = this.jResult.Any(o => o["PageID"].ToString().Equals("1020"));
             kfAccess = knowledgeAccess & forumAccess;
             fqAccess = forumAccess & QAAccess;
             kqAccess = knowledgeAccess & QAAccess;
