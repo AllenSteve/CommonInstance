@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentModels.ServiceModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace BaseFunction.ServiceInterface.IEbsServcie
 
         string DecryptSfut2Url(string sfutCookie);
 
-        object ParseUserInfo(string url, string encoding = "UTF-8");
+        CheckUserInfo ParseUserInfo(string url, string encoding = "UTF-8");
 
     }
 }

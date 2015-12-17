@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BaseFunction.Service.EbsService
 {
@@ -19,6 +20,18 @@ namespace BaseFunction.Service.EbsService
             return sfut;
         }
 
+        public string ParseSfutCookie(HttpContext context)
+        {
+            if (context.Request.Cookies["sfut"] == null)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return context.Request.Cookies["sfut"].Value;
+            }
+        }
+
         public string DecryptSfut2Url(string sfutCookie=null)
         {
             string sfut="903FF1EAC865A085FB599C9C5A86029F0A9B624F0A66D490330E73CACCCC6B7C60EA79AC4A24BBE65876B8CB218EAB49296B8F40C1528AD7747A62DE1D7CCBCAD836C5E4AEACF8E34B2CB9D49AEB4070";
@@ -26,7 +39,7 @@ namespace BaseFunction.Service.EbsService
             return result;
         }
 
-        public object ParseUserInfo(string url,string encoding = "UTF-8")
+        public CheckUserInfo ParseUserInfo(string url, string encoding = "UTF-8")
         {
             HttpWebRequest request = null;
             HttpWebResponse response = null;
@@ -58,7 +71,7 @@ namespace BaseFunction.Service.EbsService
             return new StreamReader(stream, encode).ReadToEnd();
         }
 
-        private object ParseXML2Object(string xml)
+        private CheckUserInfo ParseXML2Object(string xml)
         {
             XMLParser xmlParser = new XMLParser();
             XMLNode xn = xmlParser.Parse(xml);
@@ -70,7 +83,7 @@ namespace BaseFunction.Service.EbsService
             string error_reason = xn.GetValue("soufun_passport>0>common>0>error_reason>0>_text");
             string interfacename = xn.GetValue("soufun_passport>0>common>0>interfacename>0>_text");
             object userInfo = new { UserId = userId, UserName = userName, UserType = userType, IsValid = isValid, Result = return_result, Reason = error_reason, Interface = interfacename };
-            return userInfo;
+            return (CheckUserInfo)userInfo;
         }
     }
 }
