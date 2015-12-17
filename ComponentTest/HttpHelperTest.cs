@@ -38,7 +38,7 @@ namespace ComponentTest
 
             string postParam = "biz_id=747420150428100001&call_time=2015-11-27 02:40:23.788&charset=GB2312&extra_param=商家ID|支付类型|backurl跳转的地址（由用户传入）&invoker=&notify_url=&origin=EOP后台&out_trade_no=&paid_amount=0.01&platform=PC&price=0.01&quantity=1&return_url=&service=cashier_order_create_for_web&sign=&sign_type=MD5&subject=EOP商家 + 商家ID + 质保金/预存款 充值xxx元&title=EOP商家质保金&trade_amount=0.01&trade_type=30003&user_id=73318605&version=1.0&sign=0074e9c00b81e48ddf9272f85bd27257&txtusername=17701000011&password=451426&backurl=http://my.fang.com/";
 
-            CookieContainer cookieContainer = HTMLHelper.GetCooKie(loginUrl, postParam, header);
+            CookieContainer cookieContainer = HTMLHelper.GetCookie(loginUrl, postParam, header);
 
             string html = HTMLHelper.GetHtml(getUrl, cookieContainer, header);
 
@@ -63,7 +63,7 @@ namespace ComponentTest
             //请求参数
             string postParam = "email=aaa@163.com&password=111&icode=&origURL=http%3A%2F%2Fwww.renren.com%2Fhome&domain=renren.com&key_id=1&_rtk=90484476";
 
-            CookieContainer cookieContainer = HTMLHelper.GetCooKie(loginUrl, postParam, header);
+            CookieContainer cookieContainer = HTMLHelper.GetCookie(loginUrl, postParam, header);
 
             string html = HTMLHelper.GetHtml(getUrl, cookieContainer, header);
 

@@ -11,7 +11,7 @@ namespace ApplicationInstance
             //new CommonModelTest().RunTransactionServiceBaseModelTest();
             //new CommonModelTest().RunEnumTest();
             //new StringTest();
-            new CommonModelTest().RunJsonTest();
+            new CommonModelTest().RunSwitchTest();
             //new StringTest();
         }
     }

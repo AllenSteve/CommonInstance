@@ -142,6 +142,33 @@ namespace ComponentTest
 
         }
 
+        public void RunSwitchTest()
+        {
+            int i=3; 
+            switch(i) 
+            { 
+                case 1: 
+                Console.WriteLine(1);
+                    Console.WriteLine(1);
+                break; 
+
+                case 2: 
+                 Console.WriteLine(2);
+                    Console.WriteLine(2);
+                break; 
+
+                case 3: 
+                 Console.WriteLine(3);
+                    Console.WriteLine(3);
+                break; 
+
+                default: 
+                 Console.WriteLine(0);
+                    Console.WriteLine(0);
+                break; 
+            }
+        }
+
         public void RunEnumTest()
         {
             DatabaseType type = DatabaseType.OrderReadOnly;

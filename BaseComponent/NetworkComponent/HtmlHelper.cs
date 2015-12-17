@@ -5,6 +5,9 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Threading;
+using System.Collections;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace BaseComponent.NetworkComponent
 {
@@ -14,18 +17,19 @@ namespace BaseComponent.NetworkComponent
         public class HTMLHelper
         {
             /// <summary>
-            /// 获取CooKie
+            /// 获取post之后的CooKie
             /// </summary>
             /// <param name="loginUrl"></param>
             /// <param name="postdata"></param>
             /// <param name="header"></param>
             /// <returns></returns>
-            public static CookieContainer GetCooKie(string loginUrl, string postdata, HttpHeader header, string encoding = "UTF-8")
+            public static CookieContainer GetCookie(string loginUrl, string postdata, HttpHeader header, string encoding = "UTF-8")
             {
                 HttpWebRequest request = null;
                 HttpWebResponse response = null;
                 try
                 {
+                    ServicePointManager.ServerCertificateValidationCallback += RemoteCertificateValidate;
                     CookieContainer cc = new CookieContainer();
                     request = (HttpWebRequest)WebRequest.Create(loginUrl);
                     request.Method = header.method;
@@ -35,6 +39,7 @@ namespace BaseComponent.NetworkComponent
                     request.AllowAutoRedirect = false;
                     request.CookieContainer = cc;
                     request.KeepAlive = true;
+
 
                     //提交请求
                     Stream stream;
@@ -58,6 +63,8 @@ namespace BaseComponent.NetworkComponent
                     throw ex;
                 }
             }
+
+
 
             /// <summary>
             /// 获取html
@@ -98,6 +105,36 @@ namespace BaseComponent.NetworkComponent
                     return string.Empty;
                 }
             }
+
+            public static List<Cookie> GetAllCookies(CookieContainer cc)
+            {
+                List<Cookie> lstCookies = new List<Cookie>();
+
+                Hashtable table = (Hashtable)cc.GetType().InvokeMember("m_domainTable",
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.GetField |
+                    System.Reflection.BindingFlags.Instance, null, cc, new object[] { });
+
+                foreach (object pathList in table.Values)
+                {
+                    SortedList lstCookieCol = (SortedList)pathList.GetType().InvokeMember("m_list",
+                        System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.GetField
+                        | System.Reflection.BindingFlags.Instance, null, pathList, new object[] { });
+                    foreach (CookieCollection colCookies in lstCookieCol.Values)
+                        foreach (Cookie c in colCookies) lstCookies.Add(c);
+                }
+
+                return lstCookies;
+            }
+
+            // 在生成的代理类中添加RemoteCertificateValidate函数
+            private static bool RemoteCertificateValidate(object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors error)
+            {
+                //System.Console.WriteLine("Warning, trust any certificate");
+                //MessageBox.Show("Warning, trust any certificate");
+                //为了通过证书验证，总是返回true
+                return true;
+            }
+
         }
 
         public class HttpHeader

@@ -42,15 +42,20 @@
     <Compile Include="ServiceInterface\IBaseService.cs" />
     <Compile Include="ServiceInterface\ICommonService.cs" />
     <Compile Include="ServiceInterface\IDateService.cs" />
+    <Compile Include="ServiceInterface\IEbsServcie\IParseCookie.cs" />
     <Compile Include="ServiceInterface\IRegularService.cs" />
     <Compile Include="ServiceInterface\IServiceFactory.cs" />
     <Compile Include="Service\AsyncService.cs" />
     <Compile Include="Service\CommonService.cs" />
     <Compile Include="Service\DateService.cs" />
+    <Compile Include="Service\EbsService\ParseCookie.cs" />
     <Compile Include="Service\RegularService.cs" />
     <Compile Include="Service\ServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Soufun.Passport">
+      <HintPath>..\packages\EBS\EBS.Lib\Soufun.Passport.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>

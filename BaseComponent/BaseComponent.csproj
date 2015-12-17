@@ -45,6 +45,7 @@
     <Compile Include="DocumentParser\PageViewLogParser.cs" />
     <Compile Include="DocumentParser\LogParser.cs" />
     <Compile Include="DocumentParser\Serializer.cs" />
+    <Compile Include="DocumentParser\XMLParser.cs" />
     <Compile Include="NetworkComponent\FtpWeb.cs" />
     <Compile Include="NetworkComponent\HtmlHelper.cs" />
     <Compile Include="NetworkComponent\RemoteFile.cs" />
