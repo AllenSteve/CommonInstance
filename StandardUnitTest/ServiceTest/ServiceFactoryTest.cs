@@ -12,15 +12,18 @@ namespace StandardUnitTest.ServiceTest
 
         private IBaseService service { get; set; }
 
+        public ServiceFactoryTest()
+        {
+            this.factory = new ServiceFactory();
+        }
+
+
         [TestMethod]
         public void CreateTest()
         {
-            factory = new ServiceFactory();
             service = factory.Create<DateService>();
             var dateService = factory.Create<DateService>();
-
             var date = dateService.GetMonthFifthWorkingDay("201512");
-            
         }
     }
 }
