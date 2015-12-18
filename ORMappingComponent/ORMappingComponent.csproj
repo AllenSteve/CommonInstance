@@ -46,6 +46,11 @@
     <Compile Include="DapperHelper.cs" />
     <Compile Include="DapperInstance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ISQLHelper\IAlterGenerator.cs" />
+    <Compile Include="ISQLHelper\IQueryGenerator.cs" />
+    <Compile Include="SQLHelper\Query.cs" />
+    <Compile Include="SQLHelper\QueryProvider.cs" />
+    <Compile Include="SQLHelper\SqlProvider.cs" />
     <Compile Include="TableClass\TableClass.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +66,7 @@
       <Name>ExtensionComponent</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
