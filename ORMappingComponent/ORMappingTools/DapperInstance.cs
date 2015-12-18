@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Dapper;
 using System.Data.SqlClient;
 
-namespace ORMappingComponent
+namespace ORMappingComponent.ORMappingTools
 {
     public class DapperInstance
     {

@@ -11,7 +11,7 @@ using ExtensionComponent;
 using System.Configuration;
 using System.Reflection;
 
-namespace ORMappingComponent
+namespace ORMappingComponent.ORMappingTools
 {
     public class DBHelper
     {
