@@ -6,6 +6,7 @@ using ORMappingComponent;
 using DapperModel.EBS;
 using EOP.DapperModel;
 using EOP.Enums;
+using ORMappingComponent.ORMappingTools;
 namespace EOP.UnitTest
 {
     [TestClass]

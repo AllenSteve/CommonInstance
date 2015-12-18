@@ -15,6 +15,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using EOP.DapperModel.EBS;
+using ORMappingComponent.ORMappingTools;
 
 namespace ComponentTest
 {

@@ -4,6 +4,7 @@ using ORMappingComponent.TableClass;
 using ORMappingComponent;
 using System.Collections.Generic;
 using System.Linq;
+using ORMappingComponent.ORMappingTools;
 
 namespace StandardUnitTest
 {

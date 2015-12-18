@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using ORMappingComponent;
 using EOP.DapperModel;
+using ORMappingComponent.ORMappingTools;
 namespace EOP.UnitTest
 {
     [TestClass]
