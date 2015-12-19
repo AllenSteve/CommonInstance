@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 /// 查询生成器
 /// http://www.cnblogs.com/yaozhenfa/p/iqueryable_and_iqueryprovider.html
 /// </summary>
-namespace ORMappingComponent.SQLHelper
+namespace ComponentORM.SQLHelper
 {
     public class QueryProvider : IQueryProvider
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ORMappingComponent.TableClass;
-using ORMappingComponent;
+using ComponentORM.TableClass;
+using ComponentORM;
 using System.Collections.Generic;
 using System.Linq;
-using ORMappingComponent.ORMappingTools;
+using ComponentORM.ORMappingTools;
 
 namespace StandardUnitTest
 {

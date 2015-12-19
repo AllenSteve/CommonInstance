@@ -17,7 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ORMappingComponent.SQLHelper
+namespace ComponentORM.SQLHelper
 {
     /// <summary>
     /// 用于自动生成SQL语句

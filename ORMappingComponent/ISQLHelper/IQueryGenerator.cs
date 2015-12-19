@@ -18,7 +18,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ORMappingComponent.SQLHelper
+namespace ComponentORM.SQLHelper
 {
     /// <summary>
     /// 修查询型的SQL生成器接口

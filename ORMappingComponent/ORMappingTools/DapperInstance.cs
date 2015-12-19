@@ -1,4 +1,4 @@
-﻿using ORMappingComponent.TableClass;
+﻿using ComponentORM.TableClass;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Dapper;
 using System.Data.SqlClient;
 
-namespace ORMappingComponent.ORMappingTools
+namespace ComponentORM.ORMappingTools
 {
     public class DapperInstance
     {

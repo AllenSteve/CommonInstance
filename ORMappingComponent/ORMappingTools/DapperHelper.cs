@@ -1,4 +1,4 @@
-﻿using ORMappingComponent.TableClass;
+﻿using ComponentORM.TableClass;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +11,7 @@ using ExtensionComponent;
 using System.Configuration;
 using System.Reflection;
 
-namespace ORMappingComponent.ORMappingTools
+namespace ComponentORM.ORMappingTools
 {
     public class DBHelper
     {

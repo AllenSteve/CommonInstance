@@ -8,14 +8,14 @@ using ExtensionComponent;
 using ComponentModels.Enums;
 using System.Reflection;
 using BaseComponent.DocumentParser;
-using ORMappingComponent;
+using ComponentORM;
 using ComponentModels.EbsDBModel;
 using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using EOP.DapperModel.EBS;
-using ORMappingComponent.ORMappingTools;
+using ComponentORM.ORMappingTools;
 
 namespace ComponentTest
 {

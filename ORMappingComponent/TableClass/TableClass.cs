@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ORMappingComponent.TableClass
+namespace ComponentORM.TableClass
 {
     public class TableClass
     {

@@ -2,9 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Collections.Generic;
-using ORMappingComponent;
+using ComponentORM;
 using EOP.DapperModel;
-using ORMappingComponent.ORMappingTools;
+using ComponentORM.ORMappingTools;
 namespace EOP.UnitTest
 {
     [TestClass]
