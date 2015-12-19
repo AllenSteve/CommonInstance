@@ -82,9 +82,9 @@
       <Project>{40e7c251-7180-4d78-8b54-862b86c7698a}</Project>
       <Name>ExtensionComponent</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ORMappingComponent\ORMappingComponent.csproj">
+    <ProjectReference Include="..\ORMappingComponent\ComponentORMap.csproj">
       <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
-      <Name>ORMappingComponent</Name>
+      <Name>ComponentORMap</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

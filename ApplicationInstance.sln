@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTools", "LoadTest\Loa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandardUnitTest", "StandardUnitTest\StandardUnitTest.csproj", "{9D1E5527-6C1F-49C5-AC4F-B708EC601954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORMappingComponent", "ORMappingComponent\ORMappingComponent.csproj", "{C7259857-49D4-4856-9FB1-9DD844F0C5EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentORMap", "ORMappingComponent\ComponentORMap.csproj", "{C7259857-49D4-4856-9FB1-9DD844F0C5EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTools", "WebTools\WebTools.csproj", "{DEDECF91-D3E9-43E0-9DB8-3CAE57DD7C66}"
 EndProject
