@@ -50,7 +50,7 @@
     <Compile Include="ISQLHelper\IQueryGenerator.cs" />
     <Compile Include="SQLHelper\Query.cs" />
     <Compile Include="SQLHelper\QueryProvider.cs" />
-    <Compile Include="SQLHelper\SqlProvider.cs" />
+    <Compile Include="SQLHelper\Repository.cs" />
     <Compile Include="TableClass\TableClass.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -46,6 +46,7 @@
     <Compile Include="ConsoleApp\LogParserTest.cs" />
     <Compile Include="ConsoleApp\MessageModelTest.cs" />
     <Compile Include="ConsoleApp\OrderByExtensions.cs" />
+    <Compile Include="ConsoleApp\OrmQueryTest.cs" />
     <Compile Include="ConsoleApp\ReflectionTest.cs" />
     <Compile Include="ConsoleApp\StringTest.cs" />
   </ItemGroup>

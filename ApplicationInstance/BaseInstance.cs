@@ -11,8 +11,10 @@ namespace ApplicationInstance
             //new CommonModelTest().RunTransactionServiceBaseModelTest();
             //new CommonModelTest().RunEnumTest();
             //new StringTest();
-            new CommonModelTest().RunSwitchTest();
+            //new CommonModelTest().RunSwitchTest();
             //new StringTest();
+
+            new OrmQueryTest();
         }
     }
 }
