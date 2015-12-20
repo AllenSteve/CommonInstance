@@ -63,6 +63,7 @@
     <Compile Include="EopDBModel\SUserBaseVisitLog.cs" />
     <Compile Include="LogModel.cs" />
     <Compile Include="MTIDBModel\SankagetuMatomeBunkaieLicenseFromFile.cs" />
+    <Compile Include="MyDBModel\iTECERP\CodeTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModel\CheckUserInfo.cs" />
     <Compile Include="ServiceModel\TransactionServiceBaseModel.cs" />

@@ -1,4 +1,6 @@
-﻿// ***********************************************************************
+﻿using ComponentORM.ORMappingTools;
+using ORMappingComponent.ISQLHelper;
+// ***********************************************************************
 // Assembly         : ORMappingComponent
 // Author           : Dragonet
 // Created          : 12-18-2015
@@ -22,14 +24,26 @@ using System.Threading.Tasks;
 namespace ComponentORM.SQLHelper
 {
     /// <summary>
-    /// 用于自动生成SQL语句
+    /// 
     /// </summary>
-    public class Repository<T>
+    public class Repository<T> : IRepository<T> where T : class
     {
         private IQueryable<T> query{ get ; set; }
 
-        public Repository()
-        { 
+        private DBHelper db { get; set; }
+
+        public int Count
+        {
+            get
+            {
+                return this.query.Count();
+            }
+        }
+
+        public Repository(int dbType = 0)
+        {
+            this.db = new DBHelper(dbType);
+            this.query = db.AsQueryable<T>();
         }
 
         public Repository(IQueryable<T> query)
@@ -60,11 +74,6 @@ namespace ComponentORM.SQLHelper
         public IQueryable<T> All()
         {
             return this.query;
-        }
-
-        public int Count(Expression<Func<T, bool>> predicate)
-        {
-            return this.query.Count(predicate);
         }
     }
 }

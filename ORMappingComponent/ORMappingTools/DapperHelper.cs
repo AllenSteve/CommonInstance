@@ -19,8 +19,8 @@ namespace ComponentORM.ORMappingTools
         /// 数据库连接字符串
         /// </summary>
         /// 
-        //private static readonly string connStr = @"Data Source=LACRIMA\LACRIMA;Initial Catalog=CompanyDB;UID=sa;PWD=123456;";
-        private static readonly string connStr = @"Data Source=192.168.127.154\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
+        private static readonly string connStr = @"Data Source=LACRIMA\LACRIMA;Initial Catalog=iTECERP;UID=sa;PWD=123456;";
+        //private static readonly string connStr = @"Data Source=192.168.127.154\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
         //private static readonly string connStr = "Data Source=123.103.35.138;Initial Catalog=jjjy_test1107;UID=jjjy_test_admin;PWD=3791f38D;";
 
         /// <summary>
@@ -111,12 +111,20 @@ namespace ComponentORM.ORMappingTools
 
         /// <summary>
         /// 查询全表
+        /// Dapper的缺点，通过源码分析发现，Dapper的查询功能中不提供延迟执行的方式，
+        /// 即每次执行查询时返回的都是ToList之后的结果然后再转换为IEnumerable接口类；
+        /// 因此将其转换为IQueryable方式再进行延迟计算实际上会造成更大的负担；
         /// </summary>
         /// <typeparam name="T">表名</typeparam>
         /// <returns>全表数据</returns>
         public IEnumerable<T> QueryAll<T>()
         {
             return connection.Query<T>(sql.CreateSQLQueryAll<T>());
+        }
+
+        public IQueryable<T> AsQueryable<T>()where T:class
+        {
+            return connection.Query<T>(sql.CreateSQLQueryAll<T>()).AsQueryable();
         }
 
         /// <summary>
