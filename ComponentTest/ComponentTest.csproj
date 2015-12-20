@@ -35,19 +35,19 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ADOTest.cs" />
-    <Compile Include="BaseModelTest.cs" />
-    <Compile Include="CallCMDTest.cs" />
-    <Compile Include="CommonModelTest.cs" />
-    <Compile Include="ConfigurationManagerInstanceTest.cs" />
-    <Compile Include="DateTimeTest.cs" />
-    <Compile Include="FileTest.cs" />
-    <Compile Include="HttpHelperTest.cs" />
-    <Compile Include="LogParserTest.cs" />
-    <Compile Include="MessageModelTest.cs" />
-    <Compile Include="OrderByExtensions.cs" />
-    <Compile Include="ReflectionTest.cs" />
-    <Compile Include="StringTest.cs" />
+    <Compile Include="ConsoleApp\ADOTest.cs" />
+    <Compile Include="ConsoleApp\BaseModelTest.cs" />
+    <Compile Include="ConsoleApp\CallCMDTest.cs" />
+    <Compile Include="ConsoleApp\CommonModelTest.cs" />
+    <Compile Include="ConsoleApp\ConfigurationManagerInstanceTest.cs" />
+    <Compile Include="ConsoleApp\DateTimeTest.cs" />
+    <Compile Include="ConsoleApp\FileTest.cs" />
+    <Compile Include="ConsoleApp\HttpHelperTest.cs" />
+    <Compile Include="ConsoleApp\LogParserTest.cs" />
+    <Compile Include="ConsoleApp\MessageModelTest.cs" />
+    <Compile Include="ConsoleApp\OrderByExtensions.cs" />
+    <Compile Include="ConsoleApp\ReflectionTest.cs" />
+    <Compile Include="ConsoleApp\StringTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Dapper">
