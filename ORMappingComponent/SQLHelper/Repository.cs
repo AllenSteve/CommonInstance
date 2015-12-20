@@ -1,31 +1,28 @@
-﻿using ComponentORM.ORMappingTools;
-using ORMappingComponent.ISQLHelper;
-// ***********************************************************************
-// Assembly         : ORMappingComponent
-// Author           : Dragonet
+﻿// ***********************************************************************
+// Assembly         : ComponentORM
+// Author           : Lacrima-PC
 // Created          : 12-18-2015
 //
-// Last Modified By : Dragonet
-// Last Modified On : 12-18-2015
+// Last Modified By : Lacrima-PC
+// Last Modified On : 12-21-2015
 // ***********************************************************************
-// <copyright file="SqlGenerator.cs" company="Microsoft">
-//     Copyright (c) Microsoft. All rights reserved.
+// <copyright file="Repository.cs" company="">
+//     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using ComponentORM.ORMappingTools;
+using ORMappingComponent.ISQLHelper;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComponentORM.SQLHelper
 {
     /// <summary>
-    /// 
+    /// Class Repository.
     /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Repository<T> : IRepository<T> where T : class
     {
         private IQueryable<T> query{ get ; set; }
