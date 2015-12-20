@@ -7,7 +7,7 @@ using ExtensionComponent;
 using ComponentModels;
 using System.Web;
 
-namespace ComponentTest
+namespace ComponentTest.ConsoleApp
 {
     public class StringTest
     {

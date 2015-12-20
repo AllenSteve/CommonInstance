@@ -1,4 +1,4 @@
-﻿using ComponentTest;
+﻿using ComponentTest.ConsoleApp;
 using System;
 
 namespace ApplicationInstance

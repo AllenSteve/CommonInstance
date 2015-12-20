@@ -17,7 +17,7 @@ using System.Diagnostics;
 using EOP.DapperModel.EBS;
 using ComponentORM.ORMappingTools;
 
-namespace ComponentTest
+namespace ComponentTest.ConsoleApp
 {
     public class CommonModelTest
     {

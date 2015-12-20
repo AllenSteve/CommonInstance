@@ -1,12 +1,12 @@
 ﻿using BaseComponent.NetworkComponent;
-using ComponentTest.CommonClass;
+using ComponentTest.ConsoleApp.CommonClass;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
 
-namespace ComponentTest
+namespace ComponentTest.ConsoleApp
 {
     public class FileTest
     {

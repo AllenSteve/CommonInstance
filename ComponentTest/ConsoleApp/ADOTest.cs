@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComponentTest
+namespace ComponentTest.ConsoleApp
 {
     public class ADOTest
     {

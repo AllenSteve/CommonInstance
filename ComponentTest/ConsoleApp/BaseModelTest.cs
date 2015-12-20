@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ExtensionComponent;
 
-namespace ComponentTest
+namespace ComponentTest.ConsoleApp
 {
     public class BaseModelTest
     {

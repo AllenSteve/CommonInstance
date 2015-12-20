@@ -13,7 +13,7 @@ using System.Linq.Expressions;
 
 
 
-namespace ComponentTest
+namespace ComponentTest.ConsoleApp
 {
     public class SortDescriptor
     {

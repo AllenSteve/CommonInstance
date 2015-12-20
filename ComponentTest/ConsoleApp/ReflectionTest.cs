@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-using ComponentTest.CommonClass;
+using ComponentTest.ConsoleApp.CommonClass;
 
-namespace ComponentTest
+namespace ComponentTest.ConsoleApp
 {
     /// <summary>
     /// 反射测试类

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComponentTest.CommonClass
+namespace ComponentTest.ConsoleApp.CommonClass
 {
     public class Serializer
     {
