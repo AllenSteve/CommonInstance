@@ -66,8 +66,41 @@ namespace ComponentORM.SQLHelper
         /// <exception cref="System.NotImplementedException"></exception>
         public object Execute(Expression expression)
         {
+
             return 123;
+            //var plan = BuildExecutionPlan(expression);
+
+            //var lambda = expression as LambdaExpression;
+            //if (lambda != null)
+            //{
+            //    var fn = Expression.Lambda(lambda.Type, plan, lambda.Parameters);
+            //    return fn.Compile();
+            //}
+            //else
+            //{
+            //    var efn = Expression.Lambda<Func<object>>(Expression.Convert(plan, typeof(object)));
+            //    var fn = efn.Compile();
+            //    return fn();
+            //}
         }
+
+//在什么情况下expression会是LambdaExpression类型?
+//因为IQueryable的扩展方法都是调用Expression.Call()方法来生成表达式树的,都将会是
+//MethodCallExpression类型,就像下面这样.
+
+        //public static IQueryable<TResult> Select<TSource,TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector) 
+        //{
+        //    //if (source == null)
+        //    //    throw Error.ArgumentNull("source");
+        //    //if (selector == null)
+        //    //    throw Error.ArgumentNull("selector");
+        //    return source.Provider.CreateQuery<TResult>( 
+        //        Expression.Call(
+        //            null,
+        //            ((MethodInfo)MethodBase.GetCurrentMethod()).MakeGenericMethod(typeof(TSource), typeof(TResult)), 
+        //            new Expression[] { source.Expression, Expression.Quote(selector) }
+        //            ));
+        //}
 
         public void AnalysisExpression(Expression exp)
          {
