@@ -51,18 +51,17 @@ namespace ComponentORM.SQLHelper
             this.query = query;
         }
 
-        public IEnumerable<T> AsEnumerable()
-        {
-            return this.query.AsEnumerable();
-        }
-
-        public List<T> ToList()
-        {
-            return this.query.ToList();
-        }
-
         public IQueryable<T> Filter(Expression<Func<T, bool>> predicate)
         {
+            return this.query.Where(predicate).AsQueryable<T>();
+        }
+
+        public IQueryable<T> Filter(Expression<Func<T, bool>> predicate, Expression<Func<T, object>> keySelector, out int resultCount, int pageIndex = 0, int pageSize = 10)
+        {
+            int skipCount = pageIndex * pageSize;
+            var resetSet = predicate != null ? this.query.Where(predicate).OrderBy(keySelector).AsQueryable() : this.query.AsQueryable();
+            resetSet = skipCount == 0 ? resetSet.Take(pageSize) : resetSet.Skip(skipCount).Take(pageSize);
+            resultCount = resetSet.Count();
             return this.query.Where(predicate).AsQueryable<T>();
         }
 

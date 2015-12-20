@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using ComponentORM.ORMappingTools;
 using ComponentModels.MyDBModel.iTECERP;
 using ORMappingComponent.ISQLHelper;
+using System.Data.Linq;
 
 namespace ComponentTest.ConsoleApp
 {
@@ -20,6 +21,8 @@ namespace ComponentTest.ConsoleApp
         public OrmQueryTest()
         {
             DapperTest();
+
+            //DbContextTest();
         }
 
         void DapperTest()
@@ -37,6 +40,19 @@ namespace ComponentTest.ConsoleApp
 
 
             Console.WriteLine(table.Filter(o=>o.IsActive==0).Count());
+        }
+
+        void DbContextTest()
+        {
+            string connStr = @"Data Source=LACRIMA\LACRIMA;Initial Catalog=iTECERP;UID=sa;PWD=123456;";
+            var conn = DBHelper.OpenSqlConnection(connStr);
+            CodeTable table = null;
+            using (var context = new DataContext(conn))
+            {
+                var result = from code in context.GetTable<CodeTable>() select code;
+            }
+            //DataContext context = new DataContext(conn);
+            //var table = context.GetTable<CodeTable>();
         }
 
         void RepositoryTest()

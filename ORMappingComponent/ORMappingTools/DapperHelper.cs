@@ -10,6 +10,9 @@ using Dapper;
 using ExtensionComponent;
 using System.Configuration;
 using System.Reflection;
+using System.Data.Linq;
+using System.Linq.Expressions;
+using ComponentORM.SQLHelper;
 
 namespace ComponentORM.ORMappingTools
 {
@@ -122,7 +125,7 @@ namespace ComponentORM.ORMappingTools
             return connection.Query<T>(sql.CreateSQLQueryAll<T>());
         }
 
-        public IQueryable<T> AsQueryable<T>()where T:class
+        public IQueryable<T> AsQueryable<T>()
         {
             return connection.Query<T>(sql.CreateSQLQueryAll<T>()).AsQueryable();
         }
