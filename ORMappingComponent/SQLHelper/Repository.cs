@@ -74,5 +74,10 @@ namespace ComponentORM.SQLHelper
         {
             return this.query;
         }
+
+        public T Find(Expression<Func<T, bool>> predicate)
+        {
+            return this.query.FirstOrDefault(predicate);
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace ORMappingComponent.ISQLHelper
 
         IQueryable<T> All();
 
+        T Find(Expression<Func<T, bool>> predicate);
+
         bool Contains(Expression<Func<T, bool>> predicate);
 
         IQueryable<T> Filter(Expression<Func<T, bool>> predicate);

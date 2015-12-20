@@ -44,6 +44,7 @@
     <Compile Include="ServiceInterface\IDateService.cs" />
     <Compile Include="ServiceInterface\IEbsServcie\IEncryptService.cs" />
     <Compile Include="ServiceInterface\IEbsServcie\IParseCookie.cs" />
+    <Compile Include="ServiceInterface\IOrderService.cs" />
     <Compile Include="ServiceInterface\IRegularService.cs" />
     <Compile Include="ServiceInterface\IServiceFactory.cs" />
     <Compile Include="Service\AsyncService.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Service\DateService.cs" />
     <Compile Include="Service\EbsService\EncryptService.cs" />
     <Compile Include="Service\EbsService\ParseCookie.cs" />
+    <Compile Include="Service\iTecService\CodeTableService.cs" />
     <Compile Include="Service\RegularService.cs" />
     <Compile Include="Service\ServiceFactory.cs" />
   </ItemGroup>
@@ -69,6 +71,10 @@
     <ProjectReference Include="..\ComponentModels\ComponentModels.csproj">
       <Project>{618dce8b-48f6-4115-b35a-f977e0dd9a36}</Project>
       <Name>ComponentModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ORMappingComponent\ComponentORM.csproj">
+      <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
+      <Name>ComponentORM</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

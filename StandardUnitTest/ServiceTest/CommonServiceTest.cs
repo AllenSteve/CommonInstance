@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BaseFunction.ServiceInterface;
 using BaseFunction.Service;
 using BaseFunction.Service.EbsService;
+using BaseFunction.Service.iTecService;
 
 namespace StandardUnitTest.ServiceTest
 {
@@ -52,6 +53,14 @@ namespace StandardUnitTest.ServiceTest
 
             //bool flag = service.VerifyParam("1000000",enstr,new TimeSpan(TimeSpan.TicksPerMinute*5));
 
+        }
+
+        [TestMethod]
+        public void CodeTableServiceTest()
+        {
+            var service = factory.Create<CodeTableService>();
+            var list = service.GetList("MoneySource");
+            var code = service.Get("TaxType","1");
         }
 
     }
