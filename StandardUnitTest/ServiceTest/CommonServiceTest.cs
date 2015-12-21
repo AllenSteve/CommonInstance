@@ -42,10 +42,12 @@ namespace StandardUnitTest.ServiceTest
             enstr = EncryptService.AESDecrypt(enstr);
             object param = new { soufunId = "10000",timestamp = 0x00};
            // enstr = service.AdvancedEncrypt(param);
-
-            string timestamp = EncryptService.ConvertDateTime2Timestamp(DateTime.Now.AddYears(1000)).ToString();
-
+            DateTime now = DateTime.Now;
+            string timestamp = EncryptService.ConvertDateTime2Timestamp(now.AddYears(1000)).ToString();
+            bool flag = (timestamp.Equals(FunLayer.Transform.TimeStamp(now.AddYears(1000)).ToString()));
             DateTime time = service.GetTimestampDate("1450320329");
+
+
 
             //enstr = service.AdvancedEncrypt(timestamp, "1000000");
             //enstr = service.AdvancedDecrypt(enstr);
