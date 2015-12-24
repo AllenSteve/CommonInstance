@@ -79,7 +79,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DatabaseModel\" />
+    <Folder Include="DatabaseModel\EOP.DBModel\" />
+    <Folder Include="DatabaseModel\MyDBModel\iTECERP.DBModel\" />
+    <Folder Include="DatabaseModel\MyDBModel\MTI.DBModel\" />
+    <Folder Include="Enums\Eop.Enum\" />
     <Folder Include="ModelMethod\" />
     <Folder Include="ServiceModel\BaseServiceModel\" />
   </ItemGroup>
