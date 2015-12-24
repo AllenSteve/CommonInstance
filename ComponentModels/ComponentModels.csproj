@@ -63,8 +63,8 @@
     <Compile Include="EopDBModel\SUserBase.cs" />
     <Compile Include="EopDBModel\SUserBaseVisitLog.cs" />
     <Compile Include="LogModel.cs" />
-    <Compile Include="MTIDBModel\SankagetuMatomeBunkaieLicenseFromFile.cs" />
-    <Compile Include="MyDBModel\iTECERP\CodeTable.cs" />
+    <Compile Include="DatabaseModel\MyDBModel\MTI.DBModel\SankagetuMatomeBunkaieLicenseFromFile.cs" />
+    <Compile Include="DatabaseModel\MyDBModel\iTECERP.DBModel\CodeTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModel\CheckUserInfo.cs" />
     <Compile Include="ServiceModel\EOP.ServiceModel\TransactionServiceBaseModel.cs" />
@@ -80,8 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DatabaseModel\EOP.DBModel\" />
-    <Folder Include="DatabaseModel\MyDBModel\iTECERP.DBModel\" />
-    <Folder Include="DatabaseModel\MyDBModel\MTI.DBModel\" />
     <Folder Include="Enums\Eop.Enum\" />
     <Folder Include="ModelMethod\" />
     <Folder Include="ServiceModel\BaseServiceModel\" />
