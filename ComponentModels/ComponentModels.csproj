@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
-    <Compile Include="EbsDBModel\C_PageViewLog.cs" />
     <Compile Include="Enums\Eop.Enum\DealerConfiguration.cs" />
     <Compile Include="Enums\Eop.Enum\DealerPayRecordLog.cs" />
     <Compile Include="Enums\Eop.Enum\ServiceEnum.cs" />
