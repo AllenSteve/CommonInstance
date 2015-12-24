@@ -46,6 +46,10 @@
       <HintPath>..\packages\EBS\EBS.Lib\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -70,6 +74,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EBS.Interface.EContract\GetConstructionContractPreview.ashx.cs">
+      <DependentUpon>GetConstructionContractPreview.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="EBS.Interface.EContract\GetDesignContractPreview.ashx.cs">
+      <DependentUpon>GetDesignContractPreview.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="EBS.Interface.EContract\GetUnsignedConstructionContract.ashx.cs">
+      <DependentUpon>GetUnsignedConstructionContract.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="EBS.Interface.EContract\GetUnsignedDesignContract.ashx.cs">
+      <DependentUpon>GetUnsignedDesignContract.ashx</DependentUpon>
+    </Compile>
     <Compile Include="HttpHandler.ashx.cs">
       <DependentUpon>HttpHandler.ashx</DependentUpon>
     </Compile>
@@ -85,6 +101,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HttpHandler.ashx" />
+    <Content Include="EBS.Interface.EContract\GetConstructionContractPreview.ashx" />
+    <Content Include="EBS.Interface.EContract\GetDesignContractPreview.ashx" />
+    <Content Include="EBS.Interface.EContract\GetUnsignedConstructionContract.ashx" />
+    <Content Include="EBS.Interface.EContract\GetUnsignedDesignContract.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
