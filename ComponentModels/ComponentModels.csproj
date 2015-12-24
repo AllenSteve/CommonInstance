@@ -43,10 +43,10 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="EbsDBModel\C_PageViewLog.cs" />
-    <Compile Include="Enums\DealerConfiguration.cs" />
-    <Compile Include="Enums\DealerPayRecordLog.cs" />
-    <Compile Include="Enums\ServiceEnum.cs" />
-    <Compile Include="Enums\ServiceLogType.cs" />
+    <Compile Include="Enums\Eop.Enum\DealerConfiguration.cs" />
+    <Compile Include="Enums\Eop.Enum\DealerPayRecordLog.cs" />
+    <Compile Include="Enums\Eop.Enum\ServiceEnum.cs" />
+    <Compile Include="Enums\Eop.Enum\ServiceLogType.cs" />
     <Compile Include="DatabaseModel\EOP.DBModel\AdminUserOperLog.cs" />
     <Compile Include="DatabaseModel\EOP.DBModel\CallbackUserInfo.cs" />
     <Compile Include="DatabaseModel\EOP.DBModel\DealerClassConfig.cs" />
@@ -79,7 +79,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Enums\Eop.Enum\" />
     <Folder Include="ModelMethod\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
