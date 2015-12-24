@@ -47,21 +47,21 @@
     <Compile Include="Enums\DealerPayRecordLog.cs" />
     <Compile Include="Enums\ServiceEnum.cs" />
     <Compile Include="Enums\ServiceLogType.cs" />
-    <Compile Include="EopDBModel\AdminUserOperLog.cs" />
-    <Compile Include="EopDBModel\CallbackUserInfo.cs" />
-    <Compile Include="EopDBModel\DealerClassConfig.cs" />
-    <Compile Include="EopDBModel\DealerPayRecord.cs" />
-    <Compile Include="EopDBModel\DealerServiceLog.cs" />
-    <Compile Include="EopDBModel\DealerSettlement.cs" />
-    <Compile Include="EopDBModel\EOPCityInfo.cs" />
-    <Compile Include="EopDBModel\Partner_Company.cs" />
-    <Compile Include="EopDBModel\Partner_CompanyExtent.cs" />
-    <Compile Include="EopDBModel\PayNotice_2_0_Log.cs" />
-    <Compile Include="EopDBModel\ScoreConfig.cs" />
-    <Compile Include="EopDBModel\SendOrderInfo.cs" />
-    <Compile Include="EopDBModel\SolutionConfig.cs" />
-    <Compile Include="EopDBModel\SUserBase.cs" />
-    <Compile Include="EopDBModel\SUserBaseVisitLog.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\AdminUserOperLog.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\CallbackUserInfo.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\DealerClassConfig.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\DealerPayRecord.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\DealerServiceLog.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\DealerSettlement.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\EOPCityInfo.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\Partner_Company.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\Partner_CompanyExtent.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\PayNotice_2_0_Log.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\ScoreConfig.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\SendOrderInfo.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\SolutionConfig.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\SUserBase.cs" />
+    <Compile Include="DatabaseModel\EOP.DBModel\SUserBaseVisitLog.cs" />
     <Compile Include="LogModel.cs" />
     <Compile Include="DatabaseModel\MyDBModel\MTI.DBModel\SankagetuMatomeBunkaieLicenseFromFile.cs" />
     <Compile Include="DatabaseModel\MyDBModel\iTECERP.DBModel\CodeTable.cs" />
@@ -79,7 +79,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DatabaseModel\EOP.DBModel\" />
     <Folder Include="Enums\Eop.Enum\" />
     <Folder Include="ModelMethod\" />
   </ItemGroup>
