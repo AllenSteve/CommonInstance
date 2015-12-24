@@ -1,4 +1,6 @@
-﻿// ***********************************************************************
+﻿using EBS.Interface.EContract.Method;
+using EBS.Interface.EContract.Model;
+// ***********************************************************************
 // Assembly         : EBS.Interface.EContract
 // Author           : 仇士龙
 // Created          : 12-22-2015

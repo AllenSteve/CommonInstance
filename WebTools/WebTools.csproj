@@ -38,9 +38,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EBS.SMSManager">
-      <HintPath>..\Lib\EBS.SMSManager.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EBS\EBS.Lib\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -116,6 +113,10 @@
     <ProjectReference Include="..\BaseFunction\BaseFunction.csproj">
       <Project>{0ef39968-7f82-4264-814f-0a182e361787}</Project>
       <Name>BaseFunction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EBSComponent\EBSComponent.csproj">
+      <Project>{d9d1b88a-03b6-4ecc-b311-f84b13b9c3c6}</Project>
+      <Name>EBSComponent</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
