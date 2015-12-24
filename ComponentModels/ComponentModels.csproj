@@ -79,6 +79,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ModelMethod\" />
     <Folder Include="ServiceModel\BaseServiceModel\" />
     <Folder Include="ServiceModel\EOP.ServiceModel\" />
   </ItemGroup>
