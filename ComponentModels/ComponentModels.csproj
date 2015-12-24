@@ -67,8 +67,8 @@
     <Compile Include="MyDBModel\iTECERP\CodeTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModel\CheckUserInfo.cs" />
-    <Compile Include="ServiceModel\TransactionServiceBaseModel.cs" />
-    <Compile Include="ServiceModel\TransactionServiceBusinessModel.cs" />
+    <Compile Include="ServiceModel\EOP.ServiceModel\TransactionServiceBaseModel.cs" />
+    <Compile Include="ServiceModel\EOP.ServiceModel\TransactionServiceBusinessModel.cs" />
     <Compile Include="ServiceModel\XMLNode.cs" />
     <Compile Include="ServiceModel\XMLNodeList.cs" />
   </ItemGroup>
@@ -79,9 +79,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DatabaseModel\" />
     <Folder Include="ModelMethod\" />
     <Folder Include="ServiceModel\BaseServiceModel\" />
-    <Folder Include="ServiceModel\EOP.ServiceModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
