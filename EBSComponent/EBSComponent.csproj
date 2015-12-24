@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EBS.Common">
-      <HintPath>..\..\..\06.EOP\Source\SendOrder\trunk\EOP\Eop_sln\Lib\EBS.Common.dll</HintPath>
+      <HintPath>..\packages\EBS\EBS.Lib\EBS.Common.dll</HintPath>
     </Reference>
     <Reference Include="EBS.Interface.Data">
       <HintPath>..\packages\EBS\EBS.Lib\EBS.Interface.Data.dll</HintPath>

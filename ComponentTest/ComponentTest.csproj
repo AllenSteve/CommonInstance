@@ -80,6 +80,10 @@
       <Project>{618dce8b-48f6-4115-b35a-f977e0dd9a36}</Project>
       <Name>ComponentModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EBSComponent\EBSComponent.csproj">
+      <Project>{d9d1b88a-03b6-4ecc-b311-f84b13b9c3c6}</Project>
+      <Name>EBSComponent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExtensionComponent\ExtensionComponent.csproj">
       <Project>{40e7c251-7180-4d78-8b54-862b86c7698a}</Project>
       <Name>ExtensionComponent</Name>
