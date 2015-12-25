@@ -36,7 +36,7 @@ namespace EOP.Web.Ajax
         public void ProcessRequest(HttpContext context)
         {
             factory = new ServiceFactory();
-            var service = factory.Create<ParseCookie>();
+            var service = factory.CreateInstance<ParseCookie>();
             string sfut = service.ParseSfutCookie(context);
             // 执行下载-成功
             //this.Download();

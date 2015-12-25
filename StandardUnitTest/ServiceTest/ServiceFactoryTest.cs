@@ -21,8 +21,8 @@ namespace StandardUnitTest.ServiceTest
         [TestMethod]
         public void CreateTest()
         {
-            service = factory.Create<DateService>();
-            var dateService = factory.Create<DateService>();
+            service = factory.CreateInstance<DateService>();
+            var dateService = factory.CreateInstance<DateService>();
             var date = dateService.GetMonthFifthWorkingDay("201512");
         }
     }

@@ -20,7 +20,7 @@ namespace StandardUnitTest.ServiceTest
         [TestMethod]
         public void ParserTest()
         {
-            var service = factory.Create<ParseCookie>();
+            var service = factory.CreateInstance<ParseCookie>();
             string sfut = service.ParseSfutCookie();
             string url = service.DecryptSfut2Url(sfut);
             object userInfo = service.ParseUserInfo(url);
@@ -29,7 +29,7 @@ namespace StandardUnitTest.ServiceTest
         [TestMethod]
         public void EncryptServiceTest()
         {
-            var service = factory.Create<EncryptService>();
+            var service = factory.CreateInstance<EncryptService>();
             string orgin = "soufunid";
             string pwd = "123456789012345678901234";
             string vi = "abcdefgh";
@@ -60,7 +60,7 @@ namespace StandardUnitTest.ServiceTest
         [TestMethod]
         public void CodeTableServiceTest()
         {
-            var service = factory.Create<CodeTableService>();
+            var service = factory.CreateInstance<CodeTableService>();
             var list = service.GetList("MoneySource");
             var code = service.Get("TaxType","1");
         }

@@ -60,6 +60,10 @@
     <Compile Include="Service\BaseService\ServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="Soufun.Passport">
       <HintPath>..\packages\EBS\EBS.Lib\Soufun.Passport.dll</HintPath>
     </Reference>

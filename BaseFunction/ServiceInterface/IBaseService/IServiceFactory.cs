@@ -8,6 +8,10 @@ namespace BaseFunction.ServiceInterface
 {
     public interface IServiceFactory : IDisposable
     {
+        T CreateInstance<T>();
+
+        T CreateInterface<T>();
+
         T Create<T>();
     }
 }
