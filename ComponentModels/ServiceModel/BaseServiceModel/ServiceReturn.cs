@@ -28,6 +28,9 @@ namespace ComponentModels.ServiceModel.BaseServiceModel
 
         public bool Success { get; set; }
 
+        // 生成对象创立时的时间戳
+        public double Timestamp { get; set; }
+
         public ParamArrayAttribute param { get; set; }
     }
 }

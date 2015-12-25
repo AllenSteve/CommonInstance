@@ -29,6 +29,10 @@ namespace ComponentModels.ServiceModel.BaseServiceModel
 
         private ServiceReturn serviceReturn { get; set; }
 
+        private double SendTimestamp { get; set; }
+
+        private double GetTimestamp { get; set; }
+
         public BaseServiceModel()
         {
         }
