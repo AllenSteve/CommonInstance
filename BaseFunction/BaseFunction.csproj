@@ -38,26 +38,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ServiceInterface\IAsyncService.cs" />
-    <Compile Include="ServiceInterface\IBaseService.cs" />
-    <Compile Include="ServiceInterface\ICommonService.cs" />
-    <Compile Include="ServiceInterface\IDateService.cs" />
+    <Compile Include="ServiceInterface\IBaseService\IAsyncService.cs" />
+    <Compile Include="ServiceInterface\IBaseService\IBaseService.cs" />
+    <Compile Include="ServiceInterface\IBaseService\ICommonService.cs" />
+    <Compile Include="ServiceInterface\IBaseService\IDateService.cs" />
     <Compile Include="ServiceInterface\IEbsServcie\IEncryptService.cs" />
     <Compile Include="ServiceInterface\IEbsServcie\IParseCookie.cs" />
     <Compile Include="ServiceInterface\INinjectService\IValueCalculater.cs" />
-    <Compile Include="ServiceInterface\IOrderService.cs" />
-    <Compile Include="ServiceInterface\IRegularService.cs" />
-    <Compile Include="ServiceInterface\IServiceFactory.cs" />
-    <Compile Include="Service\AsyncService.cs" />
-    <Compile Include="Service\CommonService.cs" />
-    <Compile Include="Service\DateService.cs" />
+    <Compile Include="ServiceInterface\IBaseService\IOrderService.cs" />
+    <Compile Include="ServiceInterface\IBaseService\IRegularService.cs" />
+    <Compile Include="ServiceInterface\IBaseService\IServiceFactory.cs" />
+    <Compile Include="Service\BaseService\AsyncService.cs" />
+    <Compile Include="Service\BaseService\CommonService.cs" />
+    <Compile Include="Service\BaseService\DateService.cs" />
     <Compile Include="Service\EbsService\EncryptService.cs" />
     <Compile Include="Service\EbsService\ParseCookie.cs" />
     <Compile Include="Service\iTecService\CodeTableService.cs" />
     <Compile Include="Service\NinjectService\LinqValueCalculator.cs" />
     <Compile Include="Service\NinjectService\ShoppingCart.cs" />
-    <Compile Include="Service\RegularService.cs" />
-    <Compile Include="Service\ServiceFactory.cs" />
+    <Compile Include="Service\BaseService\RegularService.cs" />
+    <Compile Include="Service\BaseService\ServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Soufun.Passport">
