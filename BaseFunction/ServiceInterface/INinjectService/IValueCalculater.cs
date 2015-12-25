@@ -23,6 +23,7 @@ namespace BaseFunction.ServiceInterface.INinjectService
     /// <summary>
     /// Interface IValueCalculater
     /// http://www.cnblogs.com/tylerdonet/p/3297915.html
+    /// http://www.cnblogs.com/jeffwongishandsome/archive/2012/04/15/2450462.html
     /// </summary>
     public interface IValueCalculater
     {
