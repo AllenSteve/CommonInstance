@@ -66,6 +66,7 @@
     <Compile Include="DatabaseModel\MyDBModel\iTECERP.DBModel\CodeTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\CheckUserInfo.cs" />
+    <Compile Include="ServiceModel\BaseServiceModel\Product.cs" />
     <Compile Include="ServiceModel\EOP.ServiceModel\TransactionServiceBaseModel.cs" />
     <Compile Include="ServiceModel\EOP.ServiceModel\TransactionServiceBusinessModel.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\XMLNode.cs" />

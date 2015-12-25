@@ -44,6 +44,7 @@
     <Compile Include="ServiceInterface\IDateService.cs" />
     <Compile Include="ServiceInterface\IEbsServcie\IEncryptService.cs" />
     <Compile Include="ServiceInterface\IEbsServcie\IParseCookie.cs" />
+    <Compile Include="ServiceInterface\INinjectService\IValueCalculater.cs" />
     <Compile Include="ServiceInterface\IOrderService.cs" />
     <Compile Include="ServiceInterface\IRegularService.cs" />
     <Compile Include="ServiceInterface\IServiceFactory.cs" />
@@ -53,6 +54,8 @@
     <Compile Include="Service\EbsService\EncryptService.cs" />
     <Compile Include="Service\EbsService\ParseCookie.cs" />
     <Compile Include="Service\iTecService\CodeTableService.cs" />
+    <Compile Include="Service\NinjectService\LinqValueCalculator.cs" />
+    <Compile Include="Service\NinjectService\ShoppingCart.cs" />
     <Compile Include="Service\RegularService.cs" />
     <Compile Include="Service\ServiceFactory.cs" />
   </ItemGroup>
