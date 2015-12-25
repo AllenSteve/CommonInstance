@@ -36,8 +36,15 @@
     <Reference Include="EBS.Interface.Data">
       <HintPath>..\packages\EBS\EBS.Lib\EBS.Interface.Data.dll</HintPath>
     </Reference>
+    <Reference Include="EBS.Interface.DBUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EBS\EBS.Lib\EBS.Interface.DBUtility.dll</HintPath>
+    </Reference>
     <Reference Include="EBS.Interface.Model">
       <HintPath>..\packages\EBS\EBS.Lib\EBS.Interface.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="EBS.WriteLog_Tools">
+      <HintPath>..\packages\EBS\EBS.Lib\EBS.WriteLog_Tools.dll</HintPath>
     </Reference>
     <Reference Include="InternationalNumericFormatter">
       <HintPath>..\packages\EBS\EBS.Lib\InternationalNumericFormatter.dll</HintPath>

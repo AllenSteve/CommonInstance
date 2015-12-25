@@ -41,6 +41,9 @@ namespace EBS.Interface.EContract
 
             // 获取合同模板Id
             string templateId = method.GetContractTemplateID("北京设计");
+            // 获取印章Id
+            string stampId = method.GetStampId(templateId);
+
             if (!string.IsNullOrEmpty(templateId)&&!string.IsNullOrEmpty(orderId))
             {
                 // 解析模板

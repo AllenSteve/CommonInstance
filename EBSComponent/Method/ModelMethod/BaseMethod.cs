@@ -4,7 +4,7 @@
 // Created          : 12-22-2015
 //
 // Last Modified By : 仇士龙
-// Last Modified On : 12-22-2015
+// Last Modified On : 12-25-2015
 // ***********************************************************************
 // <copyright file="BaseMethod.cs" company="Microsoft">
 //     Copyright (c) Microsoft. All rights reserved.
@@ -282,6 +282,17 @@ namespace EBS.Interface.EContract.Method
         {
             string replaceStr = "<b style=\"color:#FFF\">#jiafangqianzi#</b>";
             return html.Replace("<b>#jiafangqianzi#</b>", replaceStr);
+        }
+
+        public string GetStampId(string templateId)
+        {
+            string interfaceURL = "http://pact.light.fang.com/signature/getSignatureID.do";
+            string param = "modelId=" + templateId;
+            Encoding encoding = Encoding.GetEncoding("utf-8");
+            var a = EBS.Common.Common.RequestInterface(interfaceURL, param, false, encoding);
+            var b = JsonConvert.DeserializeAnonymousType(a, new { signatureId = "" });
+            string html = b.ToString().Split('=').Last().Replace("\"", string.Empty).Replace("}", string.Empty);
+            return html.Trim();
         }
         
     }

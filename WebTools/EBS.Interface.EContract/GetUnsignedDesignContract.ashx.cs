@@ -1,6 +1,4 @@
-﻿using EBS.Interface.EContract.Method;
-using EBS.Interface.EContract.Model;
-// ***********************************************************************
+﻿// ***********************************************************************
 // Assembly         : EBS.Interface.EContract
 // Author           : 仇士龙
 // Created          : 12-22-2015
@@ -17,6 +15,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EBS.Interface.EContract.Method;
+using EBS.Interface.EContract.Model;
 
 namespace EBS.Interface.EContract
 {
@@ -37,6 +37,8 @@ namespace EBS.Interface.EContract
             
             // 获取合同模板Id
             string templateId = method.GetContractTemplateID("北京设计");
+            // 获取印章Id
+            string stampId = method.GetStampId(templateId);
 
             if (!string.IsNullOrEmpty(templateId)&&!string.IsNullOrEmpty(orderId))
             {

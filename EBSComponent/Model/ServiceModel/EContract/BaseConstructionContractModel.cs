@@ -140,7 +140,7 @@ namespace EBS.Interface.EContract.Model
             /// 工程概况
             /// </summary>
             this.ProAddress = base.GetProjectAddress(OwnerInfo);
-            this.DecorateArea = OwnerInfo.RealArea.ToString(base.stringFormat);
+            this.DecorateArea = base.AppendAreaUnit(OwnerInfo.RealArea);
             this.ProHouseType = base.GetHouseType(orderId);
             this.ProTimeLimit = ContractInfo.PlanDayCount.ToString();
             this.TotalArea = string.Empty;

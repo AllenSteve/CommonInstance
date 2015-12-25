@@ -28,10 +28,13 @@ namespace EBS.Interface.EContract.Model
 
         protected string stringFormat { get; set; }
 
+        protected string areaUnit { get; set; }
+
         public BaseContractModel()
         {
             this.method = new BaseMethod();
             this.stringFormat = @"f2";
+            this.areaUnit = @"㎡";
         }
 
         public IDictionary<string, string> ToDictionary()
@@ -165,6 +168,15 @@ namespace EBS.Interface.EContract.Model
                 });
             }
             return PaymentList;
+        }
+
+        protected string AppendAreaUnit(decimal value)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(value.ToString(this.stringFormat));
+            sb.Append(this.areaUnit);
+            return sb.ToString();
+;
         }
     }
 }
