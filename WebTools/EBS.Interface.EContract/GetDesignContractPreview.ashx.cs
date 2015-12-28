@@ -35,12 +35,12 @@ namespace EBS.Interface.EContract
 
         public void ProcessRequest(HttpContext context)
         {
-            // OrderID，SoufunID
+            // OrderID，SoufunID 
             string orderId = context.Request["OrderID"];
             string soufunId = context.Request["SoufunID"];
 
             // 获取合同模板Id
-            string templateId = method.GetContractTemplateID("北京设计");
+            string templateId = method.GetContractTemplateID("北京设计合同");
             // 获取印章Id
             string stampId = method.GetStampId(templateId);
 

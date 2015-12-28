@@ -36,7 +36,7 @@ namespace EBS.Interface.EContract
             string soufunId = context.Request["SoufunID"];
 
             // 获取合同模板Id
-            string templateId = method.GetContractTemplateID("北京施工（4.0）");
+            string templateId = method.GetContractTemplateID("北京施工合同666精装4.0");
             // 获取印章Id
             string stampId = method.GetStampId(templateId);
 
