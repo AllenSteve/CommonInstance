@@ -4,25 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Xml.Linq;
 using Ninject;
-//using Ninject.Extensions.Xml;
-//using Ninject.Extensions.Xml.Handlers;
+using Ninject.Extensions.Xml;
+using Ninject.Extensions.Xml.Processors;
 
 
 namespace BaseFunction.Service.BaseService
 {
     public class NinjectModuleFactory
     {
-        // 使用Ninject
-        private IKernel kernel { get; set; }
-
-        //private IDictionary<string, IXmlElementHandler> elementHandlers;
+        private Register register { get; set; }
 
         public NinjectModuleFactory()
         {
-            this.kernel = CreateKernel();
+            this.register = new Register();
         }
 
         public T CreateInstance<T>()
@@ -36,20 +32,21 @@ namespace BaseFunction.Service.BaseService
                 throw new ArgumentException("请使用类类型进行初始化", typeof(T).FullName);
             }
 
-            //T service = this.kernel.Get<T>();//Activator.CreateInstance(typeof(param),false);
-
-            //return service;
-            Exception  ex= new Exception();
-            throw ex;
+            return this.register.Get<T>();
         }
 
-        private static IKernel CreateKernel()
+        public T CreateInterface<T>()
         {
-            IKernel kernel = new StandardKernel();
+            if (!typeof(T).FullName.StartsWith("BaseFunction.Service"))
+            {
+                throw new ArgumentException("未使用指定命名空间中的类型进行初始化", typeof(T).FullName);
+            }
+            if (!typeof(T).IsInterface)
+            {
+                throw new ArgumentException("请使用接口类型进行初始化", typeof(T).FullName);
+            }
 
-            //RegisterServices(kernel);
-
-            return kernel;
+            return this.register.Get<T>();
         }
     }
 }

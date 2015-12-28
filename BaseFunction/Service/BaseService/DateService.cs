@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BaseFunction.Service
 {
-    public class DateService : IDateService, IBaseService
+    public class DateService : IDateService
     {
 
         public void Display()

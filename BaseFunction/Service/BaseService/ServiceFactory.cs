@@ -101,6 +101,7 @@ namespace BaseFunction.Service
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IValueCalculater>().To<LinqValueCalculator>();
+            kernel.Bind<IDateService>().To<DateService>();
         }    
     }
 }

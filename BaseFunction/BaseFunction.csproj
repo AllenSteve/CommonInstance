@@ -36,9 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="NinjectServiceModule.config" />
+    <Content Include="NinjectServiceModule.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Register.cs" />
     <Compile Include="ServiceInterface\IBaseService\IAsyncService.cs" />
     <Compile Include="ServiceInterface\IBaseService\IBaseService.cs" />
     <Compile Include="ServiceInterface\IBaseService\ICommonService.cs" />
@@ -64,15 +65,20 @@
     <Compile Include="Service\BaseService\ServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Xml, Version=2.1.0.1, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject\Ninject.Extensions.Xml.dll</HintPath>
     </Reference>
     <Reference Include="Soufun.Passport">
       <HintPath>..\packages\EBS\EBS.Lib\Soufun.Passport.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>

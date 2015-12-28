@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+  <module name="register">
+    <bind service="BaseFunction.ServiceInterface.IDateService,BaseFunction" to="BaseFunction.Service.DateService,BaseFunction"/>
+  </module>
