@@ -176,7 +176,6 @@ namespace EBS.Interface.EContract.Model
             sb.Append(value.ToString(this.stringFormat));
             sb.Append(this.areaUnit);
             return sb.ToString();
-;
         }
     }
 }
