@@ -56,8 +56,10 @@
     <Compile Include="Service\BaseService\NinjectModuleFactory.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Service\EbsService\AdvancedEncryption.cs" />
     <Compile Include="Service\EbsService\EncryptService.cs" />
     <Compile Include="Service\EbsService\ParseCookie.cs" />
+    <Compile Include="Service\EbsService\TokenMethod.cs" />
     <Compile Include="Service\iTecService\CodeTableService.cs" />
     <Compile Include="Service\NinjectService\LinqValueCalculator.cs" />
     <Compile Include="Service\NinjectService\ShoppingCart.cs" />
@@ -77,6 +79,7 @@
       <HintPath>..\packages\EBS\EBS.Lib\Soufun.Passport.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Web" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
