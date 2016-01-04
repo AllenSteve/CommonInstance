@@ -60,6 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTools\CheckContractParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseTools\CheckContractParam.Designer.cs">
+      <DependentUpon>CheckContractParam.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaseTools\TransactionService.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     </Compile>
     <Compile Include="WinFormStarUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BaseTools\CheckContractParam.resx">
+      <DependentUpon>CheckContractParam.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaseTools\CocurrencyLoader.resx">
       <DependentUpon>CocurrencyLoader.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +131,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BaseFunction\BaseFunction.csproj">
+      <Project>{0ef39968-7f82-4264-814f-0a182e361787}</Project>
+      <Name>BaseFunction</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ComponentModels\ComponentModels.csproj">
       <Project>{618dce8b-48f6-4115-b35a-f977e0dd9a36}</Project>
       <Name>ComponentModels</Name>

@@ -1,4 +1,5 @@
 ﻿using BaseFunction.BaseTools;
+using LoadTest.BaseTools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,8 @@ namespace CocurrencyTest
             Application.SetCompatibleTextRenderingDefault(false);
             //
             //Application.Run(new CocurrencyLoader());
-            Application.Run(new TransactionService());
+            //Application.Run(new TransactionService());
+            Application.Run(new CheckContractParam());
         }
     }
 }
