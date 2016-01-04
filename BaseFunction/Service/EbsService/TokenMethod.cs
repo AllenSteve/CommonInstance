@@ -85,6 +85,7 @@ namespace BaseFunction.Service.EbsService
 
         /// <summary>
         /// 验证请求参数
+        /// http://www.cnblogs.com/chendaoyin/archive/2013/06/28/3161579.html
         /// </summary>
         /// <param name="request">http请求</param>
         /// <param name="timespan">超时时长</param>
