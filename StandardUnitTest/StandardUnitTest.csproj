@@ -59,6 +59,7 @@
     <Compile Include="ExtensionTest\StringExtensionTest.cs" />
     <Compile Include="LogServiceTest.cs" />
     <Compile Include="ServiceTest\CommonServiceTest.cs" />
+    <Compile Include="ServiceTest\EbsServiceTest\TokenMethodTest.cs" />
     <Compile Include="ServiceTest\NinjectServiceTest\ShoppingCartTest.cs" />
     <Compile Include="ServiceTest\ServiceFactoryTest.cs" />
     <Compile Include="ModelTest\TransactionServiceBusinessModelTest.cs" />
