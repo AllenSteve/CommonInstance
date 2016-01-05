@@ -29,5 +29,14 @@ namespace LoadTest.BaseTools
                 this.currenttime.Text = TokenMethod.GetTimestampDate(this.timestamp.Text).ToString();
             }
         }
+
+        private void Create_Click(object sender, EventArgs e)
+        {
+            DateTime current = DateTime.Now;
+            string timeStamp = TokenMethod.ConvertDateTime2Timestamp(current).ToString();
+            string soufunId = this.soufunid.Text;
+            this.CreateCryptograph.Text = TokenMethod.CreateCryptograph(timeStamp,soufunId);
+            this.NewDateTime.Text = current.ToString();
+        }
     }
 }
