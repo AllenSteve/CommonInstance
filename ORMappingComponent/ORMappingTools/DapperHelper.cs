@@ -109,7 +109,11 @@ namespace ComponentORM.ORMappingTools
             /// <summary>
             /// 服务中心写库
             /// </summary>
-            ServiceCenterWrite = 6
+            ServiceCenterWrite = 6,
+            /// <summary>
+            /// 正式站-沙箱库
+            /// </summary>
+            SandBox = 7
         }
 
         /// <summary>
