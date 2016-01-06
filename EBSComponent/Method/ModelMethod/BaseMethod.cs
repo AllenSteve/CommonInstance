@@ -568,22 +568,9 @@ namespace EBS.Interface.EContract.Method
         /// <param name="orderId">订单号</param>
         /// <param name="contractType">合同类型</param>
         /// <returns>合同模板Id</returns>
-        private string GetTemplateIdByOrderId(string orderId,int contractType)
+        private string GetTemplateIdByOrderId(string orderId, int contractType)
         {
-            string constractName = string.Empty;
-            if (contractType == 0)
-            {
-                constractName = this.GetConstructionContractName(orderId);
-            }
-            else if (contractType == 1)
-            {
-                constractName = this.GetDesignContractName(orderId);
-            }
-            else
-            {
-                // 以后的新类型合同在此追加
-                throw new ArgumentOutOfRangeException("未处理的合同类型");
-            }
+            string constractName = this.GetContractName(orderId, contractType);
             return this.GetTemplateIdByContractName(constractName);
         }
 
@@ -622,6 +609,25 @@ namespace EBS.Interface.EContract.Method
             html = html.Replace("乙方代表（签字盖章）：", StampFlag);
             html = html.Replace("乙方代表（盖章）：", StampFlag);
             return html.Replace("乙方：", StampFlag);
+        }
+
+        public string GetContractName(string orderId, int contractType)
+        {
+            string constractName = string.Empty;
+            if (contractType == 0)
+            {
+                constractName = this.GetConstructionContractName(orderId);
+            }
+            else if (contractType == 1)
+            {
+                constractName = this.GetDesignContractName(orderId);
+            }
+            else
+            {
+                // 以后的新类型合同在此追加
+                throw new ArgumentOutOfRangeException("未处理的合同类型");
+            }
+            return constractName;
         }
     }
     
