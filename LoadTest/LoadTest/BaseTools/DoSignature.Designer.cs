@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Btn_postRequest = new System.Windows.Forms.Button();
-            this.Btn_createQueryString = new System.Windows.Forms.Button();
-            this.CB_Type = new System.Windows.Forms.ComboBox();
+            this.CB_CityList = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.T_OrderId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.T_encdata = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.T_stampno = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.CB_ContractType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,36 +44,17 @@
             this.Btn_GetContractPage = new System.Windows.Forms.Button();
             this.T_ContractTemplateId = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.CB_Mobile = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // Btn_postRequest
+            // CB_CityList
             // 
-            this.Btn_postRequest.Location = new System.Drawing.Point(591, 54);
-            this.Btn_postRequest.Name = "Btn_postRequest";
-            this.Btn_postRequest.Size = new System.Drawing.Size(107, 23);
-            this.Btn_postRequest.TabIndex = 22;
-            this.Btn_postRequest.Text = "POST请求";
-            this.Btn_postRequest.UseVisualStyleBackColor = true;
-            this.Btn_postRequest.Click += new System.EventHandler(this.Btn_postRequest_Click);
-            // 
-            // Btn_createQueryString
-            // 
-            this.Btn_createQueryString.Location = new System.Drawing.Point(591, 22);
-            this.Btn_createQueryString.Name = "Btn_createQueryString";
-            this.Btn_createQueryString.Size = new System.Drawing.Size(107, 23);
-            this.Btn_createQueryString.TabIndex = 21;
-            this.Btn_createQueryString.Text = "生成参数";
-            this.Btn_createQueryString.UseVisualStyleBackColor = true;
-            this.Btn_createQueryString.Click += new System.EventHandler(this.Btn_createQueryString_Click);
-            // 
-            // CB_Type
-            // 
-            this.CB_Type.FormattingEnabled = true;
-            this.CB_Type.Location = new System.Drawing.Point(437, 22);
-            this.CB_Type.Name = "CB_Type";
-            this.CB_Type.Size = new System.Drawing.Size(126, 20);
-            this.CB_Type.TabIndex = 33;
-            this.CB_Type.SelectedIndexChanged += new System.EventHandler(this.CB_Type_SelectedIndexChanged);
+            this.CB_CityList.FormattingEnabled = true;
+            this.CB_CityList.Location = new System.Drawing.Point(437, 22);
+            this.CB_CityList.Name = "CB_CityList";
+            this.CB_CityList.Size = new System.Drawing.Size(126, 20);
+            this.CB_CityList.TabIndex = 33;
+            this.CB_CityList.SelectedIndexChanged += new System.EventHandler(this.CB_Type_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -84,7 +62,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 18);
             this.label3.TabIndex = 28;
-            this.label3.Text = "错误类型";
+            this.label3.Text = "城市列表";
             // 
             // T_OrderId
             // 
@@ -119,20 +97,13 @@
             this.label10.TabIndex = 35;
             this.label10.Text = "请求链接";
             // 
-            // T_stampno
-            // 
-            this.T_stampno.Location = new System.Drawing.Point(437, 54);
-            this.T_stampno.Name = "T_stampno";
-            this.T_stampno.Size = new System.Drawing.Size(126, 21);
-            this.T_stampno.TabIndex = 32;
-            // 
             // label6
             // 
             this.label6.Location = new System.Drawing.Point(368, 54);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 18);
             this.label6.TabIndex = 31;
-            this.label6.Text = "测试章号";
+            this.label6.Text = "手机号";
             // 
             // CB_ContractType
             // 
@@ -184,7 +155,7 @@
             // 
             // Btn_GetContractPage
             // 
-            this.Btn_GetContractPage.Location = new System.Drawing.Point(591, 87);
+            this.Btn_GetContractPage.Location = new System.Drawing.Point(590, 22);
             this.Btn_GetContractPage.Name = "Btn_GetContractPage";
             this.Btn_GetContractPage.Size = new System.Drawing.Size(107, 23);
             this.Btn_GetContractPage.TabIndex = 43;
@@ -207,11 +178,20 @@
             this.label7.TabIndex = 44;
             this.label7.Text = "合同模板ID";
             // 
+            // CB_Mobile
+            // 
+            this.CB_Mobile.FormattingEnabled = true;
+            this.CB_Mobile.Location = new System.Drawing.Point(437, 54);
+            this.CB_Mobile.Name = "CB_Mobile";
+            this.CB_Mobile.Size = new System.Drawing.Size(126, 20);
+            this.CB_Mobile.TabIndex = 46;
+            // 
             // DoSignature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 483);
+            this.Controls.Add(this.CB_Mobile);
             this.Controls.Add(this.T_ContractTemplateId);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.Btn_GetContractPage);
@@ -223,14 +203,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.T_encdata);
-            this.Controls.Add(this.CB_Type);
-            this.Controls.Add(this.T_stampno);
+            this.Controls.Add(this.CB_CityList);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.T_OrderId);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.Btn_postRequest);
-            this.Controls.Add(this.Btn_createQueryString);
             this.Name = "DoSignature";
             this.Text = "DoSignature";
             this.ResumeLayout(false);
@@ -240,15 +217,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button Btn_postRequest;
-        private System.Windows.Forms.Button Btn_createQueryString;
-        private System.Windows.Forms.ComboBox CB_Type;
+        private System.Windows.Forms.ComboBox CB_CityList;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox T_OrderId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox T_encdata;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox T_stampno;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox CB_ContractType;
         private System.Windows.Forms.Label label1;
@@ -259,5 +233,6 @@
         private System.Windows.Forms.Button Btn_GetContractPage;
         private System.Windows.Forms.TextBox T_ContractTemplateId;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox CB_Mobile;
     }
 }

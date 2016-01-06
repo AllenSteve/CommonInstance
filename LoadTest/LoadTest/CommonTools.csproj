@@ -47,12 +47,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EBS.Interface.ESignature">
-      <HintPath>..\..\packages\EBS\EBS.Lib\EBS.Interface.ESignature.dll</HintPath>
+    <Reference Include="EBS.Interface.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EBS\EBS.Lib\EBS.Interface.Model.dll</HintPath>
     </Reference>
     <Reference Include="EBS.SMSManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EBS\EBS.Lib\EBS.SMSManager.dll</HintPath>
+    </Reference>
+    <Reference Include="ORM.Base, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EBS\EBS.Lib\ORM.Base.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -158,6 +163,10 @@
     <ProjectReference Include="..\..\EBSComponent\EBSComponent.csproj">
       <Project>{d9d1b88a-03b6-4ecc-b311-f84b13b9c3c6}</Project>
       <Name>EBSComponent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ORMappingComponent\ComponentORM.csproj">
+      <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
+      <Name>ComponentORM</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
