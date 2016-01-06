@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Method\DatabaseMethod\QueryEBS.cs" />
     <Compile Include="Method\ModelMethod\BaseMethod.cs" />
     <Compile Include="Model\Entity\C_PageViewLog.cs" />
     <Compile Include="Model\ServiceModel\EContract\BaseConstructionContractModel.cs" />
@@ -78,6 +79,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ORMappingComponent\ComponentORM.csproj">
+      <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
+      <Name>ComponentORM</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
