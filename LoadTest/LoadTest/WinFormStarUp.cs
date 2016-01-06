@@ -21,7 +21,8 @@ namespace CocurrencyTest
             //
             //Application.Run(new CocurrencyLoader());
             //Application.Run(new TransactionService());
-            Application.Run(new CheckContractParam());
+            //Application.Run(new CheckContractParam());
+            Application.Run(new DoSignature());
         }
     }
 }
