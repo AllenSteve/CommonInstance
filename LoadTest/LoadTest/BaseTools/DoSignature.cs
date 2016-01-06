@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EBS.Interface.EContract.Method;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -15,7 +16,10 @@ namespace LoadTest.BaseTools
 {
     public partial class DoSignature : Form
     {
-        private string param { get; set; }
+        private string param { get; set; }    
+        private IDictionary<string, int> contractTypeDictionary { get; set; }
+
+        private BaseMethod method = new BaseMethod();
 
         public DoSignature()
         {
@@ -25,22 +29,28 @@ namespace LoadTest.BaseTools
 
         private void InitParam()
         {
-            param = string.Empty;
+            this.T_OrderId.Text = "J01201601040341006";
             KeyValuePair<int, string> item = new KeyValuePair<int, string>(1, "签字");
             //this.CB_Type.Items.Add(item);
             item = new KeyValuePair<int, string>(3, "签章");
             //this.CB_Type.Items.Add(item);
             this.CB_Type.Items.Add(1);
             this.CB_Type.Items.Add(3);
-
-            this.T_OrderId.Text = "J01201601040341006";
-            this.T_stampno.Text = "1200";
             this.CB_Type.Text = this.CB_Type.Items[0].ToString();
+
+            contractTypeDictionary = new Dictionary<string, int>();
+            contractTypeDictionary.Add("设计合同",1);
+            contractTypeDictionary.Add("施工合同",0);
+            foreach (var contractType in contractTypeDictionary)
+            {
+                this.CB_ContractType.Items.Add(contractType.Key);
+            }
         }
 
         private string CreateParam()
         {
             string encdata = this.T_encdata.Text.Replace(@"\""", @"""");
+            
 
             if (this.CB_Type.Text.Equals("1"))
             {
@@ -131,6 +141,40 @@ namespace LoadTest.BaseTools
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        private void CB_Type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.CreateParam();
+        }
+
+        private string GetStampNo(string orderId,int ContractType)
+        {
+            // 仇士龙，20151229
+            // 获取合同模板Id
+            string templateId = method.GetContractTemplateID(orderId, ContractType);
+            // 获取印章Id
+            string stampId = method.GetStampId(templateId);
+            return stampId;
+        }
+
+        private void Btn_GetContractPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CB_ContractType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string orderId = this.T_OrderId.Text.Trim();
+            if (!string.IsNullOrEmpty(orderId))
+            {
+                this.CB_ContractName.Items.Clear();
+                string contractName = method.GetContractName(orderId, contractTypeDictionary[this.CB_ContractType.Text]);
+                this.CB_ContractName.Items.Add(contractName);
+                this.CB_ContractName.Text = contractName;
+                this.T_ContractStampNo.Text = this.GetStampNo(orderId, contractTypeDictionary[this.CB_ContractType.Text]);
+                this.T_ContractTemplateId.Text = method.GetContractTemplateID(orderId, contractTypeDictionary[this.CB_ContractType.Text]);
             }
         }
     }
