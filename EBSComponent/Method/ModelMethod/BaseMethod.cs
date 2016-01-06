@@ -555,7 +555,7 @@ namespace EBS.Interface.EContract.Method
             }
             else
             {
-                suitName = this.GetSuitInfo(suitId).SuitName;
+                suitName = this.GetSuitInfo(suitId).SuitName.Replace("\"", string.Empty); 
             }
 
             string contractName = string.Format("{0}施工合同{1}", cityName, suitName);
