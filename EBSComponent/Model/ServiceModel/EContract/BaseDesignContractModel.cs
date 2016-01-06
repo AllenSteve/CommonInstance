@@ -67,6 +67,15 @@ namespace EBS.Interface.EContract.Model
         public string Month { get; set; }
         public string Date { get; set; }
         public string SignatureB { get; set; }
+        public string EYear { get; set; }
+        public string EMonth { get; set; }
+        public string EDate { get; set; }
+
+        public string OrderNo { get; set; }
+
+        public string PlanStartBuildDate { get; set; }
+
+        public string PlanEndBuildDate { get; set; }
 
         public BaseDesignContractModel()
             : base()
@@ -83,8 +92,8 @@ namespace EBS.Interface.EContract.Model
             // 合同信息
             N_Order_QuoteInfo ContractInfo = base.method.GetContractInfo(orderId);
 
-            //this.ContractNo = ContractInfo.DesignContractNO;
-            this.ContractNo = orderId; 
+            this.ContractNo = ContractInfo.DesignContractNO;
+            //this.ContractNo = orderId; 
             // 业主信息
             this.PrincipalA = OwnerInfo.TrueName;
             this.TelephoneA = string.Empty;
@@ -114,6 +123,8 @@ namespace EBS.Interface.EContract.Model
             this.SignatureB = DesignInfo.SoufunId == 0 ? string.Empty : DesignInfo.TrueName;
             // 设置时间信息
             this.SetPreviewDesignContractDate(ContractInfo);
+
+            this.OrderNo = ContractInfo.DesignContractNO;
 
         }
 
@@ -145,9 +156,15 @@ namespace EBS.Interface.EContract.Model
 
         private void SetDesignContractDate(DateTime date)
         {
+            DateTime endDate = date.AddMonths(2);
             this.Year = date.Year.ToString();
             this.Month = date.Month.ToString();
             this.Date = date.Day.ToString();
+            this.EYear = endDate.Year.ToString();
+            this.EMonth = endDate.Month.ToString();
+            this.EDate = endDate.Day.ToString();
+            this.PlanStartBuildDate = date.ToLongDateString();
+            this.PlanEndBuildDate = date.AddMonths(2).ToLongDateString();
         }
     }
 }

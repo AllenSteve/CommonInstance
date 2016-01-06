@@ -39,6 +39,8 @@ namespace EBS.Interface.EContract.Model
         public string IDNumber { get; set; }
         public string TelephoneA { get; set; }
         public string Email { get; set; }
+        //后添加，zjl
+        public string AgentMobile { get; set; }
 
         /// <summary>
         /// 承包方信息
@@ -83,6 +85,11 @@ namespace EBS.Interface.EContract.Model
         public string YQYSAmount { get; set; }
         public string JGYSAmount { get; set; }
 
+        // 木工施工
+        public string MGSGAmount { get; set; }
+        // 尾期施工
+        public string WQSGAmount { get; set; }
+
         /// <summary>
         /// 签名信息
         /// </summary>
@@ -90,6 +97,19 @@ namespace EBS.Interface.EContract.Model
         public string Year { get; set; }
         public string Month { get; set; }
         public string Date { get; set; }
+        public string EYear { get; set; }
+        public string EMonth { get; set; }
+        public string EDate { get; set; }
+        public string SignatureB { get; set; }
+
+        // 2016/1/4
+        public string DesignerName { get; set; }
+
+        public string DesignerMobile { get; set; }
+
+        public string PlanStartBuildDate { get; set; }
+
+        public string PlanEndBuildDate { get; set; }
 
         public BaseConstructionContractModel()
             : base()
@@ -111,8 +131,8 @@ namespace EBS.Interface.EContract.Model
             // 承包方信息
             //CityContractConfig cityContractConfig = method.GetCityContractConfig(OwnerInfo.CityID.ToString());
 
-            ////this.ContractNo = ContractInfo.DesignContractNO;
-            this.ContractNo = orderId;
+            this.ContractNo = ContractInfo.ConstructContractNO;
+            //this.ContractNo = orderId;
             /// <summary>
             /// 业主信息
             /// </summary>
@@ -123,11 +143,12 @@ namespace EBS.Interface.EContract.Model
             this.IDNumber = OwnerInfo.IdentityNum;
             this.TelephoneA = OwnerInfo.Mobile;
             this.Email = string.Empty;
+            this.AgentMobile = string.Empty;
 
             /// <summary>
             /// 承包方信息
             /// </summary>
-            this.ProDesignerName = DesignerInfo.SoufunId == 0 ? string.Empty : DesignerInfo.TrueName; ;
+            this.ProDesignerName = DesignerInfo.SoufunId == 0 ? string.Empty : DesignerInfo.TrueName;
             this.JobTitle = string.Empty;
             this.CertID = string.Empty;
             this.ContactMobile = DesignerInfo.SoufunId == 0 ? string.Empty : DesignerInfo.Mobile;
@@ -158,21 +179,28 @@ namespace EBS.Interface.EContract.Model
             /// 工程款支付方式
             /// </summary>
             IDictionary<string, string> dictionary = this.GetPaymentDictionary(ContractInfo, OwnerInfo, decimal.Parse(this.ProCost), base.stringFormat);
-            this.SignAmount = dictionary["签约"];
-            this.KGJDAmount = dictionary["开工交底"];
-            this.FWCQAmount = dictionary["房屋拆改"];
-            this.SDYSAmount = dictionary["水电验收"];
-            this.FSYSAmount = dictionary["防水验收"];
-            this.WGYSAmount = dictionary["瓦工验收"];
-            this.MGYSAmount = dictionary["木工验收"];
-            this.YQYSAmount = dictionary["油漆验收"];
-            this.JGYSAmount = dictionary["竣工验收"];
+            this.SignAmount = this.CheckDictionary(dictionary,"签约");
+            this.KGJDAmount = this.CheckDictionary(dictionary, "开工交底");
+            this.FWCQAmount = this.CheckDictionary(dictionary, "房屋拆改");
+            this.SDYSAmount = this.CheckDictionary(dictionary, "水电验收"); 
+            this.FSYSAmount = this.CheckDictionary(dictionary, "防水验收"); 
+            this.WGYSAmount = this.CheckDictionary(dictionary, "瓦工验收"); 
+            this.MGYSAmount = this.CheckDictionary(dictionary, "木工验收"); 
+            this.YQYSAmount = this.CheckDictionary(dictionary, "油漆验收"); 
+            this.JGYSAmount = this.CheckDictionary(dictionary, "竣工验收");
+            this.MGSGAmount = this.CheckDictionary(dictionary, "木工施工");
+            this.WQSGAmount = this.CheckDictionary(dictionary, "尾期施工");
+
 
             /// <summary>
             /// 签名信息
             /// </summary>
             //this.SignatureA = string.Empty;
+            this.SignatureB = DesignerInfo.SoufunId == 0 ? string.Empty : DesignerInfo.TrueName;
             this.SetPreviewConstructionContractDate(ContractInfo);
+
+            this.DesignerName = DesignerInfo.SoufunId == 0 ? string.Empty : DesignerInfo.TrueName;
+            this.DesignerMobile = DesignerInfo.SoufunId == 0 ? string.Empty : DesignerInfo.Mobile;
         }
 
         /// <summary>
@@ -197,9 +225,15 @@ namespace EBS.Interface.EContract.Model
 
         private void SetConstructionContractDate(DateTime date)
         {
+            DateTime endDate = date.AddMonths(2);
             this.Year = date.Year.ToString();
             this.Month = date.Month.ToString();
             this.Date = date.Day.ToString();
+            this.EYear = endDate.Year.ToString();
+            this.EMonth = endDate.Month.ToString();
+            this.EDate = endDate.Day.ToString();
+            this.PlanStartBuildDate = date.ToLongDateString();
+            this.PlanEndBuildDate = date.AddMonths(2).ToLongDateString();
         }
 
         private string GetProjectCost(string orderId,string stringFormat = @"f2")
@@ -217,5 +251,13 @@ namespace EBS.Interface.EContract.Model
             return dictionary;
         }
 
+        private string CheckDictionary(IDictionary<string, string> dictionary, string key)
+        {
+            if (dictionary.ContainsKey(key))
+            {
+                return dictionary[key];
+            }
+            return @"0.00";
+        }
     }
 }

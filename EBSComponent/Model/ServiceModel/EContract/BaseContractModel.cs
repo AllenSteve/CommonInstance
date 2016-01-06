@@ -61,7 +61,7 @@ namespace EBS.Interface.EContract.Model
 
         public string GetUnsignedContractSignature()
         {
-            return "<span id=\"jiafangqianzi\" onclick=\"ReMoveKeyWord('jiafangqianzi')\"><a href=\"javascript:void(0)\" style=\"color:white;height:100px; display:inline-block;line-height:100px;width:100px;\"><b>#jiafangqianzi#</b></a></span>";
+            return "<span id=\"jiafangqianzi\" onclick=\"ReMoveKeyWord('jiafangqianzi')\"><a href=\"javascript:void(0)\" style=\"margin-top:-20px;color:white;height:150px; display:inline-block;line-height:100px;width:150px;\"><b>#jiafangqianzi#</b></a></span>";
         }
 
         protected string GetHouseType(string orderId)
@@ -77,10 +77,12 @@ namespace EBS.Interface.EContract.Model
             return sb.ToString();
         }
 
-        public string GetPreviewContractSignature(string orderId)
+        public string GetPreviewContractSignature(string orderId,int ContractType=0)
         {
-            CityContractLog cityContractLog = this.method.GetCityContractLog(orderId);
-            return method.GetBaseImage(cityContractLog);
+            //CityContractLog cityContractLog = this.method.GetCityContractLog(orderId);
+            //return method.GetBaseImage(cityContractLog);
+            CityContractQueue cityContractQueue = this.method.GetCityContractQueue(orderId, ContractType);
+            return method.GetBaseImage(cityContractQueue);
         }
 
         protected virtual string GetProjectAddress(N_Order_QuoteEx OwnerInfo)
