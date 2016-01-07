@@ -47,6 +47,7 @@
             this.T_ContractName = new System.Windows.Forms.TextBox();
             this.Btn_GetOrderList = new System.Windows.Forms.Button();
             this.CB_OrderId = new System.Windows.Forms.ComboBox();
+            this.Btn_TestAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CB_CityList
@@ -209,11 +210,22 @@
             this.CB_OrderId.Size = new System.Drawing.Size(233, 20);
             this.CB_OrderId.TabIndex = 50;
             // 
+            // Btn_TestAll
+            // 
+            this.Btn_TestAll.Location = new System.Drawing.Point(590, 119);
+            this.Btn_TestAll.Name = "Btn_TestAll";
+            this.Btn_TestAll.Size = new System.Drawing.Size(107, 23);
+            this.Btn_TestAll.TabIndex = 51;
+            this.Btn_TestAll.Text = "一键测试";
+            this.Btn_TestAll.UseVisualStyleBackColor = true;
+            this.Btn_TestAll.Click += new System.EventHandler(this.Btn_TestAll_Click);
+            // 
             // DoSignature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 483);
+            this.Controls.Add(this.Btn_TestAll);
             this.Controls.Add(this.CB_OrderId);
             this.Controls.Add(this.Btn_GetOrderList);
             this.Controls.Add(this.T_ContractName);
@@ -261,5 +273,6 @@
         private System.Windows.Forms.TextBox T_ContractName;
         private System.Windows.Forms.Button Btn_GetOrderList;
         private System.Windows.Forms.ComboBox CB_OrderId;
+        private System.Windows.Forms.Button Btn_TestAll;
     }
 }

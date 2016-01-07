@@ -276,5 +276,23 @@ namespace LoadTest.BaseTools
             this.CreateOrderList();
             this.CB_OrderId.Items.AddRange(this.orderList.Select(o => o.OrderID).ToArray());
         }
+
+        /// <summary>
+        /// 通用测试按钮，用于一键覆盖测试所有测试用例
+        /// 准备工作：
+        /// 1-城市列表
+        /// 2-城市列表相关手机号
+        /// 3-订单号列表
+        /// 4-合同类型，0-施工合同，1-设计合同
+        /// 测试步骤：
+        /// 1-根据订单号和合同类型查询
+        /// 2-对得到的查询结果进行验证，
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_TestAll_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
