@@ -185,6 +185,7 @@
             this.CB_Mobile.Name = "CB_Mobile";
             this.CB_Mobile.Size = new System.Drawing.Size(126, 20);
             this.CB_Mobile.TabIndex = 46;
+            this.CB_Mobile.SelectedIndexChanged += new System.EventHandler(this.CB_Mobile_SelectedIndexChanged);
             // 
             // DoSignature
             // 
