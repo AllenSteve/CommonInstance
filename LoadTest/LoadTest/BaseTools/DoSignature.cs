@@ -1,4 +1,5 @@
 ﻿using EBS.Interface.EContract.Method;
+using EBS.Interface.EContract.Model;
 using EBS.Interface.Model;
 using EbsComponent.Method.DatabaseMethod;
 using System;
@@ -20,6 +21,8 @@ namespace LoadTest.BaseTools
     {
         private IDictionary<string, int> contractTypeDictionary { get; set; }
         private IDictionary<string, string> cityMobileDictionary { get; set; }
+        private List<N_Order_QuoteEx> orderList { get; set; }
+        private List<CityInfo> cityList { get; set; }
         private BaseMethod method { get; set; }
         private QueryEBS query { get; set; }
 
@@ -31,9 +34,10 @@ namespace LoadTest.BaseTools
 
         private void InitParam()
         {
-            method = new BaseMethod();
-            query = new QueryEBS();
-            List<CityInfo> cityList = query.Query<CityInfo>().All().ToList();
+            this.method = new BaseMethod();
+            this.query = new QueryEBS();
+            this.cityList = query.Query<CityInfo>().All().ToList();
+            this.orderList = new List<N_Order_QuoteEx>();
             this.CreateCityMobileDictionary();
             contractTypeDictionary = new Dictionary<string, int>();
             contractTypeDictionary.Add("设计合同", 1);
@@ -46,17 +50,9 @@ namespace LoadTest.BaseTools
             //this.CB_CityList.Items.Add(1);
             //this.CB_CityList.Items.Add(3);
 
-            
-            foreach (var contractType in contractTypeDictionary)
-            {
-                this.CB_ContractType.Items.Add(contractType.Key);
-            }
-
-            foreach (var city in cityList)
-            {
-                if(!city.CityName.Equals("中山"))
-                this.CB_CityList.Items.Add(city.CityName);
-            }
+            this.CB_ContractType.Items.AddRange(contractTypeDictionary.Select(o=>o.Key).ToArray());
+            var citys = this.cityList.Except(this.cityList.FindAll(o => o.CityName.Equals("中山")));
+            this.CB_CityList.Items.AddRange(citys.Select(o=>o.CityName).ToArray());
             this.CB_CityList.Text = this.CB_CityList.Items[0].ToString();
 
         }
@@ -92,39 +88,47 @@ namespace LoadTest.BaseTools
 
         private void Btn_GetContractPage_Click(object sender, EventArgs e)
         {
-            
+            string html = this.T_encdata.Text;
+            string contractType = this.CB_ContractType.Text;
+            if (contractType.Equals("设计合同"))
+            {
+                html = this.GetSetUnsignedDesignContractPage(html);
+            }
+            else if (contractType.Equals("施工合同"))
+            {
+                html = this.GetSetUnsignedConstructionContractPage(html);
+            }
 
+            if (html.Trim() != string.Empty)
+                Clipboard.SetDataObject(html);
         }
 
         private void CB_ContractType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                string orderId = this.T_OrderId.Text.Trim();
+                string orderId = this.CB_OrderId.Text.Trim();
                 if (!string.IsNullOrEmpty(orderId))
                 {
-                    this.CB_ContractName.Items.Clear();
+                    this.T_ContractName.Clear();
                     string contractName = method.GetContractName(orderId, contractTypeDictionary[this.CB_ContractType.Text]);
-                    this.CB_ContractName.Items.Add(contractName);
-                    this.CB_ContractName.Text = contractName;
+                    this.T_ContractName.Text = contractName;
                     this.T_ContractStampNo.Text = this.GetStampNo(orderId, contractTypeDictionary[this.CB_ContractType.Text]);
                     this.T_ContractTemplateId.Text = method.GetContractTemplateID(orderId, contractTypeDictionary[this.CB_ContractType.Text]);
                     this.T_encdata.Text = method.GetTemplateHtml(this.T_ContractTemplateId.Text);
                     
                     if (string.IsNullOrEmpty(this.T_ContractStampNo.Text))
                     {
-                        string msg = string.Format("获取印章号失败\n订单号：{0}\n合同名：{1}\n手机号：{2}", orderId, this.CB_ContractName.Text, this.CB_Mobile.Text); 
+                        string msg = string.Format("获取印章号失败\n订单号：{0}\n合同名：{1}\n手机号：{2}", orderId, this.T_ContractName.Text, this.CB_Mobile.Text); 
                         EBS.SMSManager.SendEmail.Send("qiushilong@fang.com", "电子合同", msg);
                         EBS.SMSManager.SendEmail.Send("linye@fang.com", "电子合同", msg);
                     }
                     if (string.IsNullOrEmpty(this.T_ContractTemplateId.Text))
                     {
-                        string msg = string.Format("获取合同模板Id\n订单号：{0}\n合同名：{1}\n手机号：{2}", orderId, this.CB_ContractName.Text, this.CB_Mobile.Text);
+                        string msg = string.Format("获取合同模板Id\n订单号：{0}\n合同名：{1}\n手机号：{2}", orderId, this.T_ContractName.Text, this.CB_Mobile.Text);
                         EBS.SMSManager.SendEmail.Send("qiushilong@fang.com", "电子合同", msg);
                         EBS.SMSManager.SendEmail.Send("linye@fang.com", "电子合同", msg);
                     }
-
-
                 }
             }
             catch(Exception ex)
@@ -138,93 +142,27 @@ namespace LoadTest.BaseTools
         private void CreateCityMobileDictionary()
         {
             this.cityMobileDictionary = new Dictionary<string, string>();
-            //北京
-            cityMobileDictionary.Add("13244444401", "北京");
-            cityMobileDictionary.Add("13244444402", "北京");
-            cityMobileDictionary.Add("13800001111", "北京");//注意局改报价检查为零的原因
-            cityMobileDictionary.Add("13811112222", "北京");
-            //重庆
-            cityMobileDictionary.Add("13244444403", "重庆");
-            cityMobileDictionary.Add("13244444452", "重庆");
-            //郑州
-            cityMobileDictionary.Add("13244444405", "郑州");
-            cityMobileDictionary.Add("13244444406", "郑州");
-            cityMobileDictionary.Add("13244444453", "郑州");
-            //广州
-            cityMobileDictionary.Add("13244444407", "广州");
-            cityMobileDictionary.Add("13244444454", "广州");
-            //青岛
-            cityMobileDictionary.Add("13244444409", "青岛");
-            cityMobileDictionary.Add("13244444410", "青岛");
-            //上海
-            cityMobileDictionary.Add("13244444411", "上海");
-            cityMobileDictionary.Add("13244444455", "上海");
-            //成都
-            cityMobileDictionary.Add("13244444413", "成都");
-            cityMobileDictionary.Add("13244444414", "成都");
-            cityMobileDictionary.Add("13244444443", "成都");
-            cityMobileDictionary.Add("13244444444", "成都");
-            //深圳
-            cityMobileDictionary.Add("13244444415", "深圳");
-            cityMobileDictionary.Add("13244444456", "深圳");
-            //无锡
-            cityMobileDictionary.Add("13244444417", "无锡");
-            cityMobileDictionary.Add("13244444457", "无锡");
-            //苏州
-            cityMobileDictionary.Add("13244444420", "苏州");
-            cityMobileDictionary.Add("13244444445", "苏州");
-            //武汉
-            cityMobileDictionary.Add("13244444421", "武汉");
-            cityMobileDictionary.Add("13244444422", "武汉");
-            cityMobileDictionary.Add("13244444446", "武汉");
-            cityMobileDictionary.Add("13244444447", "武汉");
-            //天津
-            cityMobileDictionary.Add("13244444423", "天津");
-            cityMobileDictionary.Add("13244444458", "天津");
-            cityMobileDictionary.Add("13244444459", "天津");
-            //西安
-            cityMobileDictionary.Add("13244444425", "西安");
-            cityMobileDictionary.Add("13244444426", "西安");
-            //杭州
-            cityMobileDictionary.Add("13244444427", "杭州");
-            cityMobileDictionary.Add("13244444428", "杭州");
-            cityMobileDictionary.Add("13244444448", "杭州");
-            //长沙
-            cityMobileDictionary.Add("13244444429", "长沙");
-            cityMobileDictionary.Add("13244444430", "长沙");
-            //石家庄
-            cityMobileDictionary.Add("13244444431", "石家庄");
-            cityMobileDictionary.Add("13244444432", "石家庄");
-            cityMobileDictionary.Add("13244444449", "石家庄");
-            cityMobileDictionary.Add("13244444450", "石家庄");
-            //宁波
-            cityMobileDictionary.Add("13244444433", "宁波");
-            cityMobileDictionary.Add("13244444434", "宁波");
-            //济南
-            cityMobileDictionary.Add("13244444435", "济南");
-            cityMobileDictionary.Add("13244444460", "济南");
-            cityMobileDictionary.Add("13244444461", "济南");
-            cityMobileDictionary.Add("13244444462", "济南");
-            cityMobileDictionary.Add("13244444463", "济南");
-            cityMobileDictionary.Add("13244444464", "济南");
-            cityMobileDictionary.Add("13244444465", "济南");
-            cityMobileDictionary.Add("13244444466", "济南");
-            cityMobileDictionary.Add("13244444467", "济南");
-            //沈阳
-            cityMobileDictionary.Add("13244444437", "沈阳");
-            cityMobileDictionary.Add("13244444468", "沈阳");
-            cityMobileDictionary.Add("13244444469", "沈阳");
-            cityMobileDictionary.Add("13244444451", "沈阳");
-            //大连
-            cityMobileDictionary.Add("13244444439", "大连");
-            cityMobileDictionary.Add("13244444470", "大连");
-            cityMobileDictionary.Add("13244444471", "大连");
-            cityMobileDictionary.Add("13244444472", "大连");
-            //南京
-            cityMobileDictionary.Add("13244444441", "南京");
-            cityMobileDictionary.Add("13244444473", "南京");
-            cityMobileDictionary.Add("13244444474", "南京");
-            cityMobileDictionary.Add("13244444475", "南京");
+            var list = this.cityList.Except(this.cityList.FindAll(o => o.CityName.Equals("中山")));
+            foreach (var city in list)
+            {
+                string[] mobiles = ConfigurationManager.AppSettings[city.CityName].Split(',');
+                foreach (var mobile in mobiles)
+                {
+                    this.cityMobileDictionary.Add(mobile.Trim(), city.CityName);
+                }
+            }
+        }
+
+        private void CreateOrderList()
+        {
+            foreach (var mobile in this.cityMobileDictionary)
+            {
+                var orderInfo = query.Query<N_Order_QuoteEx>().Find(n => n.Mobile == mobile.Key);
+                if (orderInfo != null && !string.IsNullOrEmpty(orderInfo.OrderID))
+                {
+                    this.orderList.Add(orderInfo);
+                }
+            }
         }
 
         private void CB_Mobile_SelectedIndexChanged(object sender, EventArgs e)
@@ -232,22 +170,107 @@ namespace LoadTest.BaseTools
             this.ClearText();
             string mobile = this.CB_Mobile.Text;
             string orderId = string.Empty;
-            var orderInfo = query.Query<N_Order_QuoteEx>().Find(n => n.Mobile == mobile);
+            N_Order_QuoteEx orderInfo;
+            if(this.orderList.Count==0)
+            {
+                orderInfo = query.Query<N_Order_QuoteEx>().Find(n => n.Mobile == mobile);
+            }
+            else
+            {
+                orderInfo = this.orderList.Find(n => n.Mobile == mobile);         
+            }
+            
             if (orderInfo != null && !string.IsNullOrEmpty(orderInfo.OrderID))
             {
                 orderId = orderInfo.OrderID;
             }
-            this.T_OrderId.Text = orderId;
+            this.CB_OrderId.Text = orderId;
         }
 
         private void ClearText()
         {
-            this.T_OrderId.Clear();
+            this.CB_OrderId.Text = string.Empty;
             this.CB_ContractType.Text = string.Empty;
-            this.CB_ContractName.Text = string.Empty;
+            this.T_ContractName.Text = string.Empty;
             this.T_ContractStampNo.Clear();
             this.T_ContractTemplateId.Clear();
             this.T_encdata.Clear();
+        }
+
+        private string GetSetUnsignedDesignContractPage(string pageHtml)
+        {
+            BaseDesignContractModel contract;
+            string orderId = this.CB_OrderId.Text;
+            string html = pageHtml;
+            // 获取合同模板Id
+            string templateId = this.T_ContractTemplateId.Text;
+            if (!string.IsNullOrEmpty(templateId) && !string.IsNullOrEmpty(orderId))
+            {
+                // 解析模板
+                //html = method.GetTemplateHtml(templateId);
+                // 初始化参数
+                contract = new BaseDesignContractModel(orderId);
+                // 变更签名参数
+                contract.SignatureA = contract.GetUnsignedContractSignature();
+                // 变更日期参数
+                contract.SetUnsignedDesignContractDate();
+                // 删除印章标签
+                html = method.RemoveStampImage(html);
+                // 删除打印标签
+                html = method.RemovePrintImage(html);
+                // 附加待签设置脚本
+                html = method.AppendUnsignedDesignContract(html);
+                // 注意放在最后去进行参数替换
+                html = method.ReplaceHtmlWithModel(contract, html);
+            }
+            return html;
+        }
+
+        private string GetSetUnsignedConstructionContractPage(string pageHtml)
+        {
+            BaseConstructionContractModel contract;
+            string orderId = this.CB_OrderId.Text;
+            string html = pageHtml;
+
+            // 获取合同模板Id
+            string templateId = this.T_ContractTemplateId.Text;
+
+            if (!string.IsNullOrEmpty(templateId) && !string.IsNullOrEmpty(orderId))
+            {
+                // 解析模板
+                //html = method.GetTemplateHtml(templateId);
+                // 初始化参数
+                contract = new BaseConstructionContractModel(orderId);
+                // 变更签名参数
+                contract.SignatureA = contract.GetUnsignedContractSignature();
+                // 变更日期参数
+                contract.SetUnsignedConstructionContractDate();
+                // 删除印章标签
+                html = method.RemoveStampImage(html);
+                // 删除打印标签
+                html = method.RemovePrintImage(html);
+                // 附加待签设置脚本
+                html = method.AppendUnsignedDesignContract(html);
+                // 注意放在最后去进行参数替换
+                html = method.ReplaceHtmlWithModel(contract, html);
+                // 隐藏在页面上隐藏签字标签
+                html = method.HideUnsignedContractSignatureTag(html);
+            }
+            return html;
+        }
+
+        private void Btn_GetTemplatePage_Click(object sender, EventArgs e)
+        {
+            string html = this.T_encdata.Text;
+            if (html.Trim() != string.Empty)
+                Clipboard.SetDataObject(html);
+        }
+
+        private void Btn_GetOrderList_Click(object sender, EventArgs e)
+        {
+            this.CreateOrderList();
+            var list = this.orderList.Select(o =>o.OrderID).ToArray();
+            this.CB_OrderId.Items.AddRange(list);
         }
     }
 }
