@@ -105,7 +105,7 @@ namespace EBS.Interface.EContract.Model
             this.DesignerName = DesignInfo.SoufunId == 0 ? string.Empty : DesignInfo.TrueName;
             this.DesignerMobile = DesignInfo.SoufunId == 0 ? string.Empty : DesignInfo.Mobile;
             this.ShopTelephone = string.Empty;
-            this.DesignerEmail = DesignInfo.EMail;
+            this.DesignerEmail = DesignInfo.SoufunId == 0 ? string.Empty : string.Empty;// DesignInfo.EMail;
 
             // 项目信息
             this.Project = OwnerInfo.EstateName;
