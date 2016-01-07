@@ -24,7 +24,7 @@ namespace LoadTest.BaseTools
         private List<N_Order_QuoteEx> orderList { get; set; }
         private List<CityInfo> cityList { get; set; }
         private BaseMethod method { get; set; }
-        private QueryEBS query { get; set; }
+        private QueryEBS entity { get; set; }
 
         public DoSignature()
         {
@@ -35,8 +35,8 @@ namespace LoadTest.BaseTools
         private void InitParam()
         {
             this.method = new BaseMethod();
-            this.query = new QueryEBS();
-            this.cityList = query.Query<CityInfo>().All().ToList();
+            this.entity = new QueryEBS();
+            this.cityList = entity.Query<CityInfo>().All().ToList();
             this.orderList = new List<N_Order_QuoteEx>();
             this.CreateCityMobileDictionary();
             contractTypeDictionary = new Dictionary<string, int>();
@@ -54,7 +54,6 @@ namespace LoadTest.BaseTools
             var citys = this.cityList.Except(this.cityList.FindAll(o => o.CityName.Equals("中山")));
             this.CB_CityList.Items.AddRange(citys.Select(o=>o.CityName).ToArray());
             this.CB_CityList.Text = this.CB_CityList.Items[0].ToString();
-
         }
 
         private void CreateParam()
@@ -62,13 +61,8 @@ namespace LoadTest.BaseTools
             this.ClearText();
             this.CB_Mobile.Text = string.Empty;
             this.CB_Mobile.Items.Clear();
-            foreach(var mobile in this.cityMobileDictionary)
-            {
-                if (this.CB_CityList.Text.Equals(mobile.Value))
-                {
-                    this.CB_Mobile.Items.Add(mobile.Key);
-                }
-            }
+            var mobileList = this.cityMobileDictionary.Where(o=>o.Value.Equals(this.CB_CityList.Text));
+            this.CB_Mobile.Items.AddRange(mobileList.Select(o => o.Key).ToArray());
         }
 
         private void CB_Type_SelectedIndexChanged(object sender, EventArgs e)
@@ -138,17 +132,28 @@ namespace LoadTest.BaseTools
             }
         }
 
-
+        /// <summary>
+        /// 读取配置文件中城市对应的手机号
+        /// </summary>
         private void CreateCityMobileDictionary()
         {
             this.cityMobileDictionary = new Dictionary<string, string>();
-            var list = this.cityList.Except(this.cityList.FindAll(o => o.CityName.Equals("中山")));
-            foreach (var city in list)
+            var citys = this.cityList.Where(o => !o.CityName.Equals("中山")).Select(o=>o.CityName).ToArray();
+            foreach (var cityName in citys)
             {
-                string[] mobiles = ConfigurationManager.AppSettings[city.CityName].Split(',');
+                string[] mobiles = ConfigurationManager.AppSettings[cityName].Split(',');
                 foreach (var mobile in mobiles)
                 {
-                    this.cityMobileDictionary.Add(mobile.Trim(), city.CityName);
+                    if (!this.cityMobileDictionary.ContainsKey(mobile.Trim()))
+                    {
+                        this.cityMobileDictionary.Add(mobile.Trim(), cityName);
+                    }
+                    else
+                    {
+                        string errorMsg = string.Format("城市：{0}，手机号：{1}\n存在多条重复记录，请检查配置文件！", cityName, mobile.Trim());
+                        string captionMsg = "错误信息";
+                        MessageBox.Show(errorMsg, captionMsg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -157,7 +162,7 @@ namespace LoadTest.BaseTools
         {
             foreach (var mobile in this.cityMobileDictionary)
             {
-                var orderInfo = query.Query<N_Order_QuoteEx>().Find(n => n.Mobile == mobile.Key);
+                var orderInfo = entity.Query<N_Order_QuoteEx>().Find(n => n.Mobile == mobile.Key);
                 if (orderInfo != null && !string.IsNullOrEmpty(orderInfo.OrderID))
                 {
                     this.orderList.Add(orderInfo);
@@ -173,7 +178,7 @@ namespace LoadTest.BaseTools
             N_Order_QuoteEx orderInfo;
             if(this.orderList.Count==0)
             {
-                orderInfo = query.Query<N_Order_QuoteEx>().Find(n => n.Mobile == mobile);
+                orderInfo = entity.Query<N_Order_QuoteEx>().Find(n => n.Mobile == mobile);
             }
             else
             {
@@ -269,8 +274,7 @@ namespace LoadTest.BaseTools
         private void Btn_GetOrderList_Click(object sender, EventArgs e)
         {
             this.CreateOrderList();
-            var list = this.orderList.Select(o =>o.OrderID).ToArray();
-            this.CB_OrderId.Items.AddRange(list);
+            this.CB_OrderId.Items.AddRange(this.orderList.Select(o => o.OrderID).ToArray());
         }
     }
 }
