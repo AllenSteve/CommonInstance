@@ -9,16 +9,16 @@ namespace EbsComponent.Method.DatabaseMethod
 {
     public class RepositoryEBS
     {
-        private string connection { get; set; }
+        private int dbType { get; set; }
 
         public RepositoryEBS()
-        { 
-
+        {
+            this.dbType = (int)ComponentORM.ORMappingTools.DBHelper.Sqldb.SandBox;
         }
 
         public Repository<T> Query<T>() where T : class
         {
-            var repository = new Repository<T>((int)ComponentORM.ORMappingTools.DBHelper.Sqldb.SandBox);
+            var repository = new Repository<T>(dbType);
             return repository;
         }
     }
