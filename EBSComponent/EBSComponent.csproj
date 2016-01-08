@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\EbsEnum.cs" />
-    <Compile Include="Method\DatabaseMethod\QueryEBS.cs" />
+    <Compile Include="Method\DatabaseMethod\RepositoryEBS.cs" />
     <Compile Include="Method\ModelMethod\BaseMethod.cs" />
     <Compile Include="Model\Entity\C_PageViewLog.cs" />
     <Compile Include="Model\ServiceModel\EContract\BaseConstructionContractModel.cs" />
