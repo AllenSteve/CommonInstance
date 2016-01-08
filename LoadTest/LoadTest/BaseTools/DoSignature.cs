@@ -1,4 +1,5 @@
-﻿using EBS.Interface.EContract.Method;
+﻿using ComponentORM.SQLHelper;
+using EBS.Interface.EContract.Method;
 using EBS.Interface.EContract.Model;
 using EBS.Interface.Model;
 using EbsComponent.Method.DatabaseMethod;
@@ -25,6 +26,8 @@ namespace LoadTest.BaseTools
         private List<CityInfo> cityList { get; set; }
         private BaseMethod method { get; set; }
         private RepositoryEBS entity { get; set; }
+        private Repository<CityInfo> cityInfoRepo { get; set; }
+        private Repository<N_Order_QuoteEx> orderQuoteExRepo { get; set; }
 
         public DoSignature()
         {
@@ -36,7 +39,9 @@ namespace LoadTest.BaseTools
         {
             this.method = new BaseMethod();
             this.entity = new RepositoryEBS();
-            this.cityList = entity.Query<CityInfo>().All().ToList();
+            this.cityInfoRepo = entity.CreateRepository<CityInfo>();
+            this.orderQuoteExRepo = entity.CreateRepository<N_Order_QuoteEx>();
+            this.cityList = cityInfoRepo.All().ToList();
             this.orderList = new List<N_Order_QuoteEx>();
             this.CreateCityMobileDictionary();
             contractTypeDictionary = new Dictionary<string, int>();
@@ -164,7 +169,7 @@ namespace LoadTest.BaseTools
         {
             foreach (var mobile in this.cityMobileDictionary)
             {
-                var orderInfo = entity.Query<N_Order_QuoteEx>().Find(n => n.Mobile == mobile.Key);
+                var orderInfo = this.orderQuoteExRepo.Find(n => n.Mobile == mobile.Key);
                 if (orderInfo != null && !string.IsNullOrEmpty(orderInfo.OrderID))
                 {
                     this.orderList.Add(orderInfo);
@@ -180,7 +185,7 @@ namespace LoadTest.BaseTools
             N_Order_QuoteEx orderInfo;
             if(this.orderList.Count==0)
             {
-                orderInfo = entity.Query<N_Order_QuoteEx>().Find(n => n.Mobile == mobile);
+                orderInfo = this.orderQuoteExRepo.Find(n => n.Mobile == mobile);
             }
             else
             {

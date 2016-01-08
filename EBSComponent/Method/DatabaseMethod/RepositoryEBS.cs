@@ -16,10 +16,9 @@ namespace EbsComponent.Method.DatabaseMethod
             this.dbType = (int)ComponentORM.ORMappingTools.DBHelper.Sqldb.SandBox;
         }
 
-        public Repository<T> Query<T>() where T : class
+        public Repository<T> CreateRepository<T>() where T : class
         {
-            var repository = new Repository<T>(dbType);
-            return repository;
+            return new Repository<T>(dbType);
         }
     }
 }
