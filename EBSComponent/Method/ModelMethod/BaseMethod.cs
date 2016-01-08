@@ -40,17 +40,6 @@ namespace EBS.Interface.EContract.Method
         /// <returns>模板Id</returns>
         public string GetContractTemplateID(string key,int contractType=0)
         {
-            //IDictionary<string,string> dict = new Dictionary<string,string>();
-            //dict.Add("北京施工（4.0）", "108dacc9-7f22-46ea-8e11-3f10eb2986e6");
-            //dict.Add("北京设计", "7a586e28-0b11-407c-bd4c-9f5a112993a4");
-
-            //if (dict.ContainsKey(key))
-            //{
-            //    return dict[key];
-            //}
-            //return string.Empty;
-            // 根据合同名称获取模板Id的方法
-            //return this.GetTemplateIdByContractName(key);
             return this.GetTemplateIdByOrderId(key,contractType);
         }
 
@@ -203,10 +192,6 @@ namespace EBS.Interface.EContract.Method
         /// <returns>去掉打印机标签的页面代码</returns>
         public string RemovePrintImage(string html)
         {
-            //html = this.RemoveNewPrintImage(html);
-            //html = this.HidePrintImage(html);
-            //string replaceStr = @"<img src=""http://img2.soufunimg.com/home/ebs/images/icon49.png"" style=""position: absolute;right: 10%; top: 30px; cursor: pointer;display:none;"" />";
-            //html = html.Replace(replaceStr, string.Empty);
             return html.Replace("http://img2.soufunimg.com/home/ebs/images/icon49.png",string.Empty);
         }
 
@@ -551,11 +536,20 @@ namespace EBS.Interface.EContract.Method
                 {
                     suitName = "个性化装修";  
                 }
-
             }
             else
             {
-                suitName = this.GetSuitInfo(suitId).SuitName.Replace("\"", string.Empty); 
+                var suitInfo = this.GetSuitInfo(suitId);
+                if (suitInfo.Status == 0)
+                {
+                    var suitNameList = this.GetSuitInfoList(suitInfo.CityId).Where(o => o.Status == 1).Select(s => s.SuitName).ToArray();
+                    suitName = suitNameList.Where(name => name.Contains("666") && !name.Contains("迷你") && !name.Contains("60㎡")).FirstOrDefault();
+                    suitName = string.IsNullOrEmpty(suitName) ? string.Empty : suitName;
+                }
+                else
+                {
+                    suitName = suitInfo.SuitName.Replace("\"", string.Empty); 
+                }
             }
 
             string contractName = string.Format("{0}施工合同{1}", cityName, suitName);
@@ -628,6 +622,12 @@ namespace EBS.Interface.EContract.Method
                 throw new ArgumentOutOfRangeException("未处理的合同类型");
             }
             return constractName;
+        }
+
+        private List<Suit_Info> GetSuitInfoList(int cityId)
+        {
+            List<Suit_Info> suitInfoList = EBS.Interface.Data.DBOper.Suit_Info.GetList("IsDel=0 AND CityId=@CityId", "", new object[] { cityId });
+            return suitInfoList;
         }
     }
     
