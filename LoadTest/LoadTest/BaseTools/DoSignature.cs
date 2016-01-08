@@ -115,13 +115,15 @@ namespace LoadTest.BaseTools
                     {
                         string msg = string.Format("获取印章号失败\n订单号：{0}\n合同名：{1}\n手机号：{2}", orderId, this.T_ContractName.Text, this.CB_Mobile.Text); 
                         EBS.SMSManager.SendEmail.Send("qiushilong@fang.com", "电子合同", msg);
-                        EBS.SMSManager.SendEmail.Send("linye@fang.com", "电子合同", msg);
+                        //EBS.SMSManager.SendEmail.Send("linye@fang.com", "电子合同", msg);
+                        //EBS.SMSManager.SendEmail.Send("zhangjunchao@fang.com", "电子合同", msg);
                     }
                     if (string.IsNullOrEmpty(this.T_ContractTemplateId.Text))
                     {
-                        string msg = string.Format("获取合同模板Id\n订单号：{0}\n合同名：{1}\n手机号：{2}", orderId, this.T_ContractName.Text, this.CB_Mobile.Text);
+                        string msg = string.Format("获取合同模板Id失败\n订单号：{0}\n合同名：{1}\n手机号：{2}", orderId, this.T_ContractName.Text, this.CB_Mobile.Text);
                         EBS.SMSManager.SendEmail.Send("qiushilong@fang.com", "电子合同", msg);
-                        EBS.SMSManager.SendEmail.Send("linye@fang.com", "电子合同", msg);
+                        //EBS.SMSManager.SendEmail.Send("linye@fang.com", "电子合同", msg);
+                        //EBS.SMSManager.SendEmail.Send("zhangjunchao@fang.com", "电子合同", msg);
                     }
                 }
             }
