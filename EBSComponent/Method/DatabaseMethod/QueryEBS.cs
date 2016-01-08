@@ -7,11 +7,11 @@ using ComponentORM.SQLHelper;
 
 namespace EbsComponent.Method.DatabaseMethod
 {
-    public class QueryEBS
+    public class RepositoryEBS
     {
         private string connection { get; set; }
 
-        public QueryEBS()
+        public RepositoryEBS()
         { 
 
         }

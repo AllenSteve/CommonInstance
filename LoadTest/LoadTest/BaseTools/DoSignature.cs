@@ -24,7 +24,7 @@ namespace LoadTest.BaseTools
         private List<N_Order_QuoteEx> orderList { get; set; }
         private List<CityInfo> cityList { get; set; }
         private BaseMethod method { get; set; }
-        private QueryEBS entity { get; set; }
+        private RepositoryEBS entity { get; set; }
 
         public DoSignature()
         {
@@ -35,7 +35,7 @@ namespace LoadTest.BaseTools
         private void InitParam()
         {
             this.method = new BaseMethod();
-            this.entity = new QueryEBS();
+            this.entity = new RepositoryEBS();
             this.cityList = entity.Query<CityInfo>().All().ToList();
             this.orderList = new List<N_Order_QuoteEx>();
             this.CreateCityMobileDictionary();
