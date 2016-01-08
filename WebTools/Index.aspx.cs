@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EBS.Interface.EContract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,10 @@ namespace EOP.Web.Ajax
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //HttpContext context = new HttpContext(Request,new HttpResponse(new System.IO.StringWriter()));
+            var contract = new GetUnsignedConstructionContract();
+            contract.ProcessRequest(base.Context);
+            base.Context.Response.End();
         }
     }
 }
