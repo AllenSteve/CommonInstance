@@ -35,14 +35,25 @@ namespace EBS.Interface.EContract
 
         public void ProcessRequest(HttpContext context)
         {
-            // OrderID，SoufunID 
+            // OrderID，SoufunID
             string orderId = context.Request["OrderID"];
             string soufunId = context.Request["SoufunID"];
-
+            int isSandbox = FunLayer.Transform.Int(context.Request["isSandbox"]);
+            if (isSandbox == 1)
+            {
+                if (HttpContext.Current.Items["IsTestUser"] != null)
+                {
+                    HttpContext.Current.Items["IsTestUser"] = 1;
+                }
+                else
+                {
+                    HttpContext.Current.Items.Add("IsTestUser", 1);
+                }
+            }
             // 获取合同模板Id
-            string templateId = method.GetContractTemplateID("北京设计合同");
+            string templateId = method.GetContractTemplateID(orderId, (int)EBS.BLL.EnumBLL.ContractType.设计合同);
             // 获取印章Id
-            string stampId = method.GetStampId(templateId);
+            //string stampId = method.GetStampId(templateId);
 
             if (!string.IsNullOrEmpty(templateId)&&!string.IsNullOrEmpty(orderId))
             {
@@ -51,7 +62,7 @@ namespace EBS.Interface.EContract
                 // 初始化参数
                 contract = new BaseDesignContractModel(orderId);
                 // 变更签名参数
-                contract.SignatureA=contract.GetPreviewContractSignature(orderId);
+                contract.SignatureA = contract.GetPreviewContractSignature(orderId, (int)EBS.BLL.EnumBLL.ContractType.设计合同);
                 // 删除打印标签
                 html = method.RemovePrintImage(html);
                 // 附加印章信息

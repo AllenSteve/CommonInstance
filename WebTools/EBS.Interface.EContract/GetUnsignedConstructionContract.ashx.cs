@@ -34,11 +34,22 @@ namespace EBS.Interface.EContract
             // OrderID，SoufunID
             string orderId = context.Request["OrderID"];
             string soufunId = context.Request["SoufunID"];
-
+            int isSandbox = FunLayer.Transform.Int(context.Request["isSandbox"]);
+            if (isSandbox == 1)
+            {
+                if (HttpContext.Current.Items["IsTestUser"] != null)
+                {
+                    HttpContext.Current.Items["IsTestUser"] = 1;
+                }
+                else
+                {
+                    HttpContext.Current.Items.Add("IsTestUser", 1);
+                }
+            }
             // 获取合同模板Id
-            string templateId = method.GetContractTemplateID("北京施工合同666精装4.0");
+            string templateId = method.GetContractTemplateID(orderId, (int)EBS.BLL.EnumBLL.ContractType.施工合同);
             // 获取印章Id
-            string stampId = method.GetStampId(templateId);
+            //string stampId = method.GetStampId(templateId);
 
             if (!string.IsNullOrEmpty(templateId) && !string.IsNullOrEmpty(orderId))
             {
