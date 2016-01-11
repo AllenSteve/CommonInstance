@@ -128,6 +128,8 @@ namespace EBS.Interface.EContract.Model
             // 监理信息
             Admin_UserInfo JianliInfo = base.method.GetJianliInfo(orderId);
 
+            //AmountCalculationModel paymentAmount = new AmountCalculationModel(orderId, false);
+
             // 承包方信息
             //CityContractConfig cityContractConfig = method.GetCityContractConfig(OwnerInfo.CityID.ToString());
 
@@ -178,7 +180,7 @@ namespace EBS.Interface.EContract.Model
             /// <summary>
             /// 工程款支付方式
             /// </summary>
-            IDictionary<string, string> dictionary = this.GetPaymentDictionary(ContractInfo, OwnerInfo, decimal.Parse(this.ProCost), base.stringFormat);
+            IDictionary<string, decimal> dictionary = this.GetPaymentDictionary(ContractInfo, OwnerInfo, decimal.Parse(this.ProCost), base.stringFormat);
             this.SignAmount = this.CheckDictionary(dictionary,"签约");
             this.KGJDAmount = this.CheckDictionary(dictionary, "开工交底");
             this.FWCQAmount = this.CheckDictionary(dictionary, "房屋拆改");
@@ -186,11 +188,11 @@ namespace EBS.Interface.EContract.Model
             this.FSYSAmount = this.CheckDictionary(dictionary, "防水验收"); 
             this.WGYSAmount = this.CheckDictionary(dictionary, "瓦工验收"); 
             this.MGYSAmount = this.CheckDictionary(dictionary, "木工验收"); 
-            this.YQYSAmount = this.CheckDictionary(dictionary, "油漆验收"); 
-            this.JGYSAmount = this.CheckDictionary(dictionary, "竣工验收");
+            this.YQYSAmount = this.CheckDictionary(dictionary, "油漆验收");
+            // 竣工验收
+            this.JGYSAmount = this.GetLastAmount(orderId,dictionary);
             this.MGSGAmount = this.CheckDictionary(dictionary, "木工施工");
             this.WQSGAmount = this.CheckDictionary(dictionary, "尾期施工");
-
 
             /// <summary>
             /// 签名信息
@@ -241,21 +243,35 @@ namespace EBS.Interface.EContract.Model
             string projectCost = string.Empty;
             PaymentModel payment = PaymentModel.GetPaymentList(orderId);
             projectCost = payment.ContractAmount.ToString(stringFormat);
+
+            //AmountCalculationModel paymentAmount = new AmountCalculationModel(orderId, false);
+            //projectCost = paymentAmount.ContractAmount.ToString(stringFormat);
             return string.IsNullOrEmpty(projectCost) ? decimal.Zero.ToString() : projectCost;
         }
 
-        private IDictionary<string, string> GetPaymentDictionary(N_Order_QuoteInfo ContractInfo, N_Order_QuoteEx OwnerInfo, decimal ProCost, string stringFormat = @"f2")
+        private IDictionary<string, decimal> GetPaymentDictionary(N_Order_QuoteInfo ContractInfo, N_Order_QuoteEx OwnerInfo, decimal ProCost, string stringFormat = @"f2")
         {
             List<Payment> PaymentList = base.GetPaymentList(ContractInfo, OwnerInfo, decimal.Parse(this.ProCost));
-            IDictionary<string, string> dictionary = base.GetPaymentDictionary(PaymentList, stringFormat);
+            IDictionary<string, decimal> dictionary = base.GetPaymentDictionary(PaymentList);
             return dictionary;
         }
 
-        private string CheckDictionary(IDictionary<string, string> dictionary, string key)
+        private string CheckDictionary(IDictionary<string, decimal> dictionary, string key, string stringFormat = @"f2")
         {
             if (dictionary.ContainsKey(key))
             {
-                return dictionary[key];
+                return dictionary[key].ToString(stringFormat);
+            }
+            return @"0.00";
+        }
+
+        private string GetLastAmount(string orderId,IDictionary<string, decimal> dictionary, string key ="竣工验收")
+        {
+            if (dictionary.ContainsKey(key))
+            {
+                decimal amount = decimal.Parse(this.GetProjectCost(orderId,@"f6"));
+                decimal sum = dictionary.Where(o=>!o.Key.Equals(key)).Sum(d=>d.Value);
+                return (amount-sum).ToString(base.stringFormat);
             }
             return @"0.00";
         }

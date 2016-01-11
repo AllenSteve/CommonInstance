@@ -118,14 +118,14 @@ namespace EBS.Interface.EContract.Model
             return ContractValidity.ToString();
         }
 
-        protected IDictionary<string, string> GetPaymentDictionary(List<Payment> paymentList, string stringFormat = @"f2")
+        protected IDictionary<string, decimal> GetPaymentDictionary(List<Payment> paymentList)
         {
-            IDictionary<string, string> dictionary = new Dictionary<string, string>();
+            IDictionary<string, decimal> dictionary = new Dictionary<string, decimal>();
             foreach (var payment in paymentList)
             {
                 if (!dictionary.ContainsKey(payment.StateName))
                 {
-                    dictionary.Add(payment.StateName, payment.Money.ToString(stringFormat));
+                    dictionary.Add(payment.StateName,payment.Money);
                 }
             }
             return dictionary;

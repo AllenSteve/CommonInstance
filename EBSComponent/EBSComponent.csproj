@@ -71,6 +71,7 @@
     <Compile Include="Method\DatabaseMethod\RepositoryEBS.cs" />
     <Compile Include="Method\ModelMethod\BaseMethod.cs" />
     <Compile Include="Model\Entity\C_PageViewLog.cs" />
+    <Compile Include="Model\ServiceModel\EContract\AmountCalculationModel.cs" />
     <Compile Include="Model\ServiceModel\EContract\BaseConstructionContractModel.cs" />
     <Compile Include="Model\ServiceModel\EContract\BaseContractModel.cs" />
     <Compile Include="Model\ServiceModel\EContract\BaseDesignContractModel.cs" />
