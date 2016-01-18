@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EOP.DapperModel;
 using ExtensionComponent;
 using System.Diagnostics;
+using EOPComponent.Model.Entity;
 
 namespace StandardUnitTest.ExtensionTest
 {

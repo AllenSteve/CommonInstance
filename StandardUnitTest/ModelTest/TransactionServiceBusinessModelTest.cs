@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 using ComponentModels.ServiceModel;
+using EOPComponent.Model.ServiceModel;
 
 namespace EOP.UnitTest.ModelTest
 {

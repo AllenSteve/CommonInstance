@@ -3,10 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Collections.Generic;
 using ComponentORM;
-using DapperModel.EBS;
-using EOP.DapperModel;
-using EOP.Enums;
 using ComponentORM.ORMappingTools;
+using EOPComponent.Model.Entity;
+using EOPComponent.Enums;
 namespace EOP.UnitTest
 {
     [TestClass]

@@ -3,8 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Collections.Generic;
 using ComponentORM;
-using EOP.DapperModel;
 using ComponentORM.ORMappingTools;
+using EOPComponent.Model.Entity;
 
 namespace EOP.UnitTest
 {
