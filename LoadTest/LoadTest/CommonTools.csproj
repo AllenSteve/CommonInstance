@@ -164,6 +164,10 @@
       <Project>{d9d1b88a-03b6-4ecc-b311-f84b13b9c3c6}</Project>
       <Name>EBSComponent</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\EOPComponent\EOPComponent.csproj">
+      <Project>{4d3e5041-6257-46dd-9c9f-3cb4625cebf8}</Project>
+      <Name>EOPComponent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ORMappingComponent\ComponentORM.csproj">
       <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
       <Name>ComponentORM</Name>

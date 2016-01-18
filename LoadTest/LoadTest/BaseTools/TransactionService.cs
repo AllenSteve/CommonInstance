@@ -1,4 +1,5 @@
 ﻿using ComponentModels.ServiceModel;
+using EOPComponent.Model.ServiceModel;
 using System;
 using System.Configuration;
 using System.Data;
