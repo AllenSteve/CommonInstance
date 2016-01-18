@@ -48,7 +48,7 @@ namespace EOPComponent.Enums.Method
         /// </summary>
         /// <param name="result">查询记录包括订单ID和公司ID</param>
         /// <param name="score">要更新的积分值</param>
-        public void UpdateCompanyScore(IEnumerable<object> result, int score)
+        public void UpdateEachCompanyScore(IEnumerable<object> result, int score)
         {
             IDictionary<string, object> itemLine;
             string orderId;
@@ -404,7 +404,7 @@ namespace EOPComponent.Enums.Method
         /// 此处更新积分--该方法效率较低，不建议采用
         /// </summary>
         /// <param name="scoreAccumulationList">公司积分统计列表</param>
-        public void UpdateEachCompanyScore(List<CompanyScoreAccumulationModel> scoreAccumulationList)
+        public void UpdateEachCompanyScore(IEnumerable<CompanyScoreAccumulationModel> scoreAccumulationList)
         {
             foreach (var company in scoreAccumulationList)
             {
@@ -463,7 +463,7 @@ namespace EOPComponent.Enums.Method
             return sql.ToString();
         }
 
-        private string CompanyScoreCase(List<CompanyScoreAccumulationModel> scoreAccumulationList)
+        private string CompanyScoreCase(IEnumerable<CompanyScoreAccumulationModel> scoreAccumulationList)
         {
             StringBuilder sql = new StringBuilder();
             foreach (var company in scoreAccumulationList)
@@ -477,11 +477,38 @@ namespace EOPComponent.Enums.Method
         /// 此处更新积分
         /// </summary>
         /// <param name="scoreAccumulationList">公司积分统计列表</param>
-        public void UpdateBatchCompanyScore(List<CompanyScoreAccumulationModel> scoreAccumulationList)
+        public void UpdateBatchCompanyScore(IEnumerable<CompanyScoreAccumulationModel> scoreAccumulationList)
         {
             string companyScoreCase = this.CompanyScoreCase(scoreAccumulationList);
             string updateSQL = ScoreUpdateMethod.UpdateCompanyByCompanyScoreList().Replace("@CompanyScoreCase", companyScoreCase);
             object param = new { CompanyIds = scoreAccumulationList.Select(o=>o.CompanyId).ToArray() };
+            int updateResult = this.db.ExecuteSQL(updateSQL, param);
+        }
+
+        public IEnumerable<CompanyScoreOperationModel> Query(string sql, int score,object param = null)
+        {
+            return this.db.Query(sql, param).Select(o=>new CompanyScoreOperationModel(o,score)); 
+        }
+
+        private string CompanyScoreCase(IEnumerable<CompanyScoreOperationModel> scoreOperationList)
+        {
+            StringBuilder sql = new StringBuilder();
+            foreach (var company in scoreOperationList)
+            {
+                sql.Append(string.Format(" WHEN {0} THEN {1}", company.CompanyId, company.OperationScore));
+            }
+            return sql.ToString();
+        }
+
+        /// <summary>
+        /// 批量更新公司积分
+        /// </summary>
+        /// <param name="result">公司积分列表</param>
+        public void UpdateBatchCompanyScore(IEnumerable<CompanyScoreOperationModel> scoreOperationList)
+        {
+            string companyScoreCase = this.CompanyScoreCase(scoreOperationList);
+            string updateSQL = ScoreUpdateMethod.UpdateCompanyByCompanyScoreList().Replace("@CompanyScoreCase", companyScoreCase);
+            object param = new { CompanyIds = scoreOperationList.Select(o => o.CompanyId).ToArray() };
             int updateResult = this.db.ExecuteSQL(updateSQL, param);
         }
     }

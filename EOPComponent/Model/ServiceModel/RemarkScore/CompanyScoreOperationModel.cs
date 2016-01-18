@@ -49,6 +49,17 @@ namespace EOPComponent.Model.ScoreAccumulation
             this.OperationScore = operation.OperationScore;
         }
 
+        public CompanyScoreOperationModel(object record,int score)
+        {
+            if (record != null)
+            {
+                var row = (IDictionary<string, object>)record;
+                //string orderId = row["OrderID"].ToString();
+                this.CompanyId = int.Parse(row["CompanyId"].ToString());
+                this.OperationScore = int.Parse(row["AMOUNT"].ToString()) * score;
+            }
+        }
+
         public bool IsEggRemark(int remarkType)
         {
             return remarkType == (int)RemarkScoreType.鸡蛋;
