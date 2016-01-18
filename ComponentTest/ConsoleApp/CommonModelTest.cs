@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExtensionComponent;
-using ComponentModels.Enums;
 using System.Reflection;
 using BaseComponent.DocumentParser;
 using ComponentORM;
@@ -13,9 +12,11 @@ using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
-using EOP.DapperModel.EBS;
 using ComponentORM.ORMappingTools;
 using ComponentModels.EbsDBModel;
+using EOPComponent.Model.Entity;
+using EOPComponent.Enums;
+using EOPComponent.Model.ServiceModel;
 
 namespace ComponentTest.ConsoleApp
 {

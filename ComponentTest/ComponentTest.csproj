@@ -84,6 +84,10 @@
       <Project>{d9d1b88a-03b6-4ecc-b311-f84b13b9c3c6}</Project>
       <Name>EBSComponent</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EOPComponent\EOPComponent.csproj">
+      <Project>{4d3e5041-6257-46dd-9c9f-3cb4625cebf8}</Project>
+      <Name>EOPComponent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExtensionComponent\ExtensionComponent.csproj">
       <Project>{40e7c251-7180-4d78-8b54-862b86c7698a}</Project>
       <Name>ExtensionComponent</Name>
