@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="Entity\iTECERP.DBModel\CodeTable.cs" />
+    <Compile Include="Entity\MTI.DBModel\SankagetuMatomeBunkaieLicenseFromFile.cs" />
     <Compile Include="LogModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\BaseServiceModel.cs" />
