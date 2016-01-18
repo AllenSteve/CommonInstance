@@ -50,6 +50,8 @@
     <Compile Include="ServiceModel\BaseServiceModel\ServiceReturn.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\XMLNode.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\XMLNodeList.cs" />
+    <Compile Include="ServiceModel\CheckUserInfo.cs" />
+    <Compile Include="ServiceModel\Product.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExtensionComponent\ExtensionComponent.csproj">
