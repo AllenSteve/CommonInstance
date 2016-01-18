@@ -43,25 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
-    <Compile Include="Enums\Eop.Enum\DealerConfiguration.cs" />
-    <Compile Include="Enums\Eop.Enum\DealerPayRecordLog.cs" />
-    <Compile Include="Enums\Eop.Enum\ServiceEnum.cs" />
-    <Compile Include="Enums\Eop.Enum\ServiceLogType.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\AdminUserOperLog.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\CallbackUserInfo.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\DealerClassConfig.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\DealerPayRecord.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\DealerServiceLog.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\DealerSettlement.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\EOPCityInfo.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\Partner_Company.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\Partner_CompanyExtent.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\PayNotice_2_0_Log.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\ScoreConfig.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\SendOrderInfo.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\SolutionConfig.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\SUserBase.cs" />
-    <Compile Include="DatabaseModel\EOP.DBModel\SUserBaseVisitLog.cs" />
     <Compile Include="LogModel.cs" />
     <Compile Include="DatabaseModel\MyDBModel\MTI.DBModel\SankagetuMatomeBunkaieLicenseFromFile.cs" />
     <Compile Include="DatabaseModel\MyDBModel\iTECERP.DBModel\CodeTable.cs" />
@@ -71,8 +52,6 @@
     <Compile Include="ServiceModel\BaseServiceModel\Product.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\ServiceMessage.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\ServiceReturn.cs" />
-    <Compile Include="ServiceModel\EOP.ServiceModel\TransactionServiceBaseModel.cs" />
-    <Compile Include="ServiceModel\EOP.ServiceModel\TransactionServiceBusinessModel.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\XMLNode.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\XMLNodeList.cs" />
   </ItemGroup>
@@ -83,6 +62,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Enums\" />
     <Folder Include="ModelMethod\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
