@@ -281,6 +281,10 @@ namespace ComponentORM.ORMappingTools
             return conn;
         }
 
+        public object ExecuteScalar(string execSQL, object paramArray = null)
+        {
+            return connection.ExecuteScalar(execSQL, paramArray);
+        }
 
         private bool ContainsConnectionType(int dbType)
         {
