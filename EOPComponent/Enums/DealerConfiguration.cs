@@ -13,4 +13,12 @@ namespace EOPComponent.Enums
         C=3,
         D=4
     }
+    public enum ScoreType
+    {
+        业主口碑 = 1,
+        工程质量 = 2,
+        接单能力 = 3,
+        线上流水 = 4,
+        派单消耗 = 5
+    }
 }

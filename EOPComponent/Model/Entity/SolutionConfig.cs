@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace EOPComponent.Model.Entity
 {
-   public class SolutionConfig
+    public class SolutionConfig
     {
         public int ID { get; set; }
-        public string TypeID { get; set; }
-        public int SolutionMinBudget { get; set; }
-        public int SolutionMaxBudget { get; set; }
-        public int InformationFees { get; set; }
+        public int TypeID { get; set; }
+        public decimal SolutionMinBudget { get; set; }
+        public decimal SolutionMaxBudget { get; set; }
+        public decimal InformationFees { get; set; }
         public DateTime CreateTime { get; set; }
         public int IsDel { get; set; }
+        public int SolutionID { get; set; }
 
     }
 }
