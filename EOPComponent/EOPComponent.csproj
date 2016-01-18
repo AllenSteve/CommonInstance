@@ -39,7 +39,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\DealerConfiguration.cs" />
+    <Compile Include="Enums\DealerPayRecordLog.cs" />
+    <Compile Include="Enums\ServiceEnum.cs" />
+    <Compile Include="Enums\ServiceLogType.cs" />
+    <Compile Include="Model\Entity\AdminUserOperLog.cs" />
+    <Compile Include="Model\Entity\CallbackUserInfo.cs" />
+    <Compile Include="Model\Entity\DealerClassConfig.cs" />
+    <Compile Include="Model\Entity\DealerPayRecord.cs" />
+    <Compile Include="Model\Entity\DealerServiceLog.cs" />
+    <Compile Include="Model\Entity\DealerSettlement.cs" />
+    <Compile Include="Model\Entity\EOPCityInfo.cs" />
+    <Compile Include="Model\Entity\Partner_Company.cs" />
+    <Compile Include="Model\Entity\Partner_CompanyExtent.cs" />
+    <Compile Include="Model\Entity\PayNotice_2_0_Log.cs" />
+    <Compile Include="Model\Entity\ScoreConfig.cs" />
+    <Compile Include="Model\Entity\SendOrderInfo.cs" />
+    <Compile Include="Model\Entity\SolutionConfig.cs" />
+    <Compile Include="Model\Entity\SUserBase.cs" />
+    <Compile Include="Model\Entity\SUserBaseVisitLog.cs" />
+    <Compile Include="Model\ServiceModel\TransactionServiceBaseModel.cs" />
+    <Compile Include="Model\ServiceModel\TransactionServiceBusinessModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Method\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExtensionComponent\ExtensionComponent.csproj">
+      <Project>{40e7c251-7180-4d78-8b54-862b86c7698a}</Project>
+      <Name>ExtensionComponent</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
