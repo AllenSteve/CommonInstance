@@ -44,12 +44,8 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="LogModel.cs" />
-    <Compile Include="DatabaseModel\MyDBModel\MTI.DBModel\SankagetuMatomeBunkaieLicenseFromFile.cs" />
-    <Compile Include="DatabaseModel\MyDBModel\iTECERP.DBModel\CodeTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\BaseServiceModel.cs" />
-    <Compile Include="ServiceModel\BaseServiceModel\CheckUserInfo.cs" />
-    <Compile Include="ServiceModel\BaseServiceModel\Product.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\ServiceMessage.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\ServiceReturn.cs" />
     <Compile Include="ServiceModel\BaseServiceModel\XMLNode.cs" />
