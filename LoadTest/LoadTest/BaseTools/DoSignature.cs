@@ -167,10 +167,11 @@ namespace LoadTest.BaseTools
 
         private void CreateOrderList()
         {
+            this.orderList.Clear();
             foreach (var mobile in this.cityMobileDictionary)
             {
-                var orderInfo = this.orderQuoteExRepo.Find(n => n.Mobile == mobile.Key);
-                if (orderInfo != null && !string.IsNullOrEmpty(orderInfo.OrderID))
+                var orderInfo = this.orderQuoteExRepo.Find(n => n.Mobile == mobile.Key && !string.IsNullOrEmpty(n.OrderID));
+                if (orderInfo != null)
                 {
                     this.orderList.Add(orderInfo);
                 }
@@ -281,6 +282,8 @@ namespace LoadTest.BaseTools
         private void Btn_GetOrderList_Click(object sender, EventArgs e)
         {
             this.CreateOrderList();
+            this.CB_OrderId.Text = string.Empty;
+            this.CB_OrderId.Items.Clear();
             this.CB_OrderId.Items.AddRange(this.orderList.Select(o => o.OrderID).ToArray());
         }
 
