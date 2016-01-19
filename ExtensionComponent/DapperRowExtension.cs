@@ -19,7 +19,7 @@ namespace ExtensionComponent
             for (int i = 0; i < properties.Length; ++i)
             {
                 columnType = properties[i].PropertyType;
-                if (record.ContainsKey(properties[i].Name))
+                if (record.ContainsKey(properties[i].Name) && record[properties[i].Name]!=null)
                 {
                     valueString = record[properties[i].Name].ToString();
                     properties[i].SetValue(result, Convert.ChangeType(valueString, columnType));
