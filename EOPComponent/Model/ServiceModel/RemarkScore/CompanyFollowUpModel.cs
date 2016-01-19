@@ -13,6 +13,10 @@ namespace EOPComponent.Model.ScoreAccumulation
         public int IsFlower { get; set; }
         public int CompanyId { get; set; }
 
+        public CompanyFollowUpModel()
+        { 
+        }
+
         /// <summary>
         /// 构造函数，解析Dapper查询结果记录行（DapperRow类型）
         /// </summary>
