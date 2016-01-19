@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonEqualityComparer.cs" />
+    <Compile Include="DapperRowExtension.cs" />
     <Compile Include="DistinctExtensions.cs" />
     <Compile Include="StringExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
