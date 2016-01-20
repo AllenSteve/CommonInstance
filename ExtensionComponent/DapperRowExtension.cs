@@ -9,7 +9,7 @@ namespace ExtensionComponent
 {
     public static class DapperRowExtension
     {
-        public static T ConvertDapperRowTo<T>(this object row)where T : new()
+        public static T ConvertDapperRowTo<T>(this IDictionary<string, object> row) where T : new()
         {
             T result = new T();
             Type columnType = null;
