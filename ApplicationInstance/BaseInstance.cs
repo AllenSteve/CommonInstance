@@ -14,7 +14,9 @@ namespace ApplicationInstance
             //new CommonModelTest().RunSwitchTest();
             //new StringTest();
 
-            new OrmQueryTest();
+            //new OrmQueryTest();
+
+            bool flag = bool.Parse("True");
         }
     }
 }
