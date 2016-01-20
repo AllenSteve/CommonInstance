@@ -29,7 +29,8 @@ namespace StandardUnitTest.ExtensionTest
             IEnumerable<object> list = method.Query(ScoreUpdateMethod.QueryFollowUpLogCompanyList(), param);
             foreach(var item in list)
             {
-                CompanyFollowUpModel result = item.ConvertDapperRowTo<CompanyFollowUpModel>();
+                var record = (IDictionary<string, object>)item;
+                CompanyFollowUpModel result = record.ConvertDapperRowTo<CompanyFollowUpModel>();
                 
             }
 
