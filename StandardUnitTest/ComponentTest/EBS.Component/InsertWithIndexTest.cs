@@ -11,7 +11,6 @@ namespace StandardUnitTest.ComponentTest.EBS.Component
     [TestClass]
     public class InsertWithIndexTest
     {
-
         // arrange
         private DBHelper db { get; set; }
         private Random rand { get; set; }
