@@ -22,7 +22,7 @@ namespace ComponentORM.ORMappingTools
         /// 数据库连接字符串
         /// </summary>
         /// 
-        private static readonly string connStr = @"Data Source=LACRIMA\LACRIMA;Initial Catalog=iTECERP;UID=sa;PWD=123456;";
+        private static string sqlConnectionStr = @"Data Source=LACRIMA\LACRIMA;Initial Catalog=iTECERP;UID=sa;PWD=123456;";
         //private static readonly string connStr = @"Data Source=192.168.127.154\localdb;Initial Catalog=workDB;UID=sa;PWD=123456;";
         //private static readonly string connStr = "Data Source=123.103.35.138;Initial Catalog=jjjy_test1107;UID=jjjy_test_admin;PWD=3791f38D;";
 
@@ -54,7 +54,7 @@ namespace ComponentORM.ORMappingTools
         {
             if (type == 0)
             {
-                _connection = OpenSqlConnection(connStr);
+                _connection = OpenSqlConnection(sqlConnectionStr);
             }
             else if (this.ContainsConnectionType(type))
             {
@@ -79,7 +79,7 @@ namespace ComponentORM.ORMappingTools
         public static SqlConnection CreateConnection(Sqldb db = Sqldb.OrderReadOnly)
         {
             string dbName = ((Sqldb)db).ToString();
-            string sqlConnectionStr = ConfigurationManager.ConnectionStrings[dbName].ConnectionString;
+            sqlConnectionStr = ConfigurationManager.ConnectionStrings[dbName].ConnectionString;
             //string sqlConnectionStr = ConfigurationManager.AppSettings[dbName];
             return new SqlConnection(sqlConnectionStr);
         }
@@ -113,7 +113,15 @@ namespace ComponentORM.ORMappingTools
             /// <summary>
             /// 正式站-沙箱库
             /// </summary>
-            SandBox = 7
+            SandBox = 7,
+            /// <summary>
+            /// 本地测试库
+            /// </summary>
+            TestServerDB =8,
+            /// <summary>
+            /// 评论库
+            /// </summary>
+            CommentServerDB =9
         }
 
         /// <summary>
@@ -223,6 +231,60 @@ namespace ComponentORM.ORMappingTools
         }
 
         /// <summary>
+        /// 事务插入
+        /// </summary>
+        /// <returns></returns>
+        public int TransactionAdd<T>(T entity)
+        {
+            int ret = 0;
+            if (this.connection.State == ConnectionState.Closed)
+            {
+                this.connection.Open();
+            }
+            using(IDbTransaction transaction = this.connection.BeginTransaction())
+            { 
+                try
+                {
+                    ret = this.connection.Execute(sql.CreateSQLInsertNewEntity<T>(), entity, transaction);
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    ret = -1;
+                    transaction.Rollback();
+                }
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// 事务更新
+        /// </summary>
+        /// <returns></returns>
+        public int TransactionUpdate<T>(T entity)
+        {
+            int ret = 0;
+            if (this.connection.State == ConnectionState.Closed)
+            {
+                this.connection.Open();
+            }
+            using (IDbTransaction transaction = this.connection.BeginTransaction())
+            {
+                try
+                {
+                    ret = this.connection.Execute(sql.CreateSQLUpdateById<T>(), entity, transaction);
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    ret = -1;
+                    transaction.Rollback();
+                }
+            }
+            return ret;
+        }
+
+        /// <summary>
         /// 删除对象
         /// </summary>
         /// <typeparam name="T">对象数据类型</typeparam>
@@ -275,9 +337,9 @@ namespace ComponentORM.ORMappingTools
         /// </summary>
         /// <param name="sqlConnectionString">数据库连接字符串，默认为null</param>
         /// <returns>返回数据库连接对象</returns>
-        public static SqlConnection OpenSqlConnection(string sqlConnectionString = null)
+        public static SqlConnection OpenSqlConnection(string conStr = null)
         {
-            SqlConnection conn = new SqlConnection(sqlConnectionString);
+            SqlConnection conn = new SqlConnection(conStr);
             return conn;
         }
 
