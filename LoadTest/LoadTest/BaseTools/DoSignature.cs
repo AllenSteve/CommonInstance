@@ -107,6 +107,7 @@ namespace LoadTest.BaseTools
             try
             {
                 string orderId = this.CB_OrderId.Text.Trim();
+                StringBuilder msg = new StringBuilder();
                 if (!string.IsNullOrEmpty(orderId))
                 {
                     this.T_ContractName.Clear();
@@ -118,15 +119,34 @@ namespace LoadTest.BaseTools
                     
                     if (string.IsNullOrEmpty(this.T_ContractStampNo.Text))
                     {
-                        string msg = string.Format("获取印章号失败\n订单号：{0}\n合同名：{1}\n手机号：{2}", orderId, this.T_ContractName.Text, this.CB_Mobile.Text); 
-                        EBS.SMSManager.SendEmail.Send("qiushilong@fang.com", "电子合同", msg);
+                        msg.Clear();
+                        msg.Append("获取印章号失败\n");
+                        msg.Append("订单号：");
+                        msg.Append(orderId);
+                        msg.Append("\n");
+                        msg.Append("合同名：");
+                        msg.Append(this.T_ContractName.Text);
+                        msg.Append("\n");
+                        msg.Append("手机号：");
+                        msg.Append(this.CB_Mobile.Text);
+                        EBS.SMSManager.SendEmail.Send("qiushilong@fang.com", "电子合同", msg.ToString());
                         //EBS.SMSManager.SendEmail.Send("linye@fang.com", "电子合同", msg);
                         //EBS.SMSManager.SendEmail.Send("zhangjunchao@fang.com", "电子合同", msg);
                     }
                     if (string.IsNullOrEmpty(this.T_ContractTemplateId.Text))
                     {
-                        string msg = string.Format("获取合同模板Id失败\n订单号：{0}\n合同名：{1}\n手机号：{2}", orderId, this.T_ContractName.Text, this.CB_Mobile.Text);
-                        EBS.SMSManager.SendEmail.Send("qiushilong@fang.com", "电子合同", msg);
+                        msg.Clear();
+                        msg.Append("根据合同名称获取合同模板Id失败\n");
+                        msg.Append("订单号：");
+                        msg.Append(orderId);
+                        msg.Append("\n");
+                        msg.Append("合同名：");
+                        msg.Append(this.T_ContractName.Text);
+                        msg.Append("\n");
+                        msg.Append("手机号：");
+                        msg.Append(this.CB_Mobile.Text);
+                        msg.Append("\n");
+                        EBS.SMSManager.SendEmail.Send("qiushilong@fang.com", "电子合同", msg.ToString());
                         //EBS.SMSManager.SendEmail.Send("linye@fang.com", "电子合同", msg);
                         //EBS.SMSManager.SendEmail.Send("zhangjunchao@fang.com", "电子合同", msg);
                     }
@@ -148,18 +168,21 @@ namespace LoadTest.BaseTools
             var citys = this.cityList.Where(o => !o.CityName.Equals("中山")).Select(o=>o.CityName).ToArray();
             foreach (var cityName in citys)
             {
-                string[] mobiles = ConfigurationManager.AppSettings[cityName].Split(',');
-                foreach (var mobile in mobiles)
-                {
-                    if (!this.cityMobileDictionary.ContainsKey(mobile.Trim()))
+                if (ConfigurationManager.AppSettings.AllKeys.Contains(cityName))
+                { 
+                    string[] mobiles = ConfigurationManager.AppSettings[cityName].Split(',');
+                    foreach (var mobile in mobiles)
                     {
-                        this.cityMobileDictionary.Add(mobile.Trim(), cityName);
-                    }
-                    else
-                    {
-                        string errorMsg = string.Format("城市：{0}，手机号：{1}\n存在多条重复记录，请检查配置文件！", cityName, mobile.Trim());
-                        string captionMsg = "错误信息";
-                        MessageBox.Show(errorMsg, captionMsg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (!this.cityMobileDictionary.ContainsKey(mobile.Trim()))
+                        {
+                            this.cityMobileDictionary.Add(mobile.Trim(), cityName);
+                        }
+                        else
+                        {
+                            string errorMsg = string.Format("城市：{0}，手机号：{1}\n存在多条重复记录，请检查配置文件！", cityName, mobile.Trim());
+                            string captionMsg = "错误信息";
+                            MessageBox.Show(errorMsg, captionMsg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
