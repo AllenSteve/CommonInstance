@@ -61,13 +61,12 @@ namespace EOPComponent.Model.ServiceModel
         public IDictionary<string, string> ToDictionary()
         {
             Type type = this.GetType();
-            FieldInfo[] fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
-            PropertyInfo[] properties = type.GetProperties();
+            PropertyInfo[] properties = type.GetProperties(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
             IDictionary<string, string> dictionary = new Dictionary<string, string>();
             object value = null;
-            for (int i = 0; i < fields.Length; ++i)
+            for (int i = 0; i < properties.Length; ++i)
             {
-                value = fields[i].GetValue(this);
+                value = properties[i].GetValue(this);
                 if (value != null && !string.IsNullOrEmpty(value.ToString().Trim()))
                 {
                     dictionary.Add(properties[i].Name, value.ToString().ConvertToUrlEncode());
