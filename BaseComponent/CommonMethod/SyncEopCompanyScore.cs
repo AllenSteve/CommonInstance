@@ -52,7 +52,6 @@ namespace BaseComponent.CommonMethod
             StringBuilder sql = new StringBuilder();
             sql.Append(" UPDATE Partner_Company");
             sql.Append(" SET Score =(");
-            sql.Append(" SET Score = E.Score");
             sql.Append(" CASE CHARINDEX('保',P.CompanyName)");
             sql.Append(" WHEN 0");
             sql.Append(" THEN E.Score ");
