@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseComponent.CommonMethod
+namespace EOPComponent.Method
 {
     public class SyncEopCompanyScore
     {

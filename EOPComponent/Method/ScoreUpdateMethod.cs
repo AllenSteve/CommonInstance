@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EOPComponent.Enums.Method
+namespace EOPComponent.Method
 {
     public class ScoreUpdateMethod
     {
