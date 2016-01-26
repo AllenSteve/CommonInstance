@@ -10,20 +10,31 @@ namespace EOPComponent.Method
 {
     public class SyncEopCompanyScore
     {
+        private static string DB_CONNECTION = ConfigurationManager.ConnectionStrings["EBS_WRITE"].ConnectionString;
+
         public SyncEopCompanyScore()
         {
         }
 
         /// <summary>
-        /// 执行公司积分同步
+        /// 执行公司积分同步--注意该方法只能执行一次，慎用
         /// </summary>
         public void UpdateCompanyScore()
         {
-            string DB_CONNECTION = ConfigurationManager.ConnectionStrings["TestServerDB"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(DB_CONNECTION))
+            using (SqlConnection conn = new SqlConnection(SyncEopCompanyScore.DB_CONNECTION))
             {
                 conn.Open();
                 SqlCommand command = new SqlCommand(SyncEopCompanyScore.CreateRandomUpdateSQL(), conn);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void StatisticsCompanyLastDayScore()
+        {
+            using (SqlConnection conn = new SqlConnection(SyncEopCompanyScore.DB_CONNECTION))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand(SyncEopCompanyScore.CreateStatisticsUpdateSQL(), conn);
                 command.ExecuteNonQuery();
             }
         }
@@ -38,7 +49,7 @@ namespace EOPComponent.Method
             sql.Append(" UPDATE Partner_Company");
             sql.Append(" SET Score = E.Score");
             sql.Append(" FROM Partner_Company AS P");
-            sql.Append(" INNER JOIN dbo.Partner_CompanyExtent AS E");
+            sql.Append(" INNER JOIN Partner_CompanyExtent AS E");
             sql.Append(" ON E.DealerID = P.ID");
             return sql.ToString();
         }
@@ -51,12 +62,36 @@ namespace EOPComponent.Method
         {
             StringBuilder sql = new StringBuilder();
             sql.Append(" UPDATE Partner_Company");
-            sql.Append(" SET Score =CAST(1000*(RAND(CHECKSUM(NEWID()))+2)  AS INT)");
+            sql.Append(" SET Score =CAST(1000*(RAND(CHECKSUM(NEWID()))+2)  AS DECIMAL(38,0))");
             sql.Append(" FROM Partner_Company AS P");
             sql.Append(" INNER JOIN dbo.Partner_CompanyExtent AS E");
             sql.Append(" ON E.DealerID = P.ID");
             sql.Append(" WHERE   P.CompanyType = 2");
             sql.Append(" AND P.CompanyLevel = 3");
+            return sql.ToString();
+        }
+
+        /// <summary>
+        /// 积分统计更新语句
+        /// </summary>
+        /// <returns>更新SQL</returns>
+        private static string CreateStatisticsUpdateSQL()
+        {
+            StringBuilder sql = new StringBuilder();
+            sql.Append(" UPDATE Partner_Company");
+            sql.Append(" SET LastDayScore = ScoreChangeAmount");
+            sql.Append(" FROM Partner_Company AS C");
+            sql.Append(" INNER JOIN (");
+            sql.Append(" SELECT  N.SoufunId AS CompanyId,");
+            sql.Append("         SUM(ABS(N.ChangeAmount)) AS ScoreChangeAmount");
+            sql.Append(" FROM N_ServicePoint_Log AS N");
+            sql.Append(" INNER JOIN Partner_Company AS P ON P.ID = N.SoufunId");
+            sql.Append(" INNER JOIN dbo.Partner_CompanyExtent AS E ON E.DealerID = P.ID");
+            sql.Append(" WHERE P.CompanyType = 2");
+            sql.Append("       AND P.CompanyLevel = 3");
+            sql.Append("       AND N.CauseSource IN('-1','-2','-3','-4','-5','-6','-7')");
+            sql.Append(" GROUP BY N.SoufunId) ");
+            sql.Append(" AS CompanyScoreLog ON CompanyScoreLog.CompanyId = C.ID");
             return sql.ToString();
         }
     }
