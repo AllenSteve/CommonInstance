@@ -45,6 +45,7 @@
     <Compile Include="Enums\ServiceEnum.cs" />
     <Compile Include="Enums\ServiceLogType.cs" />
     <Compile Include="Method\ScoreUpdateMethod.cs" />
+    <Compile Include="Method\SyncEopCompanyScore.cs" />
     <Compile Include="Model\Entity\AdminUserOperLog.cs" />
     <Compile Include="Model\Entity\CallbackUserInfo.cs" />
     <Compile Include="Model\Entity\DealerClassConfig.cs" />
