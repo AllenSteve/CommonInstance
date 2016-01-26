@@ -51,7 +51,7 @@ namespace EOPComponent.Method
         {
             StringBuilder sql = new StringBuilder();
             sql.Append(" UPDATE Partner_Company");
-            sql.Append(" SET Score =CAST(1000*(RAND(CHECKSUM(NEWID()))+2)  AS DECIMAL(38,0))");
+            sql.Append(" SET Score =CAST(1000*(RAND(CHECKSUM(NEWID()))+2)  AS INT)");
             sql.Append(" FROM Partner_Company AS P");
             sql.Append(" INNER JOIN dbo.Partner_CompanyExtent AS E");
             sql.Append(" ON E.DealerID = P.ID");
