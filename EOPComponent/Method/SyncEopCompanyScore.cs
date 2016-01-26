@@ -44,22 +44,19 @@ namespace EOPComponent.Method
         }
 
         /// <summary>
-        /// 生成积分同步SQL
+        /// 生成积分同步SQL-增加对特殊公司的处理
         /// </summary>
         /// <returns>SQL语句</returns>
         private static string CreateRandomUpdateSQL()
         {
             StringBuilder sql = new StringBuilder();
             sql.Append(" UPDATE Partner_Company");
-            sql.Append(" SET Score =(");
-            sql.Append(" CASE CHARINDEX('保',P.CompanyName)");
-            sql.Append(" WHEN 0");
-            sql.Append(" THEN E.Score ");
-            sql.Append(" ELSE CAST(1000*(RAND()+2)  AS DECIMAL(38,0))");
-            sql.Append(" END)");
+            sql.Append(" SET Score =CAST(1000*(RAND(CHECKSUM(NEWID()))+2)  AS DECIMAL(38,0))");
             sql.Append(" FROM Partner_Company AS P");
             sql.Append(" INNER JOIN dbo.Partner_CompanyExtent AS E");
             sql.Append(" ON E.DealerID = P.ID");
+            sql.Append(" WHERE   P.CompanyType = 2");
+            sql.Append(" AND P.CompanyLevel = 3");
             return sql.ToString();
         }
     }
