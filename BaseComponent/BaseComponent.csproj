@@ -41,6 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonMethod\ADO.cs" />
+    <Compile Include="DesignPatterns\DoubleDispatch\Dog.cs" />
+    <Compile Include="DesignPatterns\DoubleDispatch\IAnimal.cs" />
+    <Compile Include="DesignPatterns\DoubleDispatch\Mammals.cs" />
+    <Compile Include="DesignPatterns\DoubleDispatch\Survey.cs" />
+    <Compile Include="DesignPatterns\DoubleDispatch\SurveyBase.cs" />
     <Compile Include="DocumentParser\ConfigurationManager.cs" />
     <Compile Include="DocumentParser\PageViewLogParser.cs" />
     <Compile Include="DocumentParser\LogParser.cs" />
@@ -67,9 +72,7 @@
       <Name>ComponentModels</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DesignPatterns\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
