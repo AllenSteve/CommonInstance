@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ExtensionComponent;
 using EOPComponent.Model;
 using EOPComponent.Model.ScoreAccumulation;
-using EOPComponent.Enums.Method;
+using EOPComponent.Method;
 using System.Collections.Generic;
 
 namespace StandardUnitTest.ExtensionTest
