@@ -7,7 +7,7 @@ namespace StandardUnitTest
     public class UnitTestSample
     {
         [TestMethod]
-        private void TestMethod1()
+        public  void TestMethod1()
         {
             // Arrange-测试设置,创建对象
 
