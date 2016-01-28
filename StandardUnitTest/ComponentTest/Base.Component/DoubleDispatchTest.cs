@@ -7,6 +7,9 @@ namespace StandardUnitTest.ComponentTest.Base.Component
     [TestClass]
     public class DoubleDispatchTest
     {
+
+        public IAnimal animal { get; set; }
+
         public DoubleDispatchTest()
         { 
         }
@@ -22,7 +25,12 @@ namespace StandardUnitTest.ComponentTest.Base.Component
         [TestMethod]
         public void SurveyOverloadTest()
         {
+            Survey survey = new Survey();
+            IAnimal animal = new Dog();
+            Assert.AreEqual("IAnimal Type", survey.DoSurvey(animal));
 
+            var dog = new Dog();
+            Assert.AreEqual("Dog Type", survey.DoSurvey(dog));
         }
     }
 }
