@@ -58,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ComponentTest\Base.Component\DoubleDispatchTest.cs" />
     <Compile Include="ComponentTest\EOP.Component\SyncEopCompanyScoreTest.cs" />
     <Compile Include="ComponentTest\EBS.Component\InsertWithIndexTest.cs" />
     <Compile Include="DapperApiUnitTest.cs" />
@@ -104,9 +105,7 @@
       <Name>ComponentORM</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ComponentTest\Base.Component\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <Content Include="NinjectServiceModule.xml" />
