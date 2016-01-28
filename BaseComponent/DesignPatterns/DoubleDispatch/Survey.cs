@@ -13,6 +13,7 @@ namespace BaseComponent.DesignPatterns.DoubleDispatch
     {
         public override void DoSurvey()
         {
+            this.Target = this.GetType().Name;
             Console.WriteLine("Derived Class");
         }
 
