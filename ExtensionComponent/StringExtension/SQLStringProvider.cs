@@ -35,7 +35,7 @@ namespace ExtensionComponent
 
         public static string CouponEncrypt(this string str, string param, string key)
         {
-            string res = string.Empty;
+            string res = string.Empty; 
             param += "&key=" + key;
             res = FormsAuthentication.HashPasswordForStoringInConfigFile(param, "md5").ToLowerInvariant();
             return res;

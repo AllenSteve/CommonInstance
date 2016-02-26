@@ -19,7 +19,7 @@ namespace ExtensionComponent.String
         public static string ParseString<T>(this string str, T model)
         {
             Type type = typeof(T);
-            if (type.Name.Equals("String"))
+            if (type.Name.Equals("String")) 
             {
                 return model.ToString();
             }
