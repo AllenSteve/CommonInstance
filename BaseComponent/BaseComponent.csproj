@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonMethod\AdoTutorial.cs" />
+    <Compile Include="DebugComponent\DebugHelper.cs" />
     <Compile Include="DesignPatterns\DoubleDispatch\Dog.cs" />
     <Compile Include="DesignPatterns\DoubleDispatch\IAnimal.cs" />
     <Compile Include="DesignPatterns\DoubleDispatch\Mammals.cs" />
