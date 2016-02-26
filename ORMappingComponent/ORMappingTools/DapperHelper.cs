@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
-using ExtensionComponent;
+using ExtensionComponent.String;
 using System.Configuration;
 using System.Reflection;
 using System.Data.Linq;
