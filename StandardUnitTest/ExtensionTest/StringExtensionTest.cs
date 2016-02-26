@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExtensionComponent;
+using ExtensionComponent.String;
 using System.Diagnostics;
 using EOPComponent.Model.Entity;
 
