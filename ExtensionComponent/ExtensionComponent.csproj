@@ -47,6 +47,7 @@
     <Compile Include="StringExtension\SQLStringProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtension\StringParser.cs" />
+    <Compile Include="String\SQLStringProvider.cs" />
     <Compile Include="String\StringParser.cs" />
   </ItemGroup>
   <ItemGroup />
