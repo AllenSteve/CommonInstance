@@ -1,4 +1,4 @@
-﻿using ExtensionComponent;
+﻿using ExtensionComponent.String;
 using System;
 using System.Collections.Generic;
 using System.Linq;
