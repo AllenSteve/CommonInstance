@@ -39,7 +39,7 @@ namespace BaseComponent.DebugComponent
             }
         }
 
-        public void SendEMail(string title)
+        public void SendEmail(string title)
         {
             //SendEmail.Send(this.mailAddress, title, this.mailContext.ToString());
         }
