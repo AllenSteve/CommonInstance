@@ -11,7 +11,7 @@ using System.Web;
 namespace ExtensionComponent
 {
     //string类型的扩展方法
-    public static class StringExtension
+    public static partial class StringExtension
     {
         public static bool IsNullOrEmpty(this string s)
         {

@@ -44,7 +44,7 @@
     <Compile Include="CommonEqualityComparer.cs" />
     <Compile Include="DapperRowExtension.cs" />
     <Compile Include="DistinctExtensions.cs" />
-    <Compile Include="StringExtension\StringExtension.cs" />
+    <Compile Include="StringExtension\SQLStringProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
