@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BaseFunction.Service.EbsService;
+using BaseComponent.Encryption;
 
 namespace StandardUnitTest.ServiceTest.EbsServiceTest
 {
