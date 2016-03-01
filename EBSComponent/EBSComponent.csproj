@@ -100,7 +100,9 @@
     <Compile Include="Model\ServiceModel\Payment\PaymentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Persistence\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ORMappingComponent\ComponentORM.csproj">
       <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
