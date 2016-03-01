@@ -45,7 +45,7 @@
     <Compile Include="DapperRowExtension.cs" />
     <Compile Include="DistinctExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="String\SQLProvider\SQLStringProvider.cs" />
+    <Compile Include="String\SQLProvider\CreateProvider.cs" />
     <Compile Include="String\StringParser.cs" />
   </ItemGroup>
   <ItemGroup />
