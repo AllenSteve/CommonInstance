@@ -46,6 +46,7 @@
     <Compile Include="ServiceInterface\IBaseService\IDateService.cs" />
     <Compile Include="ServiceInterface\IEbsServcie\IEncryptService.cs" />
     <Compile Include="ServiceInterface\IEbsServcie\IParseCookie.cs" />
+    <Compile Include="ServiceInterface\IEbsServcie\IPayment.cs" />
     <Compile Include="ServiceInterface\INinjectService\IValueCalculater.cs" />
     <Compile Include="ServiceInterface\IBaseService\IOrderService.cs" />
     <Compile Include="ServiceInterface\IBaseService\IRegularService.cs" />
@@ -92,6 +93,10 @@
     <ProjectReference Include="..\ComponentModels\ComponentModels.csproj">
       <Project>{618dce8b-48f6-4115-b35a-f977e0dd9a36}</Project>
       <Name>ComponentModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EBSComponent\EBSComponent.csproj">
+      <Project>{d9d1b88a-03b6-4ecc-b311-f84b13b9c3c6}</Project>
+      <Name>EBSComponent</Name>
     </ProjectReference>
     <ProjectReference Include="..\ORMappingComponent\ComponentORM.csproj">
       <Project>{c7259857-49d4-4856-9fb1-9dd844f0c5ec}</Project>
