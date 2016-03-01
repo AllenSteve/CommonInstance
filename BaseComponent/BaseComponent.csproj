@@ -80,7 +80,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DebugComponent\" />
     <Folder Include="EncryptionCompoent\" />
     <Folder Include="NetworkComponent\" />
   </ItemGroup>
