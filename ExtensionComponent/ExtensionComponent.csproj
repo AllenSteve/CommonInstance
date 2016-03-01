@@ -45,10 +45,16 @@
     <Compile Include="DapperRowExtension.cs" />
     <Compile Include="DistinctExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="String\Encode\StringEncoding.cs" />
     <Compile Include="String\SQLProvider\CreateProvider.cs" />
+    <Compile Include="String\SQLProvider\DeleteProvider.cs" />
+    <Compile Include="String\SQLProvider\QueryProvider.cs" />
+    <Compile Include="String\SQLProvider\UpdateProvider.cs" />
     <Compile Include="String\StringParser.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="String\Decode\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
