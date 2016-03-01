@@ -47,7 +47,6 @@
     <Compile Include="ISQLHelper\IRepository.cs" />
     <Compile Include="ORMappingTools\DapperHelper.cs" />
     <Compile Include="ORMappingTools\DapperInstance.cs" />
-    <Compile Include="Persistence\EBS\PersistenceEBS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ISQLHelper\IAlterGenerator.cs" />
     <Compile Include="ISQLHelper\IQueryGenerator.cs" />
