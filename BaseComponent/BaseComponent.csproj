@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonMethod\AdoTutorial.cs" />
-    <Compile Include="DebugComponent\DebugHelper.cs" />
+    <Compile Include="Debugger\DebugHelper.cs" />
     <Compile Include="DesignPatterns\DoubleDispatch\Dog.cs" />
     <Compile Include="DesignPatterns\DoubleDispatch\IAnimal.cs" />
     <Compile Include="DesignPatterns\DoubleDispatch\Mammals.cs" />
@@ -52,11 +52,11 @@
     <Compile Include="DocumentParser\LogParser.cs" />
     <Compile Include="DocumentParser\Serializer.cs" />
     <Compile Include="DocumentParser\XMLParser.cs" />
-    <Compile Include="EncryptionCompoent\AdvancedEncryption.cs" />
-    <Compile Include="EncryptionCompoent\TokenMethod.cs" />
-    <Compile Include="NetworkComponent\FtpWeb.cs" />
-    <Compile Include="NetworkComponent\HtmlHelper.cs" />
-    <Compile Include="NetworkComponent\RemoteFile.cs" />
+    <Compile Include="Encryption\AdvancedEncryption.cs" />
+    <Compile Include="Encryption\TokenMethod.cs" />
+    <Compile Include="Network\FtpWeb.cs" />
+    <Compile Include="Network\HtmlHelper.cs" />
+    <Compile Include="Network\RemoteFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -80,9 +80,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Debugger\" />
-    <Folder Include="Encryption\" />
-    <Folder Include="Network\" />
+    <Folder Include="DebugComponent\" />
+    <Folder Include="EncryptionCompoent\" />
+    <Folder Include="NetworkComponent\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
