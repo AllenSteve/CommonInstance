@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using EBS.Interface.EContract.Method.EBSExtension;
+using System.Data;
 
 namespace EBSComponent.Persistence
 {
-    public class PersistenceEBS
+    public partial class PersistenceEBS
     {
         /// <summary>
         /// 数据库连接字符串
@@ -51,16 +52,5 @@ namespace EBSComponent.Persistence
             this.connectionStr = ConfigurationManager.ConnectionStrings[databaseName].ConnectionString;
             return new SqlConnection(this.connectionStr);
         }
-
-        public IEnumerable<T> Query<T>(object conditionParam = null, object columnParam = null)
-        {
-            return connection.Query<T>(sql.Query<T>(conditionParam, columnParam));
-        }
-
-        public IQueryable<T> AsQueryable<T>(object conditionParam = null, object columnParam = null)
-        {
-            return connection.Query<T>(sql.Query<T>(conditionParam, columnParam)).AsQueryable();
-        }
-
     }
 }

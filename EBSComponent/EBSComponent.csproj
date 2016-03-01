@@ -102,7 +102,11 @@
     <Compile Include="Model\ServiceModel\EContract\Payment.cs" />
     <Compile Include="Model\ServiceModel\EContract\PaymentModel.cs" />
     <Compile Include="Model\ServiceModel\Payment\PaymentInfo.cs" />
+    <Compile Include="Persistence\PersistenceCreate.cs" />
+    <Compile Include="Persistence\PersistenceDelete.cs" />
     <Compile Include="Persistence\PersistenceEBS.cs" />
+    <Compile Include="Persistence\PersistenceRead.cs" />
+    <Compile Include="Persistence\PersistenceUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

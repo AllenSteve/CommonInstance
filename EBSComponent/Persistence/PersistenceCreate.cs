@@ -1,0 +1,57 @@
+﻿using EbsComponent.Enums;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Dapper;
+using EBS.Interface.EContract.Method.EBSExtension;
+using System.Data;
+
+namespace EBSComponent.Persistence
+{
+    public partial class PersistenceEBS
+    {
+        /// <summary>
+        /// 新增实体对象到数据库
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="entity">实体对象.</param>
+        /// <param name="isTransaction">是否为事务操作</param>
+        /// <returns>返回结果</returns>
+        public int Add<T>(T entity, bool isTransaction = false)
+        {
+            int ret = 0;
+            if (isTransaction)
+            {
+                if (this.connection.State == ConnectionState.Closed)
+                {
+                    this.connection.Open();
+                }
+                else
+                {
+                    using (IDbTransaction transaction = this.connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            ret = this.connection.Execute(sql.Insert<T>(), entity, transaction);
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            ret = -1;
+                            transaction.Rollback();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                ret = this.connection.Execute(sql.Insert<T>(), entity);
+            }
+            return ret;
+        }
+    }
+}
