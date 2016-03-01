@@ -74,8 +74,16 @@
       <Project>{618dce8b-48f6-4115-b35a-f977e0dd9a36}</Project>
       <Name>ComponentModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExtensionComponent\ExtensionComponent.csproj">
+      <Project>{40e7c251-7180-4d78-8b54-862b86c7698a}</Project>
+      <Name>ExtensionComponent</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Debugger\" />
+    <Folder Include="Encryption\" />
+    <Folder Include="Network\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
