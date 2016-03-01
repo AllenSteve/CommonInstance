@@ -70,6 +70,7 @@
     <Compile Include="Enums\EbsEnum.cs" />
     <Compile Include="Enums\PaymentEnum.cs" />
     <Compile Include="Method\DatabaseMethod\RepositoryEBS.cs" />
+    <Compile Include="Method\EBSExtension\SQLStringProvider.cs" />
     <Compile Include="Method\ModelMethod\BaseMethod.cs" />
     <Compile Include="Model\Entity\Comment_1_1.cs" />
     <Compile Include="Model\Entity\ConstructAtaccepnce_InfoSort.cs" />
