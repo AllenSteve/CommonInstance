@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseComponent.NetworkComponent
+namespace BaseComponent.Network
 {
     public class RemoteFile
     {

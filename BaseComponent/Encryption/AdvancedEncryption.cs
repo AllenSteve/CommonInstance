@@ -18,7 +18,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 
-namespace BaseComponent.EncryptionCompoent
+namespace BaseComponent.Encryption
 {
     public class AdvancedEncryption
     {

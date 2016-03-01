@@ -17,7 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace BaseComponent.EncryptionCompoent
+namespace BaseComponent.Encryption
 {
     public class TokenMethod
     {

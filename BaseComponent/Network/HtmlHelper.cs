@@ -9,7 +9,7 @@ using System.Collections;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 
-namespace BaseComponent.NetworkComponent
+namespace BaseComponent.Network
 {
         /// <summary>
         /// 来自网络：http://blog.csdn.net/htsnoopy/article/details/7094224

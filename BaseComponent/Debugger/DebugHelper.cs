@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BaseComponent.DebugComponent
+namespace BaseComponent.Debugger
 {
     public class DebugHelper
     {
