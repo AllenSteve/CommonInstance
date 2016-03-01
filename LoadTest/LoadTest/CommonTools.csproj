@@ -152,6 +152,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BaseComponent\BaseComponent.csproj">
+      <Project>{3c1bb779-7350-437b-827a-eac53ddcd621}</Project>
+      <Name>BaseComponent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseFunction\BaseFunction.csproj">
       <Project>{0ef39968-7f82-4264-814f-0a182e361787}</Project>
       <Name>BaseFunction</Name>

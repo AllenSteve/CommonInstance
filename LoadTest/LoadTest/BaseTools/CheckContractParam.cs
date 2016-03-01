@@ -1,4 +1,5 @@
-﻿using BaseFunction.Service.EbsService;
+﻿using BaseComponent.Encryption;
+using BaseFunction.Service.EbsService;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
