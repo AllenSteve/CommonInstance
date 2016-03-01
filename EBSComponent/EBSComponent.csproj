@@ -67,7 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\DatabaseEnum.cs" />
+    <Compile Include="Enums\PersistenceEnum.cs" />
     <Compile Include="Enums\EbsEnum.cs" />
     <Compile Include="Enums\PaymentEnum.cs" />
     <Compile Include="Method\DatabaseMethod\RepositoryEBS.cs" />
