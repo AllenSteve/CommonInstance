@@ -68,19 +68,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\EbsEnum.cs" />
+    <Compile Include="Enums\PaymentEnum.cs" />
     <Compile Include="Method\DatabaseMethod\RepositoryEBS.cs" />
     <Compile Include="Method\ModelMethod\BaseMethod.cs" />
     <Compile Include="Model\Entity\Comment_1_1.cs" />
+    <Compile Include="Model\Entity\ConstructAtaccepnce_InfoSort.cs" />
+    <Compile Include="Model\Entity\ConstructAtaccepnce_InfoSortDetails.cs" />
     <Compile Include="Model\Entity\C_PageViewLog.cs" />
     <Compile Include="Model\Entity\C_SMSInfo.cs" />
+    <Compile Include="Model\Entity\N_Order_Base.cs" />
+    <Compile Include="Model\Entity\N_Order_Operation.cs" />
+    <Compile Include="Model\Entity\N_Order_QuoteEx.cs" />
+    <Compile Include="Model\Entity\N_Order_QuoteInfo.cs" />
+    <Compile Include="Model\Entity\N_Payment_SchemeDetail.cs" />
+    <Compile Include="Model\Entity\N_Payment_SchemeInfo.cs" />
+    <Compile Include="Model\Entity\N_Payment_SchemeItem.cs" />
     <Compile Include="Model\Entity\N_ServicePoint_Log.cs" />
     <Compile Include="Model\Entity\OrderFollowUpEvaluateLog.cs" />
+    <Compile Include="Model\Entity\Order_Form.cs" />
+    <Compile Include="Model\Entity\Order_PayNote.cs" />
+    <Compile Include="Model\Entity\Order_PayRecord.cs" />
+    <Compile Include="Model\ServiceModel\BaseModel\BaseServiceModel.cs" />
     <Compile Include="Model\ServiceModel\EContract\AmountCalculationModel.cs" />
     <Compile Include="Model\ServiceModel\EContract\BaseConstructionContractModel.cs" />
     <Compile Include="Model\ServiceModel\EContract\BaseContractModel.cs" />
     <Compile Include="Model\ServiceModel\EContract\BaseDesignContractModel.cs" />
     <Compile Include="Model\ServiceModel\EContract\Payment.cs" />
     <Compile Include="Model\ServiceModel\EContract\PaymentModel.cs" />
+    <Compile Include="Model\ServiceModel\Payment\PaymentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
