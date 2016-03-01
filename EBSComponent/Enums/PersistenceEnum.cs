@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EbsComponent.Enums
 {
-    public enum PersistenceEnum
+    public enum DatabaseEnum 
     {
         测试库只读 = 1,
         测试库读写 = 2,
