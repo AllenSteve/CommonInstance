@@ -1,4 +1,4 @@
-﻿using BaseComponent.NetworkComponent;
+﻿using BaseComponent.Network;
 using BaseFunction.ServiceInterface;
 using System;
 using System.Collections.Generic;
