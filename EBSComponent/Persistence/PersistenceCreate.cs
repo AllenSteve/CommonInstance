@@ -26,17 +26,17 @@ namespace EBSComponent.Persistence
             int ret = 0;
             if (isTransaction)
             {
-                if (this.connection.State == ConnectionState.Closed)
+                if (this.writeConnection.State == ConnectionState.Closed)
                 {
-                    this.connection.Open();
+                    this.writeConnection.Open();
                 }
                 else
                 {
-                    using (IDbTransaction transaction = this.connection.BeginTransaction())
+                    using (IDbTransaction transaction = this.writeConnection.BeginTransaction())
                     {
                         try
                         {
-                            ret = this.connection.Execute(sql.Insert<T>(), entity, transaction);
+                            ret = this.writeConnection.Execute(sql.Insert<T>(), entity, transaction);
                             transaction.Commit();
                         }
                         catch (Exception ex)
@@ -49,7 +49,7 @@ namespace EBSComponent.Persistence
             }
             else
             {
-                ret = this.connection.Execute(sql.Insert<T>(), entity);
+                ret = this.writeConnection.Execute(sql.Insert<T>(), entity);
             }
             return ret;
         }

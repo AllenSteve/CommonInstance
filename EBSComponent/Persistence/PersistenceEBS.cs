@@ -15,42 +15,93 @@ namespace EBSComponent.Persistence
     public partial class PersistenceEBS
     {
         /// <summary>
-        /// 数据库连接字符串
-        /// </summary>
-        private string connectionStr { get; set; }
-
-        /// <summary>
         /// 用于自动生成SQL语句
         /// </summary>
         private static string sql = null;
 
         /// <summary>
-        /// 使用的数据库枚举
+        /// 打开到数据库的连接-只读
         /// </summary>
-        public DatabaseEnum database { get; set; }
+        private SqlConnection read_connection;
 
         /// <summary>
-        /// 打开到数据库的连接
+        /// 打开到数据库的连接-读写
         /// </summary>
-        private SqlConnection _connection;
+        private SqlConnection write_connection;
 
-        public SqlConnection connection
+        /// <summary>
+        /// 使用的数据库枚举-只读
+        /// </summary>
+        protected DatabaseEnum read_database { get; set; }
+
+        /// <summary>
+        /// 使用的数据库枚举-读写
+        /// </summary>
+        protected DatabaseEnum write_database { get; set; }
+
+        protected SqlConnection readConnection
         {
             get
             {
-                if (_connection == null)
+                if (read_connection == null)
                 {
-                    _connection = this.CreateSqlConnection(this.database);
+                    read_connection = this.CreateSqlConnection(this.read_database);
                 }
-                return _connection;
+                return read_connection;
             }
         }
 
-        public SqlConnection CreateSqlConnection(DatabaseEnum db = DatabaseEnum.测试库只读)
+        protected SqlConnection writeConnection
         {
-            string databaseName = ((DatabaseEnum)db).ToString();
-            this.connectionStr = ConfigurationManager.ConnectionStrings[databaseName].ConnectionString;
-            return new SqlConnection(this.connectionStr);
+            get
+            {
+                if (write_connection == null)
+                {
+                    write_connection = this.CreateSqlConnection(this.write_database);
+                }
+                return write_connection;
+            }
+        }
+
+        protected SqlConnection CreateSqlConnection(DatabaseEnum database = DatabaseEnum.测试库只读)
+        {
+            string databaseName = ((DatabaseEnum)database).ToString();
+            string connectionStr = ConfigurationManager.ConnectionStrings[databaseName].ConnectionString;
+            return new SqlConnection(connectionStr);
+        }
+
+        protected  bool ContainsDatabase(int enmuValue)
+        {
+            Array array = System.Enum.GetValues(typeof(DatabaseEnum));
+            for (int i = 0; i < array.Length; ++i)
+            {
+                if (enmuValue == (int)array.GetValue(i))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public PersistenceEBS(int readDatabase = 1, int writeDatabase = 2)
+        {
+            if (this.ContainsDatabase(readDatabase))
+            {
+                read_connection = this.CreateSqlConnection((DatabaseEnum)readDatabase);
+            }
+            else
+            {
+                read_connection = null;
+            }
+
+            if (this.ContainsDatabase(writeDatabase))
+            {
+                write_connection = this.CreateSqlConnection((DatabaseEnum)writeDatabase);
+            }
+            else
+            {
+                write_connection = null;
+            }
         }
     }
 }

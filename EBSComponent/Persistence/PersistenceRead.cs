@@ -16,12 +16,12 @@ namespace EBSComponent.Persistence
     {
         public IEnumerable<T> Query<T>(object conditionParam = null, object columnParam = null)
         {
-            return this.connection.Query<T>(sql.Query<T>(conditionParam, columnParam));
+            return this.readConnection.Query<T>(sql.Query<T>(conditionParam, columnParam));
         }
 
         public IQueryable<T> AsQueryable<T>(object conditionParam = null, object columnParam = null)
         {
-            return this.connection.Query<T>(sql.Query<T>(conditionParam, columnParam)).AsQueryable();
+            return this.readConnection.Query<T>(sql.Query<T>(conditionParam, columnParam)).AsQueryable();
         }
     }
 }
