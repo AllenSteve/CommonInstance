@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper;
+using EBS.Interface.EContract.Method.EBSExtension;
 
 namespace EBSComponent.Persistence
 {
@@ -48,6 +50,16 @@ namespace EBSComponent.Persistence
             string databaseName = ((DatabaseEnum)db).ToString();
             this.connectionStr = ConfigurationManager.ConnectionStrings[databaseName].ConnectionString;
             return new SqlConnection(this.connectionStr);
+        }
+
+        public IEnumerable<T> Query<T>(object conditionParam = null, object columnParam = null)
+        {
+            return connection.Query<T>(sql.Query<T>(conditionParam, columnParam));
+        }
+
+        public IQueryable<T> AsQueryable<T>(object conditionParam = null, object columnParam = null)
+        {
+            return connection.Query<T>(sql.Query<T>(conditionParam, columnParam)).AsQueryable();
         }
 
     }
