@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ORMappingComponent.Persistence.EBS
+namespace EBSComponent.Persistence
 {
     public class PersistenceEBS
     {
