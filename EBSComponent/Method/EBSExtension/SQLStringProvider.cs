@@ -204,7 +204,7 @@ namespace EBS.Interface.EContract.Method.EBSExtension
         }
 
         // 生成根据指定列和条件的更新SQL
-        public static string CreateSQLUpdateByProperties<T>(this string str, object columnParam, object conditionParam = null)
+        public static string Update<T>(this string str, object columnParam = null, object conditionParam = null)
         {
             // 表类型
             Type tableType = typeof(T);

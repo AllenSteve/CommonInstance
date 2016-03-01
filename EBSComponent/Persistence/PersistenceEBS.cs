@@ -83,24 +83,39 @@ namespace EBSComponent.Persistence
             return false;
         }
 
-        public PersistenceEBS(int readDatabase = 1, int writeDatabase = 2)
+        protected bool IsDebugMode()
         {
-            if (this.ContainsDatabase(readDatabase))
-            {
-                read_connection = this.CreateSqlConnection((DatabaseEnum)readDatabase);
-            }
-            else
-            {
-                read_connection = null;
-            }
+            return false;
+        }
 
-            if (this.ContainsDatabase(writeDatabase))
+        public PersistenceEBS(int readDatabase = 1, int writeDatabase = 2, bool isDebug = false)
+        {
+            if (isDebug || this.IsDebugMode())
             {
-                write_connection = this.CreateSqlConnection((DatabaseEnum)writeDatabase);
+                this.read_database = DatabaseEnum.沙箱库只读;
+                this.write_database = DatabaseEnum.沙箱库读写;
             }
             else
             {
-                write_connection = null;
+                if (this.ContainsDatabase(readDatabase))
+                {
+                    this.read_database = (DatabaseEnum)readDatabase;
+                    this.read_connection = this.CreateSqlConnection(this.read_database);
+                }
+                else
+                {
+                    this.read_connection = null;
+                }
+
+                if (this.ContainsDatabase(writeDatabase))
+                {
+                    this.write_database = (DatabaseEnum)writeDatabase;
+                    this.write_connection = this.CreateSqlConnection(this.write_database);
+                }
+                else
+                {
+                    this.write_connection = null;
+                }
             }
         }
     }
