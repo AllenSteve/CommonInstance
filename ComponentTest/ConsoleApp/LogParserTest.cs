@@ -1,5 +1,5 @@
 ﻿using BaseComponent.DocumentParser;
-using BaseComponent.NetworkComponent;
+using BaseComponent.Network;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
