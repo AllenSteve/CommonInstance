@@ -52,6 +52,8 @@
     <Compile Include="DocumentParser\LogParser.cs" />
     <Compile Include="DocumentParser\Serializer.cs" />
     <Compile Include="DocumentParser\XMLParser.cs" />
+    <Compile Include="EncryptionCompoent\AdvancedEncryption.cs" />
+    <Compile Include="EncryptionCompoent\TokenMethod.cs" />
     <Compile Include="NetworkComponent\FtpWeb.cs" />
     <Compile Include="NetworkComponent\HtmlHelper.cs" />
     <Compile Include="NetworkComponent\RemoteFile.cs" />
