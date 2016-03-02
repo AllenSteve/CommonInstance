@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace StandardUnitTest.ComponentTest.EBS.Component.PersistenceTest
 {
     [TestClass]
-    public class DeleteTest
+    public class PersistenceDeleteTest
     {
         [TestMethod]
         public void DeleteByIdTest()
