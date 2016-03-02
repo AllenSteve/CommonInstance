@@ -290,5 +290,15 @@ namespace EBS.Interface.EContract.Method.EBSExtension
             }
             return SQL.ToString();
         }
+
+        public static string Delete<T>(this string str, object conditionParam = null)
+        {
+            return str;
+        }
+
+        public static string Remove<T>(this string str, object conditionParam = null, object columnParam = null)
+        {
+            return str;
+        }
     }
 }
