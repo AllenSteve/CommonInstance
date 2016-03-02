@@ -31,6 +31,9 @@ namespace StandardUnitTest.ComponentTest.EBS.Component.PersistenceTest
             this.persistence = new PersistenceEBS(databaseRead,databaseWrite);
         }
 
+        /// <summary>
+        /// 插入单条记录测试
+        /// </summary>
         [TestMethod]
         public void AddTest()
         {
@@ -40,6 +43,9 @@ namespace StandardUnitTest.ComponentTest.EBS.Component.PersistenceTest
             Assert.AreEqual(1, ret);
         }
 
+        /// <summary>
+        /// 批量插入测试
+        /// </summary>
         [TestMethod]
         public void AddRangeTest()
         {
@@ -53,6 +59,9 @@ namespace StandardUnitTest.ComponentTest.EBS.Component.PersistenceTest
             Assert.AreEqual(2, ret);
         }
 
+        /// <summary>
+        /// 事务型新增
+        /// </summary>
         [TestMethod]
         public void AddRangeWithTransactionTest()
         {
