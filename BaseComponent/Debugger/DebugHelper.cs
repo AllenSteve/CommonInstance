@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,6 +43,42 @@ namespace BaseComponent.Debugger
         public void SendEmail(string title)
         {
             //SendEmail.Send(this.mailAddress, title, this.mailContext.ToString());
+        }
+
+        /// <summary>
+        /// 填充Model对象默认值
+        /// </summary>
+        /// <typeparam name="T">Model类型</typeparam>
+        /// <param name="model">要填充默认值的对象</param>
+        /// <returns>填充默认值之后的对象</returns>
+        public T PadValue<T>(T model) where T : new()
+        {
+            PropertyInfo[] properties = typeof(T).GetProperties();
+            foreach (var property in properties)
+            {
+                Type type = property.PropertyType;
+                if (type.Equals(typeof(DateTime)))
+                {
+                    property.SetValue(model, DateTime.Now);
+                }
+                else if (type.Equals(typeof(string)))
+                {
+                    property.SetValue(model, string.Empty);
+                }
+            }
+            return model;
+        }
+
+        public string GetPaddingString(bool empty = true)
+        {
+            if (!empty)
+            {
+                return Guid.NewGuid().ToString().Replace("-",string.Empty);
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
     }
 }
