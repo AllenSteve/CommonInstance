@@ -101,13 +101,29 @@ namespace EBSComponent.Persistence
         }
 
         /// <summary>
+        /// 解析HTTP上下文
+        /// </summary>
+        /// <param name="context">HTTP上下文对象</param>
+        /// <returns>解析字符串</returns>
+        protected string ParseHttpContext(HttpContext context, string key)
+        {
+            if (context == null || context.Items[key] == null)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return context.Items[key].ToString();
+            }
+        }
+
+        /// <summary>
         /// 判断当前是否为调试模式
         /// </summary>
         /// <returns>当前模式</returns>
         protected bool IsDebugMode()
         {
-            string flag = HttpContext.Current.Items["IsTestUser"] == null ? string.Empty : HttpContext.Current.Items["IsTestUser"].ToString();
-            return !string.IsNullOrEmpty(flag) && flag.Equals("1");
+            return this.ParseHttpContext(HttpContext.Current, "IsTestUser").Equals("1");
         }
 
         public PersistenceEBS(int readDatabase = 1, int writeDatabase = 2, bool isDebug = false)
