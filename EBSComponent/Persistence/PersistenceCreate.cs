@@ -22,7 +22,7 @@ namespace EBSComponent.Persistence
         /// <param name="entity">实体对象.</param>
         /// <param name="isTransaction">是否为事务操作</param>
         /// <returns>返回结果</returns>
-        public int Add<T>(T entity, bool isTransaction = false)
+        public int Add<T>(T entity, bool isTransaction = false) where T : new()
         {
             int ret = 0;
             if (isTransaction)
@@ -31,20 +31,18 @@ namespace EBSComponent.Persistence
                 {
                     this.writeConnection.Open();
                 }
-                else
+
+                using (IDbTransaction transaction = this.writeConnection.BeginTransaction())
                 {
-                    using (IDbTransaction transaction = this.writeConnection.BeginTransaction())
+                    try
                     {
-                        try
-                        {
-                            ret = this.writeConnection.Execute(sql.Insert<T>(), entity, transaction);
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return ret = 0;
-                        }
+                        ret = this.writeConnection.Execute(sql.Insert<T>(), entity, transaction);
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return ret = 0;
                     }
                 }
             }
@@ -69,7 +67,7 @@ namespace EBSComponent.Persistence
         /// <param name="entityCollection">实体对象</param>
         /// <param name="isTransaction">是否为事务操作</param>
         /// <returns>返回结果</returns>
-        public int Add<T>(IEnumerable<T> entityCollection, bool isTransaction = false)
+        public int AddRange<T>(IEnumerable<T> entityCollection, bool isTransaction = false) where T : new()
         {
             int ret = 0;
             if (isTransaction)
@@ -78,23 +76,21 @@ namespace EBSComponent.Persistence
                 {
                     this.writeConnection.Open();
                 }
-                else
+               
+                using (IDbTransaction transaction = this.writeConnection.BeginTransaction())
                 {
-                    using (IDbTransaction transaction = this.writeConnection.BeginTransaction())
+                    try
                     {
-                        try
+                        foreach(var entity in entityCollection)
                         {
-                            foreach(var entity in entityCollection)
-                            {
-                                ret += this.writeConnection.Execute(sql.Insert<T>(), entity, transaction);
-                            }
-                            transaction.Commit();
+                            ret += this.writeConnection.Execute(sql.Insert<T>(), entity, transaction);
                         }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            return ret = 0;
-                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        return ret = 0;
                     }
                 }
             }
