@@ -31,6 +31,9 @@ namespace EbsComponent.Enums
         /// </summary>
         EBS_WRITE_TEST = 4,
 
-        本地测试数据库 = 5
+        /// <summary>
+        /// 本地测试数据库
+        /// </summary>
+        LOCAL_DATABASE = 5
     }
 }
