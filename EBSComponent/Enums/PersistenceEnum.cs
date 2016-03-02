@@ -6,13 +6,29 @@ using System.Threading.Tasks;
 
 namespace EbsComponent.Enums
 {
+    /// <summary>
+    /// 数据库枚举
+    /// </summary>
     public enum DatabaseEnum 
     {
-        测试库只读 = 1,
-        测试库读写 = 2,
-        沙箱库只读 = 3,
-        沙箱库读写 = 4,
-        正式库只读 = 5,
-        正式库读写 = 6
+        /// <summary>
+        /// 只读库
+        /// </summary>
+        EBS_READ = 1,
+
+        /// <summary>
+        /// 读写库
+        /// </summary>
+        EBS_WRITE = 2,
+
+        /// <summary>
+        /// 测试库-只读
+        /// </summary>
+        EBS_READ_TEST = 3,
+
+        /// <summary>
+        /// 测试库-读写
+        /// </summary>
+        EBS_WRITE_TEST = 4
     }
 }

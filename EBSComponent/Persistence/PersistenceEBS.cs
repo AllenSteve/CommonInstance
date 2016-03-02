@@ -39,6 +39,9 @@ namespace EBSComponent.Persistence
         /// </summary>
         protected DatabaseEnum write_database { get; set; }
 
+        /// <summary>
+        /// 读操作连接
+        /// </summary>
         protected SqlConnection readConnection
         {
             get
@@ -51,6 +54,9 @@ namespace EBSComponent.Persistence
             }
         }
 
+        /// <summary>
+        /// 写操作连接
+        /// </summary>
         protected SqlConnection writeConnection
         {
             get
@@ -63,13 +69,23 @@ namespace EBSComponent.Persistence
             }
         }
 
-        protected SqlConnection CreateSqlConnection(DatabaseEnum database = DatabaseEnum.测试库只读)
+        /// <summary>
+        /// 生成数据库连接
+        /// </summary>
+        /// <param name="database">数据库枚举</param>
+        /// <returns>对应数据库连接</returns>
+        protected SqlConnection CreateSqlConnection(DatabaseEnum database = DatabaseEnum.EBS_READ)
         {
             string databaseName = ((DatabaseEnum)database).ToString();
             string connectionStr = ConfigurationManager.ConnectionStrings[databaseName].ConnectionString;
             return new SqlConnection(connectionStr);
         }
 
+        /// <summary>
+        /// 判断数据库枚举是否存在
+        /// </summary>
+        /// <param name="enmuValue">枚举值</param>
+        /// <returns>枚举中是否存在该数据库</returns>
         protected  bool ContainsDatabase(int enmuValue)
         {
             Array array = System.Enum.GetValues(typeof(DatabaseEnum));
@@ -83,6 +99,10 @@ namespace EBSComponent.Persistence
             return false;
         }
 
+        /// <summary>
+        /// 判断当前是否为调试模式
+        /// </summary>
+        /// <returns>当前模式</returns>
         protected bool IsDebugMode()
         {
             return false;
@@ -92,8 +112,8 @@ namespace EBSComponent.Persistence
         {
             if (isDebug || this.IsDebugMode())
             {
-                this.read_database = DatabaseEnum.沙箱库只读;
-                this.write_database = DatabaseEnum.沙箱库读写;
+                this.read_database = DatabaseEnum.EBS_READ_TEST;
+                this.write_database = DatabaseEnum.EBS_WRITE_TEST;
             }
             else
             {
