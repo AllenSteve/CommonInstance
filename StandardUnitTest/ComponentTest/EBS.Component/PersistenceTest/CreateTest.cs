@@ -66,7 +66,7 @@ namespace StandardUnitTest.ComponentTest.EBS.Component.PersistenceTest
             int ret = this.persistence.AddRange(list,true);
             Assert.AreEqual(0, ret);
 
-            // 此时会先新增再删除
+            // 此时会先新增再删除,此时自增ID会出现不连续的情况
             list.Clear();
             list.Add(this.debug.PadValue(order2));
             list.Add(order1);
