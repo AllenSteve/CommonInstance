@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Dapper;
 using EBS.Interface.EContract.Method.EBSExtension;
 using System.Data;
+using System.Web;
 
 namespace EBSComponent.Persistence
 {
@@ -105,7 +106,8 @@ namespace EBSComponent.Persistence
         /// <returns>当前模式</returns>
         protected bool IsDebugMode()
         {
-            return false;
+            string flag = HttpContext.Current.Items["IsTestUser"] == null ? string.Empty : HttpContext.Current.Items["IsTestUser"].ToString();
+            return !string.IsNullOrEmpty(flag) && flag.Equals("1");
         }
 
         public PersistenceEBS(int readDatabase = 1, int writeDatabase = 2, bool isDebug = false)
@@ -120,21 +122,11 @@ namespace EBSComponent.Persistence
                 if (this.ContainsDatabase(readDatabase))
                 {
                     this.read_database = (DatabaseEnum)readDatabase;
-                    this.read_connection = this.CreateSqlConnection(this.read_database);
-                }
-                else
-                {
-                    this.read_connection = null;
                 }
 
                 if (this.ContainsDatabase(writeDatabase))
                 {
                     this.write_database = (DatabaseEnum)writeDatabase;
-                    this.write_connection = this.CreateSqlConnection(this.write_database);
-                }
-                else
-                {
-                    this.write_connection = null;
                 }
             }
         }
