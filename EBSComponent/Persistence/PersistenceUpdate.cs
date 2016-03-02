@@ -20,10 +20,78 @@ namespace EBSComponent.Persistence
         /// <typeparam name="T">实体类型</typeparam>
         /// <param name="entity">实体对象.</param>
         /// <param name="isTransaction">是否为事务操作</param>
-        /// <returns>返回结果</returns>
-        public int Update<T>(T entity, bool isTransaction = false)
+        /// <returns>返回受影响行数</returns>
+        public int Update<T>(T entity, bool isTransaction = false, object columnParam = null, object conditionParam = null)
         {
-            return this.writeConnection.Execute(sql.Update<T>(), entity);
+            int ret = 0;
+            if(isTransaction)
+            {
+                if (this.writeConnection.State == ConnectionState.Closed)
+                {
+                    this.writeConnection.Open();
+                }
+                using (IDbTransaction transaction = this.writeConnection.BeginTransaction())
+                {
+                    try
+                    {
+                        ret = this.writeConnection.Execute(sql.Update<T>(columnParam, conditionParam), entity, transaction);
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        ret = -1;
+                        transaction.Rollback();
+                    }
+                }
+            }
+            else
+            {
+                ret = this.writeConnection.Execute(sql.Update<T>(columnParam, conditionParam), entity);
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// 更新实体对象集合到数据库
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="entity">实体对象.</param>
+        /// <param name="isTransaction">是否为事务操作</param>
+        /// <returns>返回受影响行数</returns>
+        public int Update<T>(IEnumerable<T> entityCollection, bool isTransaction = false, object columnParam = null, object conditionParam = null)
+        {
+            int ret = 0;
+            if (isTransaction)
+            {
+                if (this.writeConnection.State == ConnectionState.Closed)
+                {
+                    this.writeConnection.Open();
+                }
+                using (IDbTransaction transaction = this.writeConnection.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var entity in entityCollection)
+                        {
+                            ret += this.writeConnection.Execute(sql.Update<T>(columnParam, conditionParam), entity, transaction);
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        ret = -1;
+                        transaction.Rollback();
+                    }
+                }
+            }
+            else
+            {
+                foreach (var entity in entityCollection)
+                {
+                    ret += this.writeConnection.Execute(sql.Update<T>(columnParam, conditionParam), entity);
+                }
+            }
+            return ret;
         }
     }
 }
