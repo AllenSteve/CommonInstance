@@ -29,6 +29,8 @@ namespace EbsComponent.Enums
         /// <summary>
         /// 测试库-读写
         /// </summary>
-        EBS_WRITE_TEST = 4
+        EBS_WRITE_TEST = 4,
+
+        本地测试数据库 = 5
     }
 }
