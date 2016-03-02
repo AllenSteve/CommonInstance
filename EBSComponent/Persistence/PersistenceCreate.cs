@@ -42,15 +42,22 @@ namespace EBSComponent.Persistence
                         }
                         catch (Exception ex)
                         {
-                            ret = -1;
                             transaction.Rollback();
+                            return ret = 0;
                         }
                     }
                 }
             }
             else
             {
-                ret = this.writeConnection.Execute(sql.Insert<T>(), entity);
+                try
+                {
+                    ret = this.writeConnection.Execute(sql.Insert<T>(), entity);
+                }
+                catch(Exception ex)
+                {
+                    return ret = 0;
+                }
             }
             return ret;
         }
@@ -85,17 +92,24 @@ namespace EBSComponent.Persistence
                         }
                         catch (Exception ex)
                         {
-                            ret = -1;
                             transaction.Rollback();
+                            return ret = 0;
                         }
                     }
                 }
             }
             else
             {
-                foreach (var entity in entityCollection)
+                try
                 {
-                    ret += this.writeConnection.Execute(sql.Insert<T>(), entity);
+                    foreach (var entity in entityCollection)
+                    {
+                        ret += this.writeConnection.Execute(sql.Insert<T>(), entity);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return ret;
                 }
             }
             return ret;
