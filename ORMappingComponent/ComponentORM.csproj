@@ -71,6 +71,7 @@
   <ItemGroup>
     <Content Include="T-SQL\01-CREATE_TABLE.sql" />
     <Content Include="T-SQL\02-INSERT_INTO_TABLE.sql" />
+    <Content Include="T-SQL\03-CREATE_N_ORDER_BASE.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExtensionComponent\ExtensionComponent.csproj">
