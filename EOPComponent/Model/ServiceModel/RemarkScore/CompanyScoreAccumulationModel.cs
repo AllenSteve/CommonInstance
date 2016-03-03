@@ -14,8 +14,8 @@ namespace EOPComponent.Model.ScoreAccumulation
         public int CurrentFlowerCount { get; set; }
         public int CreateScoreCount { get; set; }
 
-        protected static int eggScoreABS { get; set; }
-        protected static int flowerScoreABS { get; set; }
+        protected int eggScoreABS { get; set; }
+        protected int flowerScoreABS { get; set; }
 
         public int GetScoreAccumulation(int eggScore, int flowerScore)
         {
