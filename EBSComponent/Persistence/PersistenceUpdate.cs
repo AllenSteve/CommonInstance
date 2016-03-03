@@ -21,7 +21,7 @@ namespace EBSComponent.Persistence
         /// <param name="entity">实体对象.</param>
         /// <param name="isTransaction">是否为事务操作</param>
         /// <returns>返回受影响行数</returns>
-        public int Update<T>(T entity, bool isTransaction = false, object columnParam = null, object conditionParam = null)
+        public int Update<T>(T entity, object conditionParam = null, object columnParam = null, bool isTransaction = false)
         {
             int ret = 0;
             if(isTransaction)
@@ -34,7 +34,14 @@ namespace EBSComponent.Persistence
                 {
                     try
                     {
-                        ret = this.writeConnection.Execute(sql.Update<T>(columnParam, conditionParam), entity, transaction);
+                        if(columnParam == null)
+                        {
+                            ret = this.writeConnection.Execute(sql.Update<T>(entity, conditionParam),entity, transaction);
+                        }
+                        else
+                        {
+                            ret = this.writeConnection.Execute(sql.Update<T>(columnParam, conditionParam),entity, transaction);
+                        }
                         transaction.Commit();
                     }
                     catch (Exception ex)
@@ -46,7 +53,14 @@ namespace EBSComponent.Persistence
             }
             else
             {
-                ret = this.writeConnection.Execute(sql.Update<T>(columnParam, conditionParam), entity);
+                if(columnParam == null)
+                {
+                    ret = this.writeConnection.Execute(sql.Update<T>(entity, conditionParam),entity);
+                }
+                else
+                {
+                    ret = this.writeConnection.Execute(sql.Update<T>(columnParam, conditionParam),entity);
+                }
             }
             return ret;
         }
@@ -58,7 +72,7 @@ namespace EBSComponent.Persistence
         /// <param name="entity">实体对象.</param>
         /// <param name="isTransaction">是否为事务操作</param>
         /// <returns>返回受影响行数</returns>
-        public int Update<T>(IEnumerable<T> entityCollection, bool isTransaction = false, object columnParam = null, object conditionParam = null)
+        private int Update<T>(IEnumerable<T> entityCollection, object columnParam = null, object conditionParam = null, bool isTransaction = false)
         {
             int ret = 0;
             if (isTransaction)

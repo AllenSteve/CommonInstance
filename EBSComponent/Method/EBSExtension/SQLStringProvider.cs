@@ -224,6 +224,11 @@ namespace EBS.Interface.EContract.Method.EBSExtension
             for (int i = 0; i < columnProperties.Length; ++i)
             {
                 value = columnProperties[i].GetValue(columnParam, null);
+                if (columnProperties[i].Name.ToUpper().Equals("ID") || columnProperties[i].Name.ToUpper().Equals("OID") || columnProperties[i].PropertyType.Equals(typeof(Byte[])))
+                {
+                    continue;
+                }
+
                 if (value == null)
                 {
                     //Console.WriteLine("{0}:Null", columnProperties[i].Name);
