@@ -12,28 +12,48 @@ namespace EbsComponent.Enums
     public enum DatabaseEnum 
     {
         /// <summary>
-        /// 只读库
+        /// 本地测试数据库
+        /// </summary>
+        LOCAL_DATABASE = 0,
+
+        /// <summary>
+        /// EBS-只读
         /// </summary>
         EBS_READ = 1,
 
         /// <summary>
-        /// 读写库
+        /// EBS-读写
         /// </summary>
         EBS_WRITE = 2,
 
         /// <summary>
-        /// 测试库-只读
+        /// EBS-测试库-只读
         /// </summary>
         EBS_READ_TEST = 3,
 
         /// <summary>
-        /// 测试库-读写
+        /// EBS-测试库-读写
         /// </summary>
         EBS_WRITE_TEST = 4,
 
         /// <summary>
-        /// 本地测试数据库
+        /// 开放平台-只读
         /// </summary>
-        LOCAL_DATABASE = 5
+        OPENPLATFORM_READ = 5,
+
+        /// <summary>
+        /// 开放平台-读写
+        /// </summary>
+        OPENPLATFORM_WRITE = 6,
+
+                /// <summary>
+        /// 开放平台-测试库-只读
+        /// </summary>
+        OPENPLATFORM_READ_TEST = 7,
+
+        /// <summary>
+        /// 开放平台-测试库-读写
+        /// </summary>
+        OPENPLATFORM_WRITE_TEST = 8,
     }
 }
