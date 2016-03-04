@@ -2,7 +2,7 @@
 using EBS.Interface.EContract.Method;
 using EBS.Interface.EContract.Model;
 using EBS.Interface.Model;
-using EbsComponent.Method.DatabaseMethod;
+using EBSComponent.Method.DatabaseMethod;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

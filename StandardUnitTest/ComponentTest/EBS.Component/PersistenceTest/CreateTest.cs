@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EBSComponent.Persistence;
-using EbsComponent.Enums;
+using EBSComponent.Enums;
 using ComponentModels.EbsDBModel;
 using System.Collections.Generic;
 using System.Linq;

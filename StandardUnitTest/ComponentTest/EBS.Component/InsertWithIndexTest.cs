@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EbsComponent.Model.Entity;
+using EBSComponent.Model.Entity;
 using ComponentORM.ORMappingTools;
 using System.Diagnostics;
 using System.Data;
