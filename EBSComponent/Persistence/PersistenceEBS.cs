@@ -33,12 +33,12 @@ namespace EBSComponent.Persistence
         /// <summary>
         /// 使用的数据库枚举-只读
         /// </summary>
-        protected EntityEnum read_database { get; set; }
+        protected EntityTypeEnum read_database { get; set; }
 
         /// <summary>
         /// 使用的数据库枚举-读写
         /// </summary>
-        protected EntityEnum write_database { get; set; }
+        protected EntityTypeEnum write_database { get; set; }
 
         /// <summary>
         /// 读操作连接
@@ -75,9 +75,9 @@ namespace EBSComponent.Persistence
         /// </summary>
         /// <param name="database">数据库枚举</param>
         /// <returns>对应数据库连接</returns>
-        protected SqlConnection CreateSqlConnection(EntityEnum database = EntityEnum.EBS_READ)
+        protected SqlConnection CreateSqlConnection(EntityTypeEnum database = EntityTypeEnum.EBS_READ)
         {
-            string databaseName = ((EntityEnum)database).ToString();
+            string databaseName = ((EntityTypeEnum)database).ToString();
             string connectionStr = ConfigurationManager.ConnectionStrings[databaseName].ConnectionString;
             return new SqlConnection(connectionStr);
         }
@@ -89,7 +89,7 @@ namespace EBSComponent.Persistence
         /// <returns>枚举中是否存在该数据库</returns>
         protected  bool ContainsDatabase(int enmuValue)
         {
-            Array array = System.Enum.GetValues(typeof(EntityEnum));
+            Array array = System.Enum.GetValues(typeof(EntityTypeEnum));
             for (int i = 0; i < array.Length; ++i)
             {
                 if (enmuValue == (int)array.GetValue(i))
@@ -130,19 +130,19 @@ namespace EBSComponent.Persistence
         {
             if (isDebug || this.IsDebugMode())
             {
-                this.read_database = EntityEnum.EBS_READ_TEST;
-                this.write_database = EntityEnum.EBS_WRITE_TEST;
+                this.read_database = EntityTypeEnum.EBS_READ_TEST;
+                this.write_database = EntityTypeEnum.EBS_WRITE_TEST;
             }
             else
             {
                 if (this.ContainsDatabase(readDatabase))
                 {
-                    this.read_database = (EntityEnum)readDatabase;
+                    this.read_database = (EntityTypeEnum)readDatabase;
                 }
 
                 if (this.ContainsDatabase(writeDatabase))
                 {
-                    this.write_database = (EntityEnum)writeDatabase;
+                    this.write_database = (EntityTypeEnum)writeDatabase;
                 }
             }
         }

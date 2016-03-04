@@ -9,7 +9,7 @@ namespace EBSComponent.Enums
     /// <summary>
     /// 数据库枚举
     /// </summary>
-    public enum EntityEnum 
+    public enum EntityTypeEnum 
     {
         /// <summary>
         /// 本地测试数据库
@@ -73,10 +73,12 @@ namespace EBSComponent.Enums
         WRITE = 1,
     }
 
-    public enum OperationEnum
+    /// <summary>
+    /// 运行环境
+    /// </summary>
+    public enum OperationModeEnum
     {
-        MOCKPRODUCTION = 0,
+        PRODUCTION = 0,
         TEST = 1,
-        PRODUCTION = 2,
     }
 }

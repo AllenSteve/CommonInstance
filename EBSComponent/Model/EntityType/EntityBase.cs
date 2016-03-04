@@ -9,6 +9,27 @@ namespace EBSComponent.Model.EntityType
 {
     public class EntityBase
     {
-        public EntityEnum entityName { get; set; }
+        /// <summary>
+        /// 服务站点枚举
+        /// </summary>
+        public WebServerEnum webServer { get; set; }
+
+        /// <summary>
+        /// 访问权限枚举
+        /// </summary>
+        public AccessModeEnum accessMode { get; set; }
+
+        /// <summary>
+        /// 运行环境枚举
+        /// </summary>
+        public OperationModeEnum operationMode { get; set; }
+
+        /// <summary>
+        /// 获取数据库连接类型
+        /// </summary>
+        public EntityTypeEnum GetEntityType()
+        {
+            return EntityTypeEnum.LOCAL_DATABASE;
+        }
     }
 }
