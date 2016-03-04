@@ -17,8 +17,8 @@ namespace StandardUnitTest.ComponentTest.EBS.Component.PersistenceTest
 
         public PersistenceCreateTest()
         {
-            int databaseRead = (int)DatabaseEnum.LOCAL_DATABASE;
-            int databaseWrite = (int)DatabaseEnum.LOCAL_DATABASE;
+            int databaseRead = (int)EntityEnum.LOCAL_DATABASE;
+            int databaseWrite = (int)EntityEnum.LOCAL_DATABASE;
             this.persistence = new PersistenceEBS(databaseRead, databaseWrite);
             this.debug = new DebugHelper();
         }
@@ -26,8 +26,8 @@ namespace StandardUnitTest.ComponentTest.EBS.Component.PersistenceTest
         [TestMethod]
         public void CreatePersistenceTest()
         {
-            int databaseRead = (int)DatabaseEnum.EBS_READ;
-            int databaseWrite = (int)DatabaseEnum.EBS_WRITE;
+            int databaseRead = (int)EntityEnum.EBS_READ;
+            int databaseWrite = (int)EntityEnum.EBS_WRITE;
             this.persistence = new PersistenceEBS(databaseRead,databaseWrite);
         }
 

@@ -9,7 +9,7 @@ namespace EBSComponent.Enums
     /// <summary>
     /// 数据库枚举
     /// </summary>
-    public enum DatabaseEnum 
+    public enum EntityEnum 
     {
         /// <summary>
         /// 本地测试数据库
