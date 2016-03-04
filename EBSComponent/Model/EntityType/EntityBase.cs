@@ -29,7 +29,7 @@ namespace EBSComponent.Model.EntityType
         {
             get
             {
-                if(this.operationMode==null)
+                if(this.operationMode == 0)
                 {
                     this.operationMode = this.IsDebugMode() ? OperationModeEnum.TEST : OperationModeEnum.PRODUCTION;
                 }
