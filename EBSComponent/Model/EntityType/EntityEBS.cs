@@ -13,7 +13,7 @@ namespace EBSComponent.Model.EntityType
         /// EBS站点默认设置
         /// </summary>
         public EntityEBS()
-            : base(WebServerEnum.EBS, OperationModeEnum.PRODUCTION)
+            : base(WebServerEnum.EBS)
         {
         }
     }

@@ -13,7 +13,7 @@ namespace EBSComponent.Model.EntityType
         /// 开放平台站点默认设置
         /// </summary>
         public EntityOpenPlatform()
-            : base(WebServerEnum.OPENPLATFORM, OperationModeEnum.PRODUCTION)
+            : base(WebServerEnum.OPENPLATFORM)
         {
 
         }

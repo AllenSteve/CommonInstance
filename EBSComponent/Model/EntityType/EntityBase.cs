@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace EBSComponent.Model.EntityType
 {
@@ -17,12 +18,51 @@ namespace EBSComponent.Model.EntityType
         /// <summary>
         /// 服务站点枚举
         /// </summary>
-        public WebServerEnum webServer { get; set; }
+        protected WebServerEnum webServer { get; set; }
+
+        private OperationModeEnum operationMode { get; set; }
 
         /// <summary>
         /// 运行环境枚举
         /// </summary>
-        public OperationModeEnum operationMode { get; set; }
+        protected OperationModeEnum OperationMode
+        {
+            get
+            {
+                if(this.operationMode==null)
+                {
+                    this.operationMode = this.IsDebugMode() ? OperationModeEnum.TEST : OperationModeEnum.PRODUCTION;
+                }
+                return this.operationMode;
+            }
+        }
+
+        /// <summary>
+        /// 解析HTTP上下文
+        /// </summary>
+        /// <param name="context">HTTP上下文对象</param>
+        /// <returns>解析字符串</returns>
+        protected string ParseHttpContext(HttpContext context, string key)
+        {
+            if (context == null || context.Items[key] == null)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return context.Items[key].ToString();
+            }
+        }
+
+        /// <summary>
+        /// 判断当前是否为调试模式
+        /// </summary>
+        /// <returns>当前模式</returns>
+        protected bool IsDebugMode()
+        {
+            return this.ParseHttpContext(HttpContext.Current, "IsTestUser").Equals("1");
+        }
+
 
         public EntityBase()
         {
@@ -34,10 +74,9 @@ namespace EBSComponent.Model.EntityType
         /// </summary>
         /// <param name="web">站点名称</param>
         /// <param name="operation">运行环境名称</param>
-        public EntityBase(WebServerEnum web, OperationModeEnum operation)
+        public EntityBase(WebServerEnum web)
         {
             this.webServer = web;
-            this.operationMode = operation;
         }
 
         /// <summary>
@@ -57,7 +96,7 @@ namespace EBSComponent.Model.EntityType
                 this.entityName.Append("_");
                 this.entityName.Append(access.ToString());
 
-                if (operationMode == OperationModeEnum.TEST)
+                if (this.OperationMode == OperationModeEnum.TEST)
                 {
                     this.entityName.Append("_");
                     this.entityName.Append(this.operationMode.ToString());
@@ -65,5 +104,7 @@ namespace EBSComponent.Model.EntityType
                 return (EntityTypeEnum)Enum.Parse(typeof(EntityTypeEnum), this.entityName.ToString());
             }
         }
+
+
     }
 }
