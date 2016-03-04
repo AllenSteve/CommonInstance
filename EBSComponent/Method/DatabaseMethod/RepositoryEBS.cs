@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ComponentORM.SQLHelper;
 
-namespace EbsComponent.Method.DatabaseMethod
+namespace EBSComponent.Method.DatabaseMethod
 {
     public class RepositoryEBS
     {

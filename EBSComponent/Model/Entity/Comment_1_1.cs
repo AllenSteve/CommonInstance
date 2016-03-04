@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EbsComponent.Model.Entity
+namespace EBSComponent.Model.Entity
 {
     public partial class Comment_1_1
     {

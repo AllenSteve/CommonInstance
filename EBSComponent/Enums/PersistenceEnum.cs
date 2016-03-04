@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EbsComponent.Enums
+namespace EBSComponent.Enums
 {
     /// <summary>
     /// 数据库枚举

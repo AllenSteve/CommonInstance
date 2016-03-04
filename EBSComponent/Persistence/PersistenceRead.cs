@@ -1,4 +1,4 @@
-﻿using EbsComponent.Enums;
+﻿using EBSComponent.Enums;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
