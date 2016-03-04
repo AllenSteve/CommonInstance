@@ -56,4 +56,27 @@ namespace EBSComponent.Enums
         /// </summary>
         OPENPLATFORM_WRITE_TEST = 8,
     }
+
+    /// <summary>
+    /// 服务站枚举
+    /// </summary>
+    public enum WebServerEnum
+    {
+        LOCALHOST = 0,
+        EBS = 1,
+        OPENPLATFORM = 2,
+    }
+
+    public enum AccessModeEnum
+    {
+        READ = 0,
+        WRITE = 1,
+    }
+
+    public enum OperationEnum
+    {
+        MOCKPRODUCTION = 0,
+        TEST = 1,
+        PRODUCTION = 2,
+    }
 }
