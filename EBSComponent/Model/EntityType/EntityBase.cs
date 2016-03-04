@@ -10,14 +10,14 @@ namespace EBSComponent.Model.EntityType
     public class EntityBase
     {
         /// <summary>
+        /// 数据库名称
+        /// </summary>
+        protected StringBuilder entityName { get; set; }
+
+        /// <summary>
         /// 服务站点枚举
         /// </summary>
         public WebServerEnum webServer { get; set; }
-
-        /// <summary>
-        /// 访问权限枚举
-        /// </summary>
-        public AccessModeEnum accessMode { get; set; }
 
         /// <summary>
         /// 运行环境枚举
@@ -26,8 +26,14 @@ namespace EBSComponent.Model.EntityType
 
         public EntityBase()
         {
+            this.entityName = new StringBuilder();
         }
 
+        /// <summary>
+        /// 重载构造函数
+        /// </summary>
+        /// <param name="web">站点名称</param>
+        /// <param name="operation">运行环境名称</param>
         public EntityBase(WebServerEnum web, OperationModeEnum operation)
         {
             this.webServer = web;
@@ -37,9 +43,27 @@ namespace EBSComponent.Model.EntityType
         /// <summary>
         /// 获取数据库连接类型
         /// </summary>
-        public EntityTypeEnum GetEntityType(AccessModeEnum access)
+        /// <param name="access">数据库访问权限</param>
+        /// <returns>数据库连接名枚举</returns>
+        public EntityTypeEnum GetEntityType(AccessModeEnum access = AccessModeEnum.READ)
         {
-            return EntityTypeEnum.LOCAL_DATABASE;
+            if(this.webServer == WebServerEnum.LOCALHOST)
+            {
+                return EntityTypeEnum.LOCAL_DATABASE;
+            }
+            else
+            {
+                this.entityName.Append(this.webServer.ToString());
+                this.entityName.Append("_");
+                this.entityName.Append(access.ToString());
+
+                if (operationMode == OperationModeEnum.TEST)
+                {
+                    this.entityName.Append("_");
+                    this.entityName.Append(this.operationMode.ToString());
+                }
+                return (EntityTypeEnum)Enum.Parse(typeof(EntityTypeEnum), this.entityName.ToString());
+            }
         }
     }
 }
