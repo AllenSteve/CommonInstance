@@ -24,6 +24,16 @@ namespace EBSComponent.Model.EntityType
         /// </summary>
         public OperationModeEnum operationMode { get; set; }
 
+        public EntityBase()
+        {
+        }
+
+        public EntityBase(WebServerEnum web, OperationModeEnum operation)
+        {
+            this.webServer = web;
+            this.operationMode = operation;
+        }
+
         /// <summary>
         /// 获取数据库连接类型
         /// </summary>
