@@ -37,7 +37,7 @@ namespace EBSComponent.Model.EntityType
         /// <summary>
         /// 获取数据库连接类型
         /// </summary>
-        public EntityTypeEnum GetEntityType()
+        public EntityTypeEnum GetEntityType(AccessModeEnum access)
         {
             return EntityTypeEnum.LOCAL_DATABASE;
         }
