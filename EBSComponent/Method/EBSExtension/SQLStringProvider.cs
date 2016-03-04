@@ -298,6 +298,17 @@ namespace EBS.Interface.EContract.Method.EBSExtension
 
         public static string Delete<T>(this string str, object conditionParam = null)
         {
+            if (conditionParam != null)
+            {
+                Type type = typeof(T);
+                StringBuilder SQL = new StringBuilder();
+                PropertyInfo[] properties = type.GetProperties();
+                SQL.Append(" DELETE FROM ");
+                SQL.Append(type.Name);
+                SQL.Append(SQLStringProvider.CreateConditionParam(conditionParam));
+
+
+            }
             return str;
         }
 
