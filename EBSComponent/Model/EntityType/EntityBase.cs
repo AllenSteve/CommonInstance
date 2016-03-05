@@ -77,6 +77,7 @@ namespace EBSComponent.Model.EntityType
         public EntityBase(WebServerEnum web)
         {
             this.webServer = web;
+            this.entityName = new StringBuilder();
         }
 
         /// <summary>
@@ -92,6 +93,7 @@ namespace EBSComponent.Model.EntityType
             }
             else
             {
+                this.entityName.Clear();
                 this.entityName.Append(this.webServer.ToString());
                 this.entityName.Append("_");
                 this.entityName.Append(access.ToString());
