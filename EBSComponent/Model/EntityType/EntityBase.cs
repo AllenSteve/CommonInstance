@@ -44,7 +44,7 @@ namespace EBSComponent.Model.EntityType
         /// <returns>解析字符串</returns>
         protected string ParseHttpContext(HttpContext context, string key)
         {
-            if (context == null || context.Items[key] == null)
+            if (context == null || context.Items == null || context.Items[key] == null)
             {
                 return string.Empty;
             }
