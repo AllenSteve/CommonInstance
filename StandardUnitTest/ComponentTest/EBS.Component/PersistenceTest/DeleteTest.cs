@@ -7,8 +7,9 @@ namespace StandardUnitTest.ComponentTest.EBS.Component.PersistenceTest
     public class PersistenceDeleteTest
     {
         [TestMethod]
-        public void DeleteByIdTest()
+        public void DeleteTest()
         {
+
         }
     }
 }

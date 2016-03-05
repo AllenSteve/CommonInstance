@@ -62,6 +62,7 @@
     <Compile Include="ComponentTest\EBS.Component\PersistenceTest\CreateTest.cs" />
     <Compile Include="ComponentTest\EBS.Component\PersistenceTest\DeleteTest.cs" />
     <Compile Include="ComponentTest\EBS.Component\PersistenceTest\ReadTest.cs" />
+    <Compile Include="ComponentTest\EBS.Component\PersistenceTest\PersistenceTest.cs" />
     <Compile Include="ComponentTest\EBS.Component\PersistenceTest\UpdateTest.cs" />
     <Compile Include="ComponentTest\EOP.Component\SyncEopCompanyScoreTest.cs" />
     <Compile Include="ComponentTest\EBS.Component\InsertWithIndexTest.cs" />
