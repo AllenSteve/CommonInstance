@@ -21,7 +21,7 @@ namespace EBSComponent.Persistence
         /// <returns>受影响的行数</returns>
         public int Delete<T>(T entity, object conditionParam = null)
         {
-            return this.writeConnection.Execute(sql.Delete<T>(conditionParam), entity);
+            return this.writeConnection.Execute(sql.Delete<T>(entity, conditionParam));
         }
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace EBSComponent.Persistence
         /// <param name="conditionParam">条件参数</param>
         /// <param name="columnParam">删除标记列参数</param>
         /// <returns>受影响的行数</returns>
-        public int Remove<T>(T entity, object conditionParam = null, object columnParam = null)
+        public int Remove<T>(T entity, object conditionParam = null)
         {
-            return this.writeConnection.Execute(sql.Remove<T>(conditionParam, columnParam), entity);
+            return this.writeConnection.Execute(sql.Remove<T>(entity, conditionParam));
         }
     }
 }

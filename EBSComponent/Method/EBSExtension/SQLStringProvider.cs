@@ -296,25 +296,54 @@ namespace EBS.Interface.EContract.Method.EBSExtension
             return SQL.ToString();
         }
 
-        public static string Delete<T>(this string str, object conditionParam = null)
+        public static string Delete<T>(this string str, T entity, object conditionParam = null)
         {
-            if (conditionParam != null)
+            Type type = typeof(T);
+            PropertyInfo[] properties = type.GetProperties();
+            StringBuilder SQL = new StringBuilder();
+
+            if (entity != null)
             {
-                Type type = typeof(T);
-                StringBuilder SQL = new StringBuilder();
-                PropertyInfo[] properties = type.GetProperties();
+                SQL.Append(" DELETE FROM ");
+                SQL.Append(type.Name);
+                SQL.Append(" WHERE ");
+                SQL.Append(properties.FirstOrDefault().Name);
+                SQL.Append(" = ");
+                SQL.Append(properties.FirstOrDefault().GetValue(entity, null));
+            }
+            else if (conditionParam != null)
+            {
                 SQL.Append(" DELETE FROM ");
                 SQL.Append(type.Name);
                 SQL.Append(SQLStringProvider.CreateConditionParam(conditionParam));
-
-
             }
-            return str;
+            return SQL.ToString();
         }
 
-        public static string Remove<T>(this string str, object conditionParam = null, object columnParam = null)
+        public static string Remove<T>(this string str, T entity, object conditionParam = null)
         {
-            return str;
+            Type type = typeof(T);
+            PropertyInfo[] properties = type.GetProperties();
+            StringBuilder SQL = new StringBuilder();
+
+            if (entity != null)
+            {
+                SQL.Append(" UPDATE ");
+                SQL.Append(type.Name);
+                SQL.Append(" SET ISDEL=0 ");
+                SQL.Append(" WHERE ");
+                SQL.Append(properties.FirstOrDefault().Name);
+                SQL.Append(" = ");
+                SQL.Append(properties.FirstOrDefault().GetValue(entity, null));
+            }
+            else if (conditionParam != null)
+            {
+                SQL.Append(" UPDATE ");
+                SQL.Append(type.Name);
+                SQL.Append(" SET ISDEL=0 ");
+                SQL.Append(SQLStringProvider.CreateConditionParam(conditionParam));
+            }
+            return SQL.ToString();
         }
     }
 }
