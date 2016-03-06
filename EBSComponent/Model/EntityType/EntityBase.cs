@@ -58,7 +58,7 @@ namespace EBSComponent.Model.EntityType
         /// 判断当前是否为调试模式
         /// </summary>
         /// <returns>当前模式</returns>
-        protected bool IsDebugMode()
+        public bool IsDebugMode()
         {
             return this.ParseHttpContext(HttpContext.Current, "IsTestUser").Equals("1");
         }
